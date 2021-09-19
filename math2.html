@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA+FJREFUWEfFl2moVlUUhh9T08hZ08wBhBwxCoJEyCH8IanlRCqUCA2GmkF/VAQHKhRnRITSgsKIckoRRAMpFCorzQFR/1RmiZriiKlpxnNZBzbH8w36CS64XO7Ze6/97rXe9a5163Gfrd59vp9KABoA9YEHoOLeO3nLf8A14FYpAE2BZ4GBQA+gLfAwIKBKoKsBsh94CzhT5MzL5gAvA82r8XYXe74HRgEn8wCaAPOBicCDd+G42iOFAMzzWOBDwBRkdhPwRy74cyv+No95M0X60crt2w28BJxKI/AIsBnoY26A7cBBNwH/AsMC4D/AUuBI7vaGwNvA0/H9ArC8YJ/L+t8FXM0A+PsNYBmwB5gB/BJMzV76HjATOAsMBX7KAWgcoPvH9z+B0cCP5fKSAZBsnwAdgdeBAxHC7Kyh9TWTJQ7wXMHLrJKfo2o89yvwInCoGgC9gHXx8i0FB3T+ETAO+At4BjiR22f1GD0foR2OSP1WDYAuwBPA1+al4EAbYG28/HfgSeBibl9P4BugXXy31gcHh0piqFZUOkd+FSXT0xe4kvPaD/gKaB3fzf0g4HI1ESi3xzVT9F0I07fA8wWRGgF8CjQLZ7JcrljCNUfgBWBjSPGGUEm1PLXXgBXAQ0HgrYDn1IOaAcwC5obIfBD1rjakNh2wVNUDL/0cGH8vAOjQ3A6JRvRuXHQjuV0uKeHTYo/aIdAplXJbDQm7A5Zm13CmFijXqRTbNwy/PURzbUEIV1kMlQCo6wqTIqTS6VgNlw+p2cQ+BsbER4k3G5hXawRaAJuAAeHI2pft1ntqrSLn1r0mADmxpFYASulnSXc8FgD25Rw/GlFRHzIA9pPFtQBQ/ewP1nzWYm1QRuCPnONOgGXXO+GAQ837JQDor45DpTjgBkemhUCjxIlSPbJABZXyHYC/MxKujHLNY5DMTlvy6lwpAE9Fc3o8OV2utNy3E2gf+9UBwZrC64kP75sUEq1wnS8CYGu2hmV0Fnp96GgqsKogrHkAbnEeeCUGj6xkjZCc+iFIeqMIwATA8NmCU7sUU/LeAgA2q22AHTEzLz0KrAbsjB2AV6OTvhkRvo0DLYH10UTy4Oz1EvLvAgBGzUY0vGDNkjQl+jOijnmWq4PNbQC6xVxo203N1ywKcUlzmu3RuSroSGczKmXOGuqDEa7rkvlX2su/CJKkaw4hTszl5jvP6th53/6RN7unQ807MVfWrRdxwCHC8rOmXT8ezWdNpd4eVSBRBetoZsgNv7rxZZTe6RRZEQAPSRjTYTgdv41A2v3KRLlONx4LTZBT5+K8s2R+hrgn/+eVA1Nx7X96I9MhuDoTuwAAAABJRU5ErkJggg==" rel="icon" type="image/x-icon" />
+  <link rel="stylesheet" href="./resources/common.css?3">
+</head>
+<body>
+<header></header>
+<div id="app"></div> 
+<script type="module">
+import { questions as lib1, title as title1 } from './resources/1.mjs';
+import { questions as lib2, title as title2 } from './resources/2.mjs';
+import { questions as lib3, title as title3 } from './resources/3.mjs';
+import { questions as lib4, title as title4 } from './resources/4.mjs';
+import { types, questionRender as renders } from './resources/utils/index.mjs';
+const data = [
+  [lib1, title1],
+  [lib2, title2],
+  [lib3, title3],
+  [lib4, title4],
+];
+window.handleChange = i => {
+  document.title = data[i][1];
+  const questions = data[i][0];
+  let index = 0;
+  const result = [`<h1>${document.title}</h1>`];
+  Object.keys(types).forEach(type => {
+    const qs = questions.filter(q => q.type === type);
+    if (qs.length === 0) {
+      return;
+    }
+    result.push(`<h2>${types[type]}</h2>`);
+    if (type === 'calculation') {
+      result.push('<div class="question-calculation">')
+    }
+    qs.forEach(q => {
+      index++;
+      result.push(renders[type](q, index, q.style ? q.style.blankHeight : 0));
+    });
+    if (type === 'calculation') {
+      result.push('</div>')
+    }
+  });
+  document.querySelector('#app').innerHTML = result.join('');
+  window.scrollTo(0,0);
+};
+document.querySelector('header').innerHTML = `
+  <select onchange="handleChange(this.value)">
+    ${data.map((d, i) => `<option value="${i}">${d[1]}</option>`).join('')}
+  </select>
+`;
+handleChange(0);
+</script>
+</body>
+</html>

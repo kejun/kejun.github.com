@@ -1,0 +1,146 @@
+@import url('https://fonts.proxy.ustclug.org/css2?family=Source+Code+Pro&display=swap');
+
+@media print {
+  @page {
+    size: auto;
+    margin: 0 0 1cm;
+  }
+  body {
+    margin: 1cm !important;
+  }
+  header {
+    display: none;
+  }
+  h1 {
+    display: block !important;
+  }
+}
+
+body {
+  margin: 80px 100px;
+}
+
+header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 20px 0 0;
+  background: #fff;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+select {
+  padding: 20px 0;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  -webkit-appearance: none;
+  background: transparent url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 164 167' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M81.997 105.183l64.115-64.115c4.09-4.09 10.723-4.09 14.813 0 4.091 4.09 4.091 10.723 0 14.814l-70.14 70.14A10.458 10.458 0 0 1 81.997 129c-3.12.413-6.391-.58-8.789-2.977l-70.14-70.14c-4.09-4.09-4.09-10.723 0-14.814 4.09-4.09 10.723-4.09 14.814 0l64.115 64.115z' fill='%23666' fill-rule='evenodd'/%3E%3C/svg%3E%0A") no-repeat 100% 50%;
+}
+
+body, pre {
+  font: normal 12px/1.8 "Source Code Pro", serif;
+}
+h1 {
+  display: none;
+}
+h1, h2, h3 {
+  text-align: center;
+  font: bold 12px / 1.8 sans-serif;
+}
+h2 {
+  text-align: left;
+}
+table {
+  max-width:100%;
+  border:1px solid;
+  border-collapse:collapse;
+}
+td {
+  border:1px solid;
+  font-size:1.15em;
+  padding:12px;
+}
+sup {
+  display: inline-block;
+  transform: scale(.8);
+  transform-origin: left;
+  color: #aaa;
+}
+.question {
+  margin-bottom: 1em;
+}
+.question .fractional {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-align: center;
+}
+.question .fractional .g {
+  display: block;
+  padding: 0 4px;
+}
+.question .fractional .g::after {
+  content: '';
+  display: block;
+  height: 0;
+  overflow: hidden;
+  border-bottom: 1px solid;
+}
+.question .index {
+  margin-right: .5em;
+}
+.question .line {
+  display: inline-block;
+  height: 1em;
+  width: 3em;
+  border-bottom: 1px solid;
+  vertical-align: text-bottom;
+}
+.question .space {
+  display: inline-block;
+  width: 1em;
+}
+.question .blank {
+  height: 8em;
+}
+.choice-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+.choice-options .option {
+  margin-right: 2em;
+  min-width: 20%;
+  max-width: 50%;
+}
+.question-calculation {
+  display: flex;
+  flex-wrap: wrap;
+}
+.question-calculation .question{
+  width: 50%;
+  min-height: 6em;
+}
+  
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 80px 20px;
+    box-sizing: border-box;
+  }
+  img, svg {
+    max-width: 80%;
+  }
+  .choice-options .option {
+    max-width: 100%;
+  }
+  .question-calculation .question{
+    width: 100%;
+    min-height: 6em;
+  }
+  .question .space {
+    width: .5em;
+  }
+}
