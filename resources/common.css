@@ -3,16 +3,17 @@
 @media print {
   @page {
     size: auto;
-    margin: 0 0 1cm;
-  }
-  body {
-    margin: 1cm !important;
+    margin: 0;
   }
   header {
     display: none;
   }
   h1 {
     display: block !important;
+  }
+  .pagebreak + .question-calculation,
+  .pagebreak + .question {
+    margin-top: 1cm;
   }
 }
 
@@ -69,6 +70,11 @@ sup {
   transform: scale(.8);
   transform-origin: left;
   color: #aaa;
+}
+.pagebreak {
+  width: 100%;
+  clear: both;
+  page-break-after: always;
 }
 .question {
   margin-bottom: 1em;

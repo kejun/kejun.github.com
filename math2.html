@@ -16,7 +16,11 @@ import { questions as lib1, title as title1 } from './resources/1.mjs';
 import { questions as lib2, title as title2 } from './resources/2.mjs';
 import { questions as lib3, title as title3 } from './resources/3.mjs';
 import { questions as lib4, title as title4 } from './resources/4.mjs';
-import { types, questionRender as renders } from './resources/utils/index.mjs';
+import {
+  types,
+  questionRender as renders,
+  handlePageBreak
+} from './resources/utils/index.mjs';
 const data = [
   [lib1, title1],
   [lib2, title2],
@@ -47,6 +51,7 @@ window.handleChange = i => {
   });
   document.querySelector('#app').innerHTML = result.join('');
   window.scrollTo(0,0);
+  handlePageBreak();
 };
 document.querySelector('header').innerHTML = `
   <select onchange="handleChange(this.value)">

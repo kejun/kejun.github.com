@@ -60,3 +60,37 @@ export const questionRender = {
     `;
   },
 };
+
+export const handlePageBreak = () => {
+  if (/mobile/i.test(navigator.userAgent)) {
+    return;
+  }
+  let dpi = document.querySelector('.detect-dpi');
+  if (!dpi) {
+    dpi = document.createElement('div');
+    dpi.className = 'detect-dpi';
+    dpi.style.cssText = `
+      position: absolute;
+      left: -100%;
+      top: -100%;
+      height: 1in;
+      width: 1in;
+    `;
+    document.body.appendChild(dpi);
+  }
+  const pageHeightLimit = dpi.offsetHeight * 10;
+  document.body.style.cssText = `
+    width: ${dpi.offsetHeight * 7}px;
+    margin-left: auto;
+    margin-right: auto;
+  `;
+  let h = 0;
+  [...document.querySelectorAll('#app > *')].forEach(q => {
+    if (q.offsetTop + q.offsetHeight - h > pageHeightLimit) {
+      h = h + q.offsetTop;
+      const pagebreak = document.createElement('div');
+      pagebreak.className = 'pagebreak';
+      q.parentNode.insertBefore(pagebreak, q);
+    }
+  });
+};
