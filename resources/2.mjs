@@ -1,4 +1,4 @@
-import {vline, fract, xaxis, table} from './utils/graphic.mjs';
+import { table } from './utils/graphic.mjs';
 
 export const title = '初一数学作业（2021.09.18）';
 
@@ -17,31 +17,31 @@ export const questions = [
     type: 'choice',
     question: '若|-x|=8，则x的值为 ( )',
     options: [
-      'A. -8',
-      'B. +8',
-      'C. ±8',
-      `D. ${fract(1, 8)}`,
+      'A. $-8$',
+      'B. $+8$',
+      'C. $\\pm8$',
+      'D. $\\frac{1}{8}$',
     ],
   },
   {
     type: 'completion',
-    question: '已知|a|=3，|b|=2，则ab < 0，则a - b = ____',
+    question: '已知$|a|=3，|b|=2$，则$ab < 0$，则$a - b =$____',
   },
   {
     type: 'completion',
-    question: `观察下面的一列数: ${fract(1, 2)}, -${fract(1, 6)}, ${fract(1, 12)}, -${1, 20} ...请你找出其中排列的规律，并按此规律填空，第9个数是____，第n个数________`,
+    question: '观察下面的一列数$\\frac{1}{2}, -\\frac{1}{6}, \\frac{1}{12}, -20 ...$请你找出其中排列的规律，并按此规律填空，第9个数是____，第n个数________',
   },
   {
     type: 'calculation',
-    question: '-20 - (-14) - |-18| - 13',
+    question: '$-20 - (-14) - |-18| - 13$',
   },
   {
     type: 'calculation',
-    question: `-1 - (-2) - ${vline()}(-3${fract(1, 2)}) - 2${vline()} + (-2.5)`,
+    question: '$-1 - (-2) - \\vert(-3\\frac{1}{2}) - 2| + (-2.5)$',
   },
   {
     type: 'calculation',
-    question: '已知|a|=2, |b|=5，ab < 0，求 a - b 的值',
+    question: '已知$|a|=2, |b|=5，ab < 0$，求 $a - b$ 的值',
   },
   {
     type: 'program',

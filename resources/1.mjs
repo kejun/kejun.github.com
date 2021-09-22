@@ -1,4 +1,4 @@
-import {vline, fract, xaxis, table} from './utils/graphic.mjs';
+import { xaxis, table } from './utils/graphic.mjs';
 
 export const title = '七年级数学课堂作业 2';
 
@@ -7,11 +7,11 @@ export const questions = [
     type: 'choice',
     question: '下列说法不正确的是 ( )',
     options: [
-      'A. -3.14既是负数，分数，也是有理数',
-      'B. 0既不是正数，也不是负数，但是整数',
-      'C. -2000即是负数，也是整数，但不是有理数',
-      'D. 0是非正数'
-    ]
+      'A. $-3.14$既是负数，分数，也是有理数',
+      'B. $0$既不是正数，也不是负数，但是整数',
+      'C. $-2000$即是负数，也是整数，但不是有理数',
+      'D. $0$是非正数',
+    ],
   },
   {
     type: 'choice',
@@ -20,43 +20,43 @@ export const questions = [
       'A. 绝对值较大的数较大',
       'B. 绝对值较大的数较小',
       'C. 绝对值相等的两数相等',
-      'D. 相等两数的绝对值相等'
-    ]
+      'D. 相等两数的绝对值相等',
+    ],
   },
   {
     type: 'choice',
-    question: '不大于４的所有正整数有 ( )',
+    question: '不大于$4$的所有正整数有 ( )',
     options: [
-      'A. ５个',
-      'B. ４个',
-      'C. ３个',
-      'D. 无数个'
-    ]
+      'A. $5$个',
+      'B. $4$个',
+      'C. $3$个',
+      'D. 无数个',
+    ],
   },
   {
     type: 'choice',
-    question: '若|a| + a = 0，则a是 ( )',
+    question: '若$|a|+a=0$，则$a$是 ( )',
     options: [
       'A. 正数',
       'B. 负数',
       'C. 正数或０',
-      'D. 负数或０'
-    ]
+      'D. 负数或０',
+    ],
   },
   {
     type: 'choice',
-    question: '有理数a、b在数轴上的对应点的位置如图所示，则下列正确的是 ( )',
+    question: '有理数$a、b$数轴上的对应点的位置如图所示，则下列正确的是 ( )',
     addition: xaxis({
-     width: 320,
-     points:[{label: 'a', value: -1.6}, {label: 'b', value: 0.4}],
-     scale: { extent: [-2, 3] }
+      width: 260,
+      points: [{ label: 'a', value: -1.6 }, { label: 'b', value: 0.4 }],
+      scale: { extent: [-2, 3] },
     }),
     options: [
-      'A. a + b = 0',
-      'B. a + b > 0',
-      'C. |a| > |b|',
-      'D. a - b > 0'
-    ]
+      'A. $a + b = 0$',
+      'B. $a + b > 0$',
+      'C. $|a| > |b|$',
+      'D. $a - b > 0$',
+    ],
   },
   {
     type: 'choice',
@@ -65,94 +65,94 @@ export const questions = [
       'A. 求两个有理数的绝对值，并比较大小',
       'B. 确定和的符号',
       'C. 观察两个有理数的符号，并作出一些判断',
-      'D. 用较大的绝对值减去较小的绝对值'
-    ]
+      'D. 用较大的绝对值减去较小的绝对值',
+    ],
   },
   {
     type: 'choice',
-    question: '数a是在数轴上表示-3的点右边的数，则-3-a的值 ( )',
+    question: '数a是在数轴上表示-3的点右边的数，则$-3-a$的值 ( )',
     options: [
       'A. 大于0',
       'B. 小于0',
       'C. 等于0',
-      'D. 不确定正、负'
-    ]
+      'D. 不确定正、负',
+    ],
   },
   {
     type: 'choice',
     question: '数轴上的点A、B、C分别对应数0、-1、x，C与A的距离大于C与B的距离，则 ( )',
     options: [
-      'A. x > 0',
-      'B. x ⩾ -1',
-      'C. x ⩽ -1',
-      'D. x < -0.5'
-    ]
+      'A. $x > 0$',
+      'B. $x \\geqslant -1$',
+      'C. $x \\leqslant -1$',
+      'D. $x < -0.5$',
+    ],
   },
   {
     type: 'completion',
-    question: '|π - 3|=________'
+    question: '$|\\pi - 3|=$________',
   },
   {
     type: 'completion',
-    question: '|x|=____(x < 0)'
+    question: '$|x|=$____($x < 0$)',
   },
   {
     type: 'completion',
-    question: '数轴上的A点与表示-3的点距离4个单位长度，则A点表示的数为____'
+    question: '数轴上的A点与表示-3的点距离4个单位长度，则A点表示的数为____',
   },
   {
     type: 'completion',
-    question: `比较大小：0____-0.01，-${fract(2, 3)}____-${fract(3, 4)} (用"<"、">"或"="填空)`
+    question: '比较大小：0____-0.01，$-\\frac{2}{3}$____$-\\frac{3}{4}$ (用"<"、">"或"="填空)',
   },
   {
     type: 'completion',
-    question: '冰箱开始启动时内部温度为10℃，如果每小时冰箱内部温度降低5℃，那么3小时后冰箱内部的温度是____'
+    question: '冰箱开始启动时内部温度为10℃，如果每小时冰箱内部温度降低5℃，那么3小时后冰箱内部的温度是____',
   },
   {
     type: 'completion',
-    question: '已知|a-1|+|b+2|=0，则-ab=____'
+    question: '已知$|a-1|+|b+2|=0$，则$-ab=$____',
   },
   {
     type: 'completion',
-    question: '当x=____时，式子2-|2x-1|取最大值，最大值为____'
+    question: '当$x=$____时，式子$2-|2x-1|$取最大值，最大值为____',
   },
   {
     type: 'completion',
-    question: `下列各数填到适当的集合中: 5，-${fract(2,3)}，0，1.48，-10，π，-0.32<br>
+    question: `下列各数填到适当的集合中: 5，$-\\frac{2}{3}$，0，1.48，-10，$\\pi$，-0.32<br>
       正数集合{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......}；
       负数集合{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......}；<br>
       整数集合{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......}；
       分数集合{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;......}。
-      `
+      `,
   },
   {
     type: 'completion',
     question: '细心观察前三个图形，按下述方法找出规律。请你用你发现的规律写出第四个正方形中的数为____',
-    addition: '<svg width="600" viewBox="0 0 658 120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="M19 20h71v71H19z"/><path id="b" d="M19 20h71v71H19z"/><path id="c" d="M19 20h71v71H19z"/><path id="d" d="M19 20h71v71H19z"/></defs><g fill="none" fill-rule="evenodd"><g transform="translate(10 6)"><use fill="#FFF" xlink:href="#a"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x="100" y="14">-2</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x=".5" y="104">-4</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x="100" y="104">-3</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x="46" y="59">14</tspan></text><g><g transform="translate(185 6)"><use fill="#FFF" xlink:href="#b"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x="100" y="14">-3</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x=".5" y="104">-5</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x="100" y="104">-4</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x="46" y="59">47</tspan></text></g><g><g transform="translate(359 6)"><use fill="#FFF" xlink:href="#c"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x="100" y="14">-4</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x=".5" y="104">-6</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x="100" y="104">-5</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x="43" y="59">104</tspan></text></g><g><g transform="translate(534 6)"><use fill="#FFF" xlink:href="#d"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x="100" y="14">-5</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x=".5" y="104">-7</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x="100" y="104">-6</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x="51.449" y="59">?</tspan></text></g></g></svg>'
+    addition: '<svg width="600" viewBox="0 0 658 120" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="a" d="M19 20h71v71H19z"/><path id="b" d="M19 20h71v71H19z"/><path id="c" d="M19 20h71v71H19z"/><path id="d" d="M19 20h71v71H19z"/></defs><g fill="none" fill-rule="evenodd"><g transform="translate(10 6)"><use fill="#FFF" xlink:href="#a"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x="100" y="14">-2</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x=".5" y="104">-4</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x="100" y="104">-3</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(10 6)"><tspan x="46" y="59">14</tspan></text><g><g transform="translate(185 6)"><use fill="#FFF" xlink:href="#b"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x="100" y="14">-3</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x=".5" y="104">-5</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x="100" y="104">-4</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(185 6)"><tspan x="46" y="59">47</tspan></text></g><g><g transform="translate(359 6)"><use fill="#FFF" xlink:href="#c"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x="100" y="14">-4</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x=".5" y="104">-6</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x="100" y="104">-5</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(359 6)"><tspan x="43" y="59">104</tspan></text></g><g><g transform="translate(534 6)"><use fill="#FFF" xlink:href="#d"/><path stroke="#000" stroke-width="2" d="M20 21h69v69H20z"/></g><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x=".5" y="14">-1</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x="100" y="14">-5</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x=".5" y="104">-7</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x="100" y="104">-6</tspan></text><text font-family="TimesNewRomanPSMT, Times New Roman" font-size="16" fill="#000" transform="translate(534 6)"><tspan x="51.449" y="59">?</tspan></text></g></g></svg>',
   },
   {
     type: 'calculation',
-    question: '-7 + 13 - 6 + 20'
+    question: '$-7 + 13 - 6 + 20$',
   },
   {
     type: 'calculation',
-    question: '(-49) - (+91) - (-5) + (-9)'
+    question: '$(-49) - (+91) - (-5) + (-9)$',
   },
   {
     type: 'calculation',
-    question: `-5${fract(3, 4)} + (+2${fract(3, 7)}) + (-1${fract(1, 4)}) - (-${fract(4, 7)})`
+    question: '$-5\\frac{3}{4} + (+2\\frac{3}{7}) + (-1\\frac{1}{4}) - (-\\frac{4}{7})$',
   },
   {
     type: 'calculation',
-    question: `(-${fract(2, 3)}) + ${vline()}-5${fract(1, 6)}${vline()} + ${vline()}-4${fract(5, 6)}${vline()} + (-9${fract(1, 3)})`
+    question: '$(-\\frac{2}{3}) + |-5\\frac{1}{6}| + |-4\\frac{5}{6}| + (-9\\frac{1}{3})$',
   },
   {
     type: 'calculation',
-    question: `-2${fract(1, 4)} + 5${fract(1, 2)} - 4${fract(1, 3)} + 3${fract(1, 6)}`
+    question: '$-2\\frac{1}{4} + 5\\frac{1}{2} - 4\\frac{1}{3} + 3\\frac{1}{6}$',
   },
   {
     type: 'calculation',
-    question: '1 - 3 - 5 + 7 + 9 - 11 - 13 + 15 + 17 - ... - 2013 + 2015'
+    question: '$1 - 3 - 5 + 7 + 9 - 11 - 13 + 15 + 17 - ... - 2013 + 2015$',
   },
   {
     type: 'program',
@@ -164,39 +164,39 @@ export const questions = [
 = 40 + (-57)
 = -17
 </pre>
-      `
+      `,
   },
   {
     type: 'program',
     style: {
       blankHeight: 40,
     },
-    question: '已知|x|=2, |y|=3，且x < y，求x - y的值'
+    question: '已知$|x|=2$, $|y|=3$，且$x<y$，求$x-y$的值',
   },
   {
     type: 'program',
     style: {
       blankHeight: 60,
     },
-    question: '若a、b互为相反数，c、d互为倒数，m的绝对值为2。求式子m + cd + <span class="fractional"><span class="g">a + b</span>m</span>的值'
+    question: '若$a、b$互为相反数，$c、d$互为倒数，m的绝对值为2。求式子$m + cd + \\frac{a + b}{m}$的值',
   },
   {
     type: 'program',
     style: {
       blankHeight: 60,
     },
-    question: '根据下图中有理数a、b、c在数轴上的大致位置，化简|a-b|+|c-b|',
+    question: '根据下图中有理数$a、b、c$在数轴上的大致位置，化简$|a-b|+|c-b|$',
     addition: xaxis({
       displayScale: false,
       points: [
-        {label: 'c', value: -3},
-        {label: '0', value: 0},
-        {label: 'b', value: 1},
-        {label: 'a', value: 2.2},
+        { label: 'c', value: -3 },
+        { label: '0', value: 0 },
+        { label: 'b', value: 1 },
+        { label: 'a', value: 2.2 },
       ],
       scale: {
-        extent: [-3, 4]
-      }
+        extent: [-3, 4],
+      },
     }),
   },
   {
@@ -220,6 +220,6 @@ export const questions = [
       <br>(2) 动点Q从点B出发，以每秒2个单位长度的速度沿数轴向左匀速运动，若点P、Q同时出发，求：
       <br>① 当点P运动多少秒时，点P与点Q相遇?
       <br>② 当点P运动多少秒时，点P与点Q的距离为5个单位长度?`,
-    addition: '<svg width="300" viewBox="0 0 326 58" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M1 31h315" stroke="#000" stroke-width="2"/><path d="M313.88 30.995L312 26l10 4.995h-8.12zm0 .01H322L312 36l1.88-4.995zM195 15l8-4-1.504 4L203 19l-8-4z" fill="#000"/><text font-family="Monaco" font-size="20" fill="#494949"><tspan x="276" y="21">A</tspan></text><text font-family="Monaco" font-size="20" fill="#000"><tspan x="226" y="21">P</tspan></text><text font-family="Monaco" font-size="20" fill="#000"><tspan x="46" y="21">Q</tspan></text><text font-family="Monaco" font-size="20" fill="#000"><tspan x="76" y="21">B</tspan></text><text font-family="TimesNewRomanPS-BoldMT, Times New Roman" font-size="20" font-weight="bold" fill="#000"><tspan x="156" y="55">0</tspan></text><circle fill="#000" cx="161.5" cy="31.5" r="4.5"/><circle fill="#000" cx="230.5" cy="31.5" r="4.5"/><circle fill="#000" cx="50.5" cy="31.5" r="4.5"/><circle fill="#000" cx="80.5" cy="31.5" r="4.5"/><circle fill="#000" cx="280.5" cy="31.5" r="4.5"/><path d="M200.26 14.847h24.26" stroke="#000"/><path d="M14 15l8-4-1.504 4L22 19l-8-4z" fill="#000"/><path d="M19.26 14.847h24.26" stroke="#000"/></g></svg>'
-  }
-]
+    addition: '<svg width="300" viewBox="0 0 326 58" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M1 31h315" stroke="#000" stroke-width="2"/><path d="M313.88 30.995L312 26l10 4.995h-8.12zm0 .01H322L312 36l1.88-4.995zM195 15l8-4-1.504 4L203 19l-8-4z" fill="#000"/><text font-family="Monaco" font-size="20" fill="#494949"><tspan x="276" y="21">A</tspan></text><text font-family="Monaco" font-size="20" fill="#000"><tspan x="226" y="21">P</tspan></text><text font-family="Monaco" font-size="20" fill="#000"><tspan x="46" y="21">Q</tspan></text><text font-family="Monaco" font-size="20" fill="#000"><tspan x="76" y="21">B</tspan></text><text font-family="TimesNewRomanPS-BoldMT, Times New Roman" font-size="20" font-weight="bold" fill="#000"><tspan x="156" y="55">0</tspan></text><circle fill="#000" cx="161.5" cy="31.5" r="4.5"/><circle fill="#000" cx="230.5" cy="31.5" r="4.5"/><circle fill="#000" cx="50.5" cy="31.5" r="4.5"/><circle fill="#000" cx="80.5" cy="31.5" r="4.5"/><circle fill="#000" cx="280.5" cy="31.5" r="4.5"/><path d="M200.26 14.847h24.26" stroke="#000"/><path d="M14 15l8-4-1.504 4L22 19l-8-4z" fill="#000"/><path d="M19.26 14.847h24.26" stroke="#000"/></g></svg>',
+  },
+];

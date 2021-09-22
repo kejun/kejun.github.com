@@ -1,21 +1,26 @@
-import {vline} from './graphic.mjs';
+import {vline, exp} from './graphic.mjs';
 
 export const types = {
   choice: '选择题',
-　completion: '填空题',
+  completion: '填空题',
   calculation: '计算题',
   program: '解答题',
 };
 
 const trans = str => str
+  .replaceAll('____', '<span class="line"></span>')
+  .replaceAll('&nbsp;', '<span class="space"></span>')
+  .replace(/(\$[^$]+\$)/g, e => exp(e.replaceAll('$', '')));
+
+const trans1 = str => str
   .replaceAll('<=', '⩽')
   .replaceAll('>=', '⩾')
   .replaceAll('____', '<span class="line"></span>')
   .replaceAll('|', vline(18))
   .replaceAll('&nbsp;', '<span class="space"></span>');
 
-const remark = value => value ? `<sup>(注: ${value})</sup>` : '';
-const addition = value => value ? `<div class="addition">${value}</div>` : '';
+const remark = value => (value ? `<sup>(注: ${value})</sup>` : '');
+const addition = value => (value ? `<div class="addition">${value}</div>` : '');
 
 export const questionRender = {
   choice(q, index) {
@@ -30,7 +35,7 @@ export const questionRender = {
     </div>
     `;
   },
-　completion(q, index) {
+  completion(q, index) {
     return `
     <div class="question">
       <span class="index">${index}.</span> ${trans(q.question)}
@@ -39,7 +44,7 @@ export const questionRender = {
     </div>
     `;
   },
-  calculation(q, index, blankHeight=0) {
+  calculation(q, index, blankHeight = 0) {
     return `
     <div class="question">
       <span class="index">${index}.</span> ${trans(q.question)}
@@ -49,7 +54,7 @@ export const questionRender = {
     </div>
     `;
   },
-  program(q, index, blankHeight=0) {
+  program(q, index, blankHeight = 0) {
     return `
     <div class="question">
       ${index}. ${trans(q.question)}
