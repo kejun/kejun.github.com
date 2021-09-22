@@ -102,7 +102,7 @@ export const questions = [
   },
   {
     type: 'completion',
-    question: '比较大小：0____-0.01，$-\\frac{2}{3}$____$-\\frac{3}{4}$ (用"<"、">"或"="填空)',
+    question: '比较大小：$0$____$-0.01$，$-\\frac{2}{3}$____$-\\frac{3}{4}$ (用"<"、">"或"="填空)',
   },
   {
     type: 'completion',
@@ -157,13 +157,11 @@ export const questions = [
   {
     type: 'program',
     question: `请在下题每一步的计算后面注明理由:
-<pre>
-  16 + (-25) + (+24) + (-32)
-= 16 + (+24) + (-25) + (-32)
-= [16 + (+24)] + [(-25) + (-32)]
-= 40 + (-57)
-= -17
-</pre>
+<br>&nbsp;$16 + (-25) + (+24) + (-32)$
+<br>$= 16 + (+24) + (-25) + (-32)$
+<br>$= [16 + (+24)] + [(-25) + (-32)]$
+<br>$= 40 + (-57)$
+<br>$= -17$
       `,
   },
   {
@@ -185,7 +183,7 @@ export const questions = [
     style: {
       blankHeight: 60,
     },
-    question: '根据下图中有理数$a、b、c$在数轴上的大致位置，化简$|a-b|+|c-b|$',
+    question: '根据下图中有理数a、b、c在数轴上的大致位置，化简|a-b|+|c-b|',
     addition: xaxis({
       displayScale: false,
       points: [

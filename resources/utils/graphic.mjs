@@ -1,19 +1,20 @@
 import katex from 'https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.mjs';
+import { trans } from './index.mjs';
 
 export const exp = str => katex.renderToString(str);
 
 export const fract = (n1, n2) => `<span class="fractional"><span class="g">${n1}</span>${n2}</span>`;
 
-export const vline = h => `<svg width="6" height="${h || 28}" viewBox="0 0 6 28" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M3 1v26" stroke="#000" fill="none" fill-rule="evenodd"/></svg>`; 
+export const vline = h => `<svg width="6" height="${h || 28}" viewBox="0 0 6 28" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><path d="M3 1v26" stroke="#000" fill="none" fill-rule="evenodd"/></svg>`;
 
 export const table = (rows, width = 320) => `
 <table width="${width}">
-${rows.map(cells => `<tr>${cells.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}
+${rows.map(cells => `<tr>${cells.map(c => `<td>${trans(c)}</td>`).join('')}</tr>`).join('')}
 </table>
 `;
 
 /**
-  displayScale: true, 
+  displayScale: true,
   points: [
     {label: 'a', value: -1.6},
     {label: 'b', value: 0.4},
@@ -26,11 +27,10 @@ export const xaxis = ({
   displayScale = true,
   width = 320,
   points = [],
-  scale
+  scale,
 }) => {
   const unit = 50;
   const length = scale.extent[1] - scale.extent[0] + 2;
-  const size = [50 * length + 10, 62];
   const dx = `\
    M0 30h${50 * length - 10}\
    ${displayScale ? [...Array(length - 1)].map((_, i) => `M${(i + 1) * unit} 30v-8`).join('') : ''}\
@@ -52,14 +52,12 @@ export const xaxis = ({
         {
           dots ? <path d="${dots}" fill="#000"/> : null
         }
-        ${points.length ? points.map(p => {
-          return `<text font-family="Monaco" font-size="20" fill="#000"><tspan x="${p.value * unit + zero - 6}" y="20">${p.label}</tspan></text>`;
-        }).join('') : null}
+        ${points.length ? points.map(p => `<text font-family="KaTeX_Math" font-size="20" fill="#000"><tspan x="${p.value * unit + zero - 6}" y="20">${p.label}</tspan></text>`).join('') : null}
         ${displayScale ? [...Array(length - 1)].map((_, i) => {
-          const num = scale.extent[0] + i;
-          const x = (i + 1) * unit - num.toString().length * 4;
-          return `<text font-family="TimesNewRomanPS-BoldMT, Times New Roman" font-size="20" font-weight="bold" fill="#000"><tspan x="${x}" y="55">${num}</tspan></text>`;
-        }).join('') : ''}
+    const num = scale.extent[0] + i;
+    const x = (i + 1) * unit - num.toString().length * 4;
+    return `<text font-family="Times" font-size="20" fill="#000"><tspan x="${x}" y="55">${num}</tspan></text>`;
+  }).join('') : ''}
       </g>
     </svg>\
   `;

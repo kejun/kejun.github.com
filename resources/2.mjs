@@ -15,7 +15,7 @@ export const questions = [
   },
   {
     type: 'choice',
-    question: '若|-x|=8，则x的值为 ( )',
+    question: '若$|-x|=8$，则$x$的值为 ( )',
     options: [
       'A. $-8$',
       'B. $+8$',

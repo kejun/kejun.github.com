@@ -1,4 +1,4 @@
-import {vline, exp} from './graphic.mjs';
+import { exp } from './graphic.mjs';
 
 export const types = {
   choice: '选择题',
@@ -7,17 +7,25 @@ export const types = {
   program: '解答题',
 };
 
-const trans = str => str
-  .replaceAll('____', '<span class="line"></span>')
-  .replaceAll('&nbsp;', '<span class="space"></span>')
-  .replace(/(\$[^$]+\$)/g, e => exp(e.replaceAll('$', '')));
-
-const trans1 = str => str
-  .replaceAll('<=', '⩽')
-  .replaceAll('>=', '⩾')
-  .replaceAll('____', '<span class="line"></span>')
-  .replaceAll('|', vline(18))
-  .replaceAll('&nbsp;', '<span class="space"></span>');
+export const trans = (str) => {
+  if (!/string|number/.test(typeof str)) {
+    return '';
+  }
+  str += '';
+  if (str.indexOf('$') < 0) {
+    str = str.replace(/[0-9a-zA-Z-]+/g, (e) => {
+      if (/^br|pre$/i.test(e)) {
+        return e;
+      }
+      return `$${e}$`;
+    });
+  }
+  str = str
+    .replaceAll('____', '<span class="line"></span>')
+    .replaceAll('&nbsp;', '<span class="space"></span>')
+    .replace(/(\$[^$]+\$)/g, e => exp(e.replaceAll('$', '')));
+  return str;
+};
 
 const remark = value => (value ? `<sup>(注: ${value})</sup>` : '');
 const addition = value => (value ? `<div class="addition">${value}</div>` : '');
@@ -90,7 +98,7 @@ export const handlePageBreak = () => {
     margin-right: auto;
   `;
   let h = 0;
-  [...document.querySelectorAll('#app > *')].forEach(q => {
+  [...document.querySelectorAll('#app > *')].forEach((q) => {
     if (q.offsetTop + q.offsetHeight - h > pageHeightLimit) {
       h = h + q.offsetTop;
       const pagebreak = document.createElement('div');
