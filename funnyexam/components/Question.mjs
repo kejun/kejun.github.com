@@ -10,20 +10,23 @@ let selectedQuestions = [];
 
 export const initEvents = () => {
   document.body.addEventListener('click', (e) => {
-    if (e.target.dataset.id && e.target.classList.contains('bn-select')) {
-      selectedQuestions.push(findQuestionById(e.target.dataset.id));
-      e.target.closest('.question').classList.add('selected');
-      dispatchEvent('selectChange', selectedQuestions);
+    const el = e.target.classList.contains('question-body') ? e.target : e.target.closest('.question-body');
+    if (!el) {
       return;
     }
-    if (e.target.dataset.id && e.target.classList.contains('bn-unselect')) {
-      e.target.closest('.question').classList.remove('selected');
-      selectedQuestions = selectedQuestions.filter(q => q.id !== e.target.dataset.id);
+    e.stopPropagation();
+    const q = el.closest('.question');
+    if (q.classList.contains('selected')) {
+      q.classList.remove('selected');
+      selectedQuestions = selectedQuestions.filter(q => q.id !== el.dataset.id);
       if (currentIsRenderSelected) {
         renderSelected();
       }
-      dispatchEvent('selectChange', selectedQuestions);
+    } else {
+      selectedQuestions.push(findQuestionById(el.dataset.id));
+      q.classList.add('selected');
     }
+    dispatchEvent('selectChange', selectedQuestions);
   }, false);
 };
 
@@ -64,9 +67,9 @@ export default function renderQuestion(questions, title, isRenderSelected) {
   document.querySelector('#app').innerHTML = results.join('');
   window.scrollTo(0, 0);
   handlePageBreak();
-  [...document.querySelectorAll('.question')].forEach((q) => {
+  [...document.querySelectorAll('.question-body')].forEach((q) => {
     if (selectedQuestions.filter(e => e.id === q.dataset.id).length) {
-      q.classList.add('selected');
+      q.closest('.question').classList.add('selected');
     }
   });
   if (!isRenderSelected) {

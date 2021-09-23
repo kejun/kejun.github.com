@@ -16,6 +16,9 @@
   .question.selected::before {
     display: none;
   }
+  body {
+    font-size: 12px !important;
+  }
 }
 
 button {
@@ -59,14 +62,14 @@ button {
   color: #3355ff;
 }
 body, pre {
-  font: normal 14px/1.8 STFangsong,FangSong,serif;
+  font: normal 14px/1.8 STFangsong,simsun,serif;
 }
 h1 {
   display: none;
 }
 h1, h2, h3 {
   text-align: center;
-  font: normal 14px / 1.8 sans-serif;
+  font: bolder 14px / 1.8 sans-serif;
 }
 h2 {
   text-align: left;
@@ -108,22 +111,18 @@ sup {
   margin-bottom: 1em;
   box-sizing: border-box;
 }
-.question-operates {
+.question-body {
+  cursor: pointer;
+}
+.question-body:hover {
+  background-color: #f8f8fa;
+}
+.question-body:hover::before {
+  content: '⚑';
   position: absolute;
   top: 0;
-  right: 0;
-  opacity: 0;
-  z-index: 1;
-  transform: scale(.8);
-}
-.bn-unselect {
-  display: none;
-}
-.selected .bn-unselect {
-  display: block;
-}
-.selected .bn-select {
-  display: none;
+  left: -16px;
+  color: #aaa;
 }
 .selected-num {
   position: absolute;
@@ -151,8 +150,8 @@ header .print {
   left: -16px;
   color: #f40;
 }
-.question:hover .question-operates {
-  opacity: 1;
+.question.selected .question-body::before {
+  display: none;
 }
 .question .index {
   margin-right: .5em;

@@ -45,15 +45,13 @@ export const questionRender = {
       ...q,
     };
     return `
-    <div class="question" data-id="${q.id}">
-      <span class="index">${index}.</span> ${trans(q.question)}
-      ${remark(q.remark)}
+    <div class="question">
+      <div data-id="${q.id}" class="question-body"> 
+        <span class="index">${index}.</span> ${trans(q.question)}
+        ${remark(q.remark)}
+      </div>
       ${addition(q.addition)}
       ${child}
-      <div class="question-operates">
-        <button data-id="${q.id}" class="bn-select">选择</button>
-        <button data-id="${q.id}" class="bn-unselect">取消选择</button>
-      </div>
     </div>
     `;
   },

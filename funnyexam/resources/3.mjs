@@ -60,7 +60,7 @@ export const questions = normalize([
   {
     type: 'calculation',
     remark: 'P19',
-    question: '$1\\frac{1}{7} * (-0.125)$',
+    question: '$1\\frac{1}{7} \\times (-0.125)$',
   },
   {
     type: 'program',
