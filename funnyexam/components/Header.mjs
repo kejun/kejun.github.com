@@ -56,5 +56,6 @@ export default function Header({ options, onChange }) {
   return html`
     ${selectList}
     ${selectNum}
+    <button class="print" onClick=${() => window.print()}>打印当前页面</button>
   `;
 }

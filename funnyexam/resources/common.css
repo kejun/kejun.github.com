@@ -130,6 +130,12 @@ sup {
   right: 20px;
   top: 15px;
 }
+header .print {
+  position: absolute;
+  left: 20px;
+  top: 16px;
+  transform: scale(.9);
+}
 .selected-num button {
   background: #4caf50;
   color: #fff;
@@ -201,5 +207,8 @@ sup {
   }
   .question .space {
     width: .5em;
+  }
+  header .print {
+    display: none;
   }
 }
