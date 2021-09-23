@@ -1,7 +1,10 @@
-import katex from 'https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.mjs';
+import katex from 'https://g.alicdn.com/code/lib/KaTeX/0.13.18/katex.mjs';
 import { trans } from './index.mjs';
 
-export const exp = str => katex.renderToString(str);
+export const exp = str => katex.renderToString(str, {
+  strict: false,
+  throwOnError: false,
+});
 
 export const fract = (n1, n2) => `<span class="fractional"><span class="g">${n1}</span>${n2}</span>`;
 

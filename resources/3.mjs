@@ -1,6 +1,8 @@
+import { normalize } from './utils/index.mjs';
+
 export const title = '七年级数学目标检测（上）';
 
-export const questions = [
+export const questions = normalize([
   {
     type: 'completion',
     remark: 'P8',
@@ -93,5 +95,5 @@ export const questions = [
     remark: 'P19',
     question: '我们用有理数的运算研究下面的问题。规定：水位上升为正，水位下降为负。如果水位每天下降4cm，那么5天后的水位变化用算式表示为________',
   },
-];
+]);
 

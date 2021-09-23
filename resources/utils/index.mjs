@@ -7,6 +7,11 @@ export const types = {
   program: '解答题',
 };
 
+export const normalize = arr => arr.map(e => ({
+  ...e,
+  id: `${e.type}-${Math.random().toString(16).split('.')[1]}`,
+}));
+
 export const trans = (str) => {
   if (!/string|number/.test(typeof str)) {
     return '';
@@ -14,7 +19,7 @@ export const trans = (str) => {
   str += '';
   if (str.indexOf('$') < 0) {
     str = str.replace(/[0-9a-zA-Z-]+/g, (e) => {
-      if (/^br|pre$/i.test(e)) {
+      if (/^br|pre$/i.test(e) || /^[A-H]+\./.test(str)) {
         return e;
       }
       return `$${e}$`;
@@ -30,48 +35,55 @@ export const trans = (str) => {
 const remark = value => (value ? `<sup>(注: ${value})</sup>` : '');
 const addition = value => (value ? `<div class="addition">${value}</div>` : '');
 
+const cacheMap = {};
+
+export const findQuestionById = id => cacheMap[id];
+
 export const questionRender = {
-  choice(q, index) {
+  base(type, q, index, child = '') {
+    cacheMap[q.id] = {
+      ...q,
+    };
     return `
-    <div class="question">
+    <div class="question" data-id="${q.id}">
       <span class="index">${index}.</span> ${trans(q.question)}
       ${remark(q.remark)}
       ${addition(q.addition)}
-      <div class="choice-options">
-        ${q.options.map(e => `<div class="option">${trans(e)}</div>`).join('')}
+      ${child}
+      <div class="question-operates">
+        <button data-id="${q.id}" class="bn-select">选择</button>
+        <button data-id="${q.id}" class="bn-unselect">取消选择</button>
       </div>
     </div>
     `;
   },
+  choice(q, index) {
+    return this.base('choice', q, index, `
+      <div class="choice-options">
+        ${q.options.map(e => `<div class="option">${trans(e)}</div>`).join('')}
+      </div>
+    `);
+  },
   completion(q, index) {
-    return `
-    <div class="question">
-      <span class="index">${index}.</span> ${trans(q.question)}
-      ${remark(q.remark)}
-      ${addition(q.addition)}
-    </div>
-    `;
+    return this.base('completion', q, index);
   },
   calculation(q, index, blankHeight = 0) {
-    return `
-    <div class="question">
-      <span class="index">${index}.</span> ${trans(q.question)}
-      ${remark(q.remark)}
-      ${addition(q.addition)}
-      <div style="height:${blankHeight}px;"></div>
-    </div>
-    `;
+    return this.base('calculation', q, index, `
+      <div class="question-blank" style="height:${blankHeight}px;"></div>
+    `);
   },
   program(q, index, blankHeight = 0) {
-    return `
-    <div class="question">
-      ${index}. ${trans(q.question)}
-      ${remark(q.remark)}
-      ${addition(q.addition)}
-      <div style="height:${blankHeight}px;"></div>
-    </div>
-    `;
+    return this.base('program', q, index, `
+      <div class="question-blank" style="height:${blankHeight}px;"></div>
+    `);
   },
+};
+
+export const dispatchEvent = (type, payload) => {
+  const event = new CustomEvent(type, {
+    detail: payload,
+  });
+  window.dispatchEvent(event);
 };
 
 export const handlePageBreak = () => {

@@ -13,53 +13,38 @@
 <header></header>
 <div id="app"></div> 
 <script type="module">
-import { questions as lib1, title as title1 } from './resources/1.mjs';
-import { questions as lib2, title as title2 } from './resources/2.mjs';
-import { questions as lib3, title as title3 } from './resources/3.mjs';
-import { questions as lib4, title as title4 } from './resources/4.mjs';
-import {
-  types,
-  questionRender as renders,
-  handlePageBreak
-} from './resources/utils/index.mjs';
-const data = [
-  [lib1, title1],
-  [lib2, title2],
-  [lib3, title3],
-  [lib4, title4],
-];
-window.handleChange = i => {
-  document.title = data[i][1];
-  const questions = data[i][0];
-  let index = 0;
-  const result = [`<h1>${document.title}</h1>`];
-  Object.keys(types).forEach(type => {
-    const qs = questions.filter(q => q.type === type);
-    if (qs.length === 0) {
-      return;
-    }
-    result.push(`<h2>${types[type]}</h2>`);
-    if (type === 'calculation') {
-      result.push('<div class="question-calculation">')
-    }
-    qs.forEach(q => {
-      index++;
-      result.push(renders[type](q, index, q.style ? q.style.blankHeight : 0));
-    });
-    if (type === 'calculation') {
-      result.push('</div>')
-    }
-  });
-  document.querySelector('#app').innerHTML = result.join('');
-  window.scrollTo(0,0);
-  handlePageBreak();
-};
-document.querySelector('header').innerHTML = `
-  <select onchange="handleChange(this.value)">
-    ${data.map((d, i) => `<option value="${i}">${d[1]}</option>`).join('')}
-  </select>
-`;
-handleChange(0);
+  import { questions as lib1, title as title1 } from './resources/1.mjs';
+  import { questions as lib2, title as title2 } from './resources/2.mjs';
+  import { questions as lib3, title as title3 } from './resources/3.mjs';
+  import { questions as lib4, title as title4 } from './resources/4.mjs';
+  import {
+    types,
+    questionRender,
+    handlePageBreak,
+    findQuestionById,
+    dispatchEvent
+  } from './resources/utils/index.mjs';
+  import Header from './components/Header.mjs';
+  import renderContent, {initEvents} from './components/Question.mjs';
+  import { html, render } from 'https://g.alicdn.com/code/lib/htm/3.1.0/preact/standalone.module.js';
+  const data = [
+    [lib1, title1],
+    [lib2, title2],
+    [lib3, title3],
+    [lib4, title4],
+  ];
+  const handleChange = i => {
+    document.title = data[i][1];
+    renderContent(data[i][0]);
+  };
+  render(html`
+    <${Header}
+      options=${data.map(d => d[1])}
+      onChange=${index => handleChange(index)}
+    />`,
+  document.querySelector('header'));
+  handleChange(0);
+  initEvents();
 </script>
 </body>
 </html>

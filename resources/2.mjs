@@ -1,8 +1,9 @@
 import { table } from './utils/graphic.mjs';
+import { normalize } from './utils/index.mjs';
 
 export const title = '初一数学作业（2021.09.18）';
 
-export const questions = [
+export const questions = normalize([
   {
     type: 'choice',
     question: '若三个不相等的有理数的和为0，则下列结论定正确的是 ( )',
@@ -67,5 +68,4 @@ export const questions = [
 <br>①　点A所对应的数是____，点B所对应的数是____；
 <br>②　若已知在数轴上的点E从点A处出发向左运动，速度为2个单位长度/秒，同时点F从点B处出发向左运动，速度为4个单位长度/秒，在点C处点F追上了点E，求点C所对应的数____。`,
   },
-];
-
+]);

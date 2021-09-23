@@ -13,6 +13,13 @@
   .pagebreak + .question {
     margin-top: 1cm;
   }
+  .question.selected::before {
+    display: none;
+  }
+}
+
+button {
+  cursor: pointer;
 }
 
 body {
@@ -31,6 +38,10 @@ header {
   border-bottom: 1px solid #eee;
 }
 
+header > h2 {
+  text-align: center;
+}
+
 select {
   padding: 20px 0;
   border: none;
@@ -40,6 +51,13 @@ select {
   background: transparent url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 164 167' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M81.997 105.183l64.115-64.115c4.09-4.09 10.723-4.09 14.813 0 4.091 4.09 4.091 10.723 0 14.814l-70.14 70.14A10.458 10.458 0 0 1 81.997 129c-3.12.413-6.391-.58-8.789-2.977l-70.14-70.14c-4.09-4.09-4.09-10.723 0-14.814 4.09-4.09 10.723-4.09 14.814 0l64.115 64.115z' fill='%23666' fill-rule='evenodd'/%3E%3C/svg%3E%0A") no-repeat 100% 50%;
 }
 
+button {
+  appearance: none;
+  border: none;
+  background-color: #fff;
+  border-radius: 5px;
+  color: #3355ff;
+}
 body, pre {
   font: normal 14px/1.8 STFangsong,FangSong,serif;
 }
@@ -71,6 +89,9 @@ sup {
   transform-origin: left;
   color: #aaa;
 }
+.question + h2 {
+  margin-top: 2em;
+}
 .katex {
   font-size: 1.1em;
 }
@@ -83,10 +104,53 @@ sup {
   page-break-after: always;
 }
 .question {
+  position: relative;
   margin-bottom: 1em;
+  box-sizing: border-box;
+}
+.question-operates {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 1;
+  transform: scale(.8);
+}
+.bn-unselect {
+  display: none;
+}
+.selected .bn-unselect {
+  display: block;
+}
+.selected .bn-select {
+  display: none;
+}
+.selected-num {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+.selected-num button {
+  background: #4caf50;
+  color: #fff;
+}
+.selected-num .bn-close {
+  background-color: transparent;
+  color: #333;
+}
+.question.selected::before {
+  content: '⚑';
+  position: absolute;
+  top: 0;
+  left: -16px;
+  color: #f40;
+}
+.question:hover .question-operates {
+  opacity: 1;
 }
 .question .index {
   margin-right: .5em;
+  font-family: Times;
 }
 .question .line {
   display: inline-block;

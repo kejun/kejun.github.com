@@ -1,8 +1,9 @@
 import { xaxis } from './utils/graphic.mjs';
+import { normalize } from './utils/index.mjs';
 
 export const title = '初一自主探究作业（上）';
 
-export const questions = [
+export const questions = normalize([
   {
     type: 'completion',
     remark: 'P1',
@@ -219,4 +220,4 @@ export const questions = [
     },
     question: '$89 + 899 + 8999 + 89999 - 9 - 99 - 999 - 9999 - 99999$',
   },
-];
+]);
