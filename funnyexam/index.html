@@ -35,7 +35,7 @@
   ];
   const handleChange = i => {
     document.title = data[i][1];
-    renderContent(data[i][0]);
+    renderContent(data[i][0], data[i][1]);
   };
   render(html`
     <${Header}

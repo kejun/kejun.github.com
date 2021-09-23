@@ -31,16 +31,18 @@ let currentIsRenderSelected = false;
 
 export const renderSelected = () => {
   currentIsRenderSelected = true;
-  renderQuestion(selectedQuestions, true);
+  renderQuestion(selectedQuestions, `自选题目 (${(new Date()).toLocaleString().split(' ')[0]})`, true);
 };
 
 let cacheQuestion = null;
+let cacheTitle = '';
 
-export default function renderQuestion(questions, isRenderSelected) {
+export default function renderQuestion(questions, title, isRenderSelected) {
   if (!questions) {
     questions = cacheQuestion;
+    title = cacheTitle;
   }
-  const results = [];
+  const results = [title ? `<h1>${title}</h1>` : ''];
   let index = 0;
   Object.keys(types).forEach((type) => {
     const qs = questions.filter(q => q.type === type);
@@ -70,5 +72,6 @@ export default function renderQuestion(questions, isRenderSelected) {
   if (!isRenderSelected) {
     currentIsRenderSelected = false;
     cacheQuestion = questions;
+    cacheTitle = title;
   }
 }
