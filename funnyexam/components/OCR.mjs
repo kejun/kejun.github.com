@@ -3,10 +3,13 @@ import {
   html,
   useEffect,
   useState,
+  useRef,
 } from 'https://g.alicdn.com/code/lib/htm/3.1.0/preact/standalone.module.js';
 
 export default function OCR({onComplete}) {
+  const fileRef = useRef();
   const [result, setResult] = useState('');
+  const [width, setWidth] = useState(0);
   const [preview, setPreview] = useState(null);
   const handleUpload = e => {
     const reader = new FileReader();
@@ -37,17 +40,23 @@ export default function OCR({onComplete}) {
   return html`
     ${preview ? html`
       <div class="ocr-result">
-        <button class="ocr-result-close" onClick=${handleClose}>×</button>
+        ${
+          result ? html`
+            <button class="ocr-result-close" onClick=${handleClose}>×</button>
+         ` : '' 
+        }
         <div class="ocr-result-preview">
-          <img src="${preview}" />
+          <div class="ocr-img-wrapper${result ? '' : ' ocr-processing'}">
+            <img src="${preview}" />
+          </div>
         </div>
         <div class="ocr-result-content">
           <textarea>${result || '处理中...'}</textarea>
         </div>
       </div>
     ` : ''}
-    <div class="bn-ocr">
-      <input type="file" onChange=${handleUpload}/>
+    <div class="bn-ocr" onClick=${() => fileRef.current.click()}>
+      <input ref=${fileRef} type="file" accept="image/*" onChange=${handleUpload}/>
     </div>
   `;
 }

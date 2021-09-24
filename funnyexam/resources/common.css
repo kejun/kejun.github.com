@@ -204,6 +204,7 @@ header .print {
 
 .ocr-result-preview {
   flex: 1;
+  max-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -238,8 +239,9 @@ header .print {
 }
 
 .bn-ocr input[type=file] {
-  position: absoltue;
+  position: absolute;
   opacity: 0;
+  top: -100px;
   cursor: pointer;
 }
 
@@ -250,6 +252,54 @@ header .print {
   font-size: 2em;
   font-weight: 200;
   color: #333;
+}
+
+.ocr-img-wrapper {
+  position: relative;
+  display:inline-block;
+  overflow: hidden;
+}
+
+.ocr-img-wrapper.ocr-processing::after,
+.ocr-img-wrapper.ocr-processing::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100px;
+  opacity: 0;
+  border-bottom: 2px solid #222;
+  clip-path: polygon(50% 0, 90% 0%,90% 50%, 10% 50%, 10% 0);
+  transform: rotate(180deg);
+  box-shadow: inset 0 0 50px #222, inset 0 0 0 5px #222;
+  animation: scant 2s infinite;
+}
+.ocr-img-wrapper.ocr-processing::after {
+  transform: rotate(0deg);
+  animation: scanb 2s infinite;
+  animation-delay: 1s;
+}
+
+@keyframes scant {
+  from {
+    top: -100px;
+    opacity: .5;
+  }
+  to {
+    top: calc(100% + 100px);
+    opacity: 1;
+  }
+}
+
+@keyframes scanb {
+  from {
+    top: 100%;
+    opacity: .5;
+  }
+  to {
+    top: -100%;
+    opacity: 1;
+  }
 }
   
 @media only screen and (max-width: 600px) {
