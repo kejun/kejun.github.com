@@ -219,6 +219,9 @@ header .print {
   padding:20px;
   width: 100%;
   height: 100%;
+  line-height: 1.8;
+  resize: none;
+  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
@@ -257,7 +260,10 @@ header .print {
 
 .ocr-img-wrapper {
   position: relative;
-  display:inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   overflow: hidden;
 }
 
