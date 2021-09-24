@@ -227,9 +227,9 @@ header .print {
 }
 
 .bn-ocr {
-  position: absolute;
-  right: 60px;
-  top: 19px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
   width: 16px;
   height: 16px;
   cursor: pointer;
