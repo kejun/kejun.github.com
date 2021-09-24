@@ -5,6 +5,7 @@ import {
   useState,
 } from 'https://g.alicdn.com/code/lib/htm/3.1.0/preact/standalone.module.js';
 import renderQuestion, { renderSelected } from './Question.mjs';
+import OCRButton from './OCR.mjs';
 
 let currentIndex = 0;
 
@@ -56,6 +57,7 @@ export default function Header({ options, onChange }) {
   return html`
     ${selectList}
     ${selectNum}
+    <${OCRButton} />
     <button class="print" onClick=${() => window.print()}>打印当前页面</button>
   `;
 }

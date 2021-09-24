@@ -188,6 +188,69 @@ header .print {
   width: 50%;
   min-height: 6em;
 }
+
+.ocr-result {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 100;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ocr-result-preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ocr-result-content {
+  flex: 1;
+}
+.ocr-result-content textarea {
+  appearance: none;
+  border: none;
+  padding:20px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.ocr-result-preview img {
+  max-width: 80%;
+  max-height: 100%;
+}
+
+.bn-ocr {
+  position: absolute;
+  right: 60px;
+  top: 19px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  overflow:hidden;
+  background: url("data:image/svg+xml,%3Csvg class='icon' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 341.197V136.294A136.038 136.038 0 0 1 135.885.41h204.851c1.331 0 32.973.46 32.973 32.972 0 32.461-31.642 32.922-32.973 32.922H136.038c-38.656 0-70.144 31.488-70.144 70.144v204.749c0 1.28-.46 32.921-32.972 32.921C.512 374.118 0 342.477 0 341.197zm785.46 138.035c18.124 0 32.767 14.848 32.972 32.922 0 18.227-14.848 32.972-32.973 32.972H238.234a32.973 32.973 0 0 1 0-65.894h547.225zm205.158-105.165c-32.461 0-32.922-31.641-32.922-32.921V136.448c0-38.656-31.488-70.144-70.144-70.144H682.803c-1.28 0-32.921-.46-32.921-32.922C649.882.87 681.523.41 682.803.41h204.903a136.038 136.038 0 0 1 135.884 135.884v204.903c0 1.28-.46 32.921-32.972 32.921zM32.922 650.291c32.512 0 32.972 31.642 32.972 32.973v204.698c0 38.656 31.488 70.144 70.144 70.144h204.698c1.331 0 32.973.46 32.973 32.972 0 32.461-31.642 32.922-32.973 32.922h-204.8A136.038 136.038 0 0 1 0 888.115V683.264c0-1.331.46-32.973 32.922-32.973zm990.668 32.973v204.8A136.038 136.038 0 0 1 887.706 1024H682.803c-1.28 0-32.921-.46-32.921-32.922 0-32.512 31.641-32.972 32.921-32.972h204.749c38.656 0 70.144-31.488 70.144-70.144V683.264c0-1.331.46-32.973 32.922-32.973 32.512 0 32.972 31.642 32.972 32.973z'/%3E%3C/svg%3E%0A") no-repeat;
+  background-size: 16px;
+}
+
+.bn-ocr input[type=file] {
+  position: absoltue;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ocr-result-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 2em;
+  font-weight: 200;
+  color: #333;
+}
   
 @media only screen and (max-width: 600px) {
   body {
