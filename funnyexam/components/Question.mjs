@@ -7,38 +7,41 @@ import {
 } from '../resources/utils/index.mjs';
 
 let selectedQuestions = [];
+let currentIsRenderSelected = false;
+
+let cacheTitle = '';
+let cacheQuestion = null;
+
+const handleQuestionSelected = (el) => {
+  if (!el) {
+    return;
+  }
+  const q = el.closest('.question');
+  const qid = el.dataset.id;
+  const append = () => {
+    q.classList.remove('selected');
+    selectedQuestions = selectedQuestions.filter(q => q.id !== qid);
+    currentIsRenderSelected && renderSelected();
+  };
+  const remove = () => {
+    selectedQuestions.push(findQuestionById(qid));
+    q.classList.add('selected');
+  };
+  q.classList.contains('selected') ? append() : remove();
+  return true;
+};
 
 export const initEvents = () => {
   document.body.addEventListener('click', (e) => {
-    const el = e.target.classList.contains('question-body') ? e.target : e.target.closest('.question-body');
-    if (!el) {
-      return;
-    }
-    e.stopPropagation();
-    const q = el.closest('.question');
-    if (q.classList.contains('selected')) {
-      q.classList.remove('selected');
-      selectedQuestions = selectedQuestions.filter(q => q.id !== el.dataset.id);
-      if (currentIsRenderSelected) {
-        renderSelected();
-      }
-    } else {
-      selectedQuestions.push(findQuestionById(el.dataset.id));
-      q.classList.add('selected');
-    }
-    dispatchEvent('selectChange', selectedQuestions);
+    handleQuestionSelected(e.target.classList.contains('question-body') ? e.target : e.target.closest('.question-body'))
+    && dispatchEvent('selectChange', selectedQuestions);
   }, false);
 };
-
-let currentIsRenderSelected = false;
 
 export const renderSelected = () => {
   currentIsRenderSelected = true;
   renderQuestion(selectedQuestions, `自选题目 (${(new Date()).toLocaleString().split(' ')[0]})`, true);
 };
-
-let cacheQuestion = null;
-let cacheTitle = '';
 
 export default function renderQuestion(questions, title, isRenderSelected) {
   if (!questions) {
@@ -64,7 +67,11 @@ export default function renderQuestion(questions, title, isRenderSelected) {
       results.push('</div>');
     }
   });
-  document.querySelector('#app').innerHTML = results.join('');
+  document.querySelector('#app').innerHTML = `
+    <div class="question-list${isRenderSelected ? ' question-list-selected' : ''}">
+      ${results.join('')}
+    </div>
+  `;
   window.scrollTo(0, 0);
   handlePageBreak();
   [...document.querySelectorAll('.question-body')].forEach((q) => {
