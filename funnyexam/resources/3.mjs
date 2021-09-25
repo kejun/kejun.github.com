@@ -1,4 +1,5 @@
 import { normalize } from './utils/index.mjs';
+import { xaxis } from './utils/graphic.mjs';
 
 export const title = '七年级数学目标检测（上）';
 
@@ -94,6 +95,104 @@ export const questions = normalize([
     type: 'completion',
     remark: 'P19',
     question: '我们用有理数的运算研究下面的问题。规定：水位上升为正，水位下降为负。如果水位每天下降4cm，那么5天后的水位变化用算式表示为________',
+  },
+  {
+    type: 'completion',
+    remark: 'P20',
+    question: '已知$|x|=3$，$|y|=4$，且$x>y$，则$xy$的值为____',
+  },
+  {
+    type: 'calculation',
+    style: {
+      blankHeight: 60,
+    },
+    remark: 'P20',
+    question: '$(-\\frac{2}{3})\\times(-\\frac{8}{5})\\times\\frac{3}{4}\\times(-\\frac{5}{12})$',
+  },
+  {
+    type: 'calculation',
+    style: {
+      blankHeight: 60,
+    },
+    remark: 'P21',
+    question: '$(\\frac{1}{4}+\\frac{1}{6}-\\frac{1}{12})\\times(-12)$',
+  },
+  {
+    type: 'calculation',
+    style: {
+      blankHeight: 80,
+    },
+    remark: 'P21',
+    question: '$-13 \\times 125 - 13 \\times 216 - (-13) \\times (301)$',
+  },
+  {
+    type: 'calculation',
+    style: {
+      blankHeight: 80,
+    },
+    remark: 'P21',
+    question: '$(\\frac{1}{2} - 3 + \\frac{5}{6} - \\frac{7}{12})\\times(-36)$',
+  },
+  {
+    type: 'completion',
+    remark: 'P22',
+    question: '已知$|x|=4$，$|y|=\\frac{1}{2}$，且$xy < 0$，则$\\frac{x}{y}$的值等于____',
+  },
+  {
+    type: 'completion',
+    remark: 'P23',
+    question: '$1 \\div (-1\\frac{3}{4}) = $ ____ $ = $ ____',
+  },
+  {
+    type: 'completion',
+    remark: 'P23',
+    question: '$(-6) \\div (-1\\frac{1}{6}) = (-6) \\times $ ____ $ = $ ____',
+  },
+  {
+    type: 'choice',
+    remark: 'P23',
+    question: '有理数a，b，c在数轴上的对应点的位置如图1.4-3所示，若$|a|>|b|$， 则下列结论中一定成立的是 ( )',
+    addition: xaxis({
+      displayScale: false,
+      points: [
+        { label: 'a', value: 0 },
+        { label: 'b', value: 1 },
+        { label: 'c', value: 6 },
+     ],
+     scale: {
+       extent: [0, 6],
+     },
+    }),
+    options: [
+      '$A. b+c>0$',
+      '$B. a+c < -2$',
+      '$C. \\frac { b } { a } < 1$',
+      '$D. abc \\geqslant 0$',
+    ],
+  },
+  {
+    type: 'calculation',
+    remark: 'P24',
+    question: '$|-5\\frac{1}{2}| \\times (\\frac{1}{3} - \\frac{1}{2}) \\times \\frac{3}{11} \\div (1 - \\frac{1}{4})$'
+  },
+  {
+    type: 'program',
+    remark: 'P24',
+    question: `
+      已知$|ab|<0$，$\\frac{a}{b} > 0$，且$|c| > |b| > |a|$，如图，数轴上对应的点是$A$，$B$，$C$。
+      <br>$(1)$ 若$|a| = -a$，请在数轴上标出$A$，$B$，$C$的大致位置；
+      <br>$(2)$ 在$(1)$的条件下，化简$|a - b| - |b + c| + |c + a|$
+    `,
+    addition: xaxis({
+      displayScale: false,
+      displayZero: true,
+      style: {
+        marginTop: 20,
+      },
+      scale: {
+        extent: [-3, 3]
+      }
+    }),
   },
 ]);
 

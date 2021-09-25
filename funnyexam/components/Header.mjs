@@ -55,9 +55,15 @@ export default function Header({ options, onChange }) {
     `;
   }
   return html`
-    ${selectList}
+    <div>
+      <${OCRButton} />
+      <button class="print" onClick=${() => window.print()}>打印当前页面</button>
+    </div>
+    <div>
+      ${selectList}
+    </div>
+    <div>
     ${selectNum}
-    <${OCRButton} />
-    <button class="print" onClick=${() => window.print()}>打印当前页面</button>
+    </div>
   `;
 }

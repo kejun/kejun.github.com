@@ -28,16 +28,14 @@ ${rows.map(cells => `<tr>${cells.map(c => `<td>${trans(c)}</td>`).join('')}</tr>
 */
 export const xaxis = ({
   displayScale = true,
+  displayZero = false,
   width = 320,
   points = [],
+  style,
   scale,
 }) => {
   const unit = 50;
   const length = scale.extent[1] - scale.extent[0] + 2;
-  const dx = `\
-   M0 30h${50 * length - 10}\
-   ${displayScale ? [...Array(length - 1)].map((_, i) => `M${(i + 1) * unit} 30v-8`).join('') : ''}\
-  `;
   // arrow
   const da = `\
     M${50 * length - 10} 30l-2 -4l10 4z\
@@ -47,8 +45,31 @@ export const xaxis = ({
   const dots = `\
     ${points.map(e => `M${e.value * unit + zero} 34.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z`).join('')}\
   `;
+  let dx = `\
+   M0 30h${50 * length - 10}\
+   ${displayScale ? [...Array(length - 1)].map((_, i) => `M${(i + 1) * unit} 30v-8`).join('') : ''}\
+  `;
+  if (!displayScale && displayZero) {
+    dx = `M0 30h${50 * length - 10} M${zero} 30v-8`;
+  }
+  let scaleNum = '';
+  if (displayScale) {
+    scaleNum = [...Array(length - 1)].map((_, i) => {
+      const num = scale.extent[0] + i;
+      const x = (i + 1) * unit - num.toString().length * 4;
+      return `<text font-family="Times" font-size="20" fill="#000"><tspan x="${x}" y="55">${num}</tspan></text>`;
+    }).join('');
+  }
+  if (!displayScale && displayZero) {
+    scaleNum = `<text font-family="Times" font-size="20" fill="#000"><tspan x="${zero - 4}" y="55">0</tspan></text>`;
+  }
+  const styleValues = style ? Object.keys(style).map(k => {
+    const v = style[k];
+    k = k.replace(/[A-Z]{1}/g, e => `-${e.toLowerCase()}`);
+    return `${k}:${typeof v === 'number' ? `${v}px` : v}`
+  }).join('') : '';
   return `\
-    <svg width="${width}" viewBox="0 0 ${length * unit} 60" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${width}" viewBox="0 0 ${length * unit} 60" ${styleValues ? `style=${styleValues}` : ''} xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fill-rule="evenodd">
         <path d="${dx}" stroke="#000" stroke-width="2"/>
         <path d="${da}" fill="#000"/>
@@ -56,11 +77,7 @@ export const xaxis = ({
           dots ? <path d="${dots}" fill="#000"/> : null
         }
         ${points.length ? points.map(p => `<text font-family="KaTeX_Math" font-size="20" fill="#000"><tspan x="${p.value * unit + zero - 6}" y="20">${p.label}</tspan></text>`).join('') : null}
-        ${displayScale ? [...Array(length - 1)].map((_, i) => {
-    const num = scale.extent[0] + i;
-    const x = (i + 1) * unit - num.toString().length * 4;
-    return `<text font-family="Times" font-size="20" fill="#000"><tspan x="${x}" y="55">${num}</tspan></text>`;
-  }).join('') : ''}
+        ${scaleNum}
       </g>
     </svg>\
   `;
