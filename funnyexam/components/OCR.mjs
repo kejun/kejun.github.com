@@ -11,7 +11,7 @@ export default function OCR({onComplete}) {
   const [result, setResult] = useState('');
   const [width, setWidth] = useState(0);
   const [preview, setPreview] = useState(null);
-  const handleUpload = e => {
+  const handleFileSelected = e => {
     const reader = new FileReader();
     const file = e.srcElement.files[0];
     reader.readAsBinaryString(file);
@@ -27,7 +27,11 @@ export default function OCR({onComplete}) {
         method: 'POST',
       })
       .then(r => r.json())
-      .then(r => setResult(r.content));
+      .then(r => {
+        setResult(r.content);
+        // TODO:
+        // document.querySelector('#scan-result').innerHTML = scanWord(r.prism_wordsInfo);
+      });
     };
     reader.onerror = () => {
       console.log('Error occurs.');
@@ -37,17 +41,41 @@ export default function OCR({onComplete}) {
     setPreview(null);
     setResult('');
   };
+  const handleUpload = () => {
+    result && handleClose();
+    fileRef.current.click();
+  };
+  useEffect(() => {
+    if (preview) {
+      document.body.classList.add('ocr-opened');
+      return;
+    }
+    document.body.classList.remove('ocr-opened');
+  }, [preview]);
+  const scanWord = wordInfo => wordInfo ? wordInfo.map(word => {
+    return `
+      ${word.charInfo.map(c => {
+        return `
+          <span style="position:absolute;left:${c.x}px;top:${c.y}px;width:${c.w}px;height:${c.h}px;color:blue;">
+            ${c.word}
+          </span>
+        `;
+      }).join('')}
+    `;
+  }).join('') : '';
   return html`
     ${preview ? html`
       <div class="ocr-result">
         ${
           result ? html`
             <button class="ocr-result-close" onClick=${handleClose}>×</button>
+            <button class="ocr-upload-file" onClick=${handleUpload}>重新上传</button>
          ` : '' 
         }
         <div class="ocr-result-preview">
           <div class="ocr-img-wrapper${result ? '' : ' ocr-processing'}">
             <img src="${preview}" />
+            <div id="scan-result" style="position:absolute;top:0;left:0;right:0;bottom:0;"></div>
           </div>
         </div>
         <div class="ocr-result-content">
@@ -55,8 +83,8 @@ export default function OCR({onComplete}) {
         </div>
       </div>
     ` : ''}
-    <div class="bn-ocr" onClick=${() => fileRef.current.click()}>
-      <input ref=${fileRef} type="file" accept="image/*" onChange=${handleUpload}/>
+    <div class="bn-ocr" onClick=${handleUpload}>
+      <input ref=${fileRef} type="file" accept="image/*" onChange=${handleFileSelected}/>
     </div>
   `;
 }
