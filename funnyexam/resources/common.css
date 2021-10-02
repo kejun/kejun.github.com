@@ -25,6 +25,12 @@ body {
   margin: 70px 100px;
 }
 
+em {
+  font-style: normal;
+  -webkit-text-emphasis-position: under;
+  -webkit-text-emphasis: circle;
+}
+
 header {
   position: fixed;
   z-index: 10;
@@ -104,6 +110,11 @@ sup {
   transform: scale(.8);
   transform-origin: left;
   color: #aaa;
+}
+.p1 {
+  padding: 0;
+  margin: 0;
+  padding-left: 1em;
 }
 .question + h2 {
   margin-top: 2em;
@@ -193,7 +204,9 @@ header .print {
   width: 50%;
   min-height: 6em;
 }
-
+.question-calculation .question:last-child {
+  width: auto;
+}
 .ocr-result {
   position: fixed;
   top: 0;

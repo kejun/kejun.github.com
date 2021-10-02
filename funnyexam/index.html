@@ -17,6 +17,7 @@
   import { questions as lib2, title as title2 } from './resources/2.mjs';
   import { questions as lib3, title as title3 } from './resources/3.mjs';
   import { questions as lib4, title as title4 } from './resources/4.mjs';
+  import { questions as lib5, title as title5 } from './resources/5.mjs';
   import {
     types,
     questionRender,
@@ -28,10 +29,11 @@
   import renderContent, {initEvents} from './components/Question.mjs';
   import { html, render } from 'https://g.alicdn.com/code/lib/htm/3.1.0/preact/standalone.module.js';
   const data = [
+    [lib4, title4],
+    [lib3, title3],
+    [lib5, title5],
     [lib1, title1],
     [lib2, title2],
-    [lib3, title3],
-    [lib4, title4],
   ];
   const handleChange = i => {
     document.title = data[i][1];

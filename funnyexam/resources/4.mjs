@@ -1,4 +1,4 @@
-import { xaxis } from './utils/graphic.mjs';
+import { xaxis, img } from './utils/graphic.mjs';
 import { normalize } from './utils/index.mjs';
 
 export const title = '初一自主探究作业（上）';
@@ -214,10 +214,197 @@ export const questions = normalize([
   },
   {
     type: 'calculation',
-    remark: 'P18',
+    remark: 'P19',
     style: {
       blankHeight: 80,
     },
     question: '$89 + 899 + 8999 + 89999 - 9 - 99 - 999 - 9999 - 99999$',
   },
+{
+  type: 'calculation',
+  remark: 'P21',
+  question: '$9 \\times (-6) + 17$',
+},
+{
+  type: 'choice',
+  remark: 'P21',
+  question: ' 已知$(-ab) \\cdot (-ab) \\cdot (-ab) > 0$，则( )',
+  options: [
+  'A. $ab<0$',
+  'B. $ab>0$',
+  'C. $a>0, b<0$',
+  'D. $a<0, b<0$',
+],
+},
+{
+  type: 'completion',
+  remark: 'P21',
+  question: `\
+对于任意四个有理数$a, b, c, d$，可以组成两个有理数对$(a, b)$ 与$(c, d)$。我们规定: $(a, b)\\bigstar(c, d)=bc - ad$
+<br>例如：$(1,2)\\bigstar(3,4) = 2 \\times 3 - 1 \\times 4 = 2$；
+<br> 那么，有理数对$(2,-3)\\bigstar(3,-2)=$____________
+`,
+},
+{
+  type: 'calculation',
+  remark: 'P22',
+  question: '$-\\frac{3}{4}\\times(8-1\\frac{1}{3}-0.04)$',
+},
+{
+  type: 'calculation',
+  remark: 'P22',
+  question: '$(2\\frac{1}{3}-\\frac{238}{54}+\\frac{91}{117})\\times(-1\\frac{2}{7})$',
+},
+{
+  type: 'calculation',
+  remark: 'P22',
+  question: '$9\\frac{18}{19}\\times19$',
+},
+{
+  type: 'choice',
+  remark: 'P28',
+  question: '下列数或式：$(-2)^2, (-\\frac{1}{3})^6, -5^2, 0, m^2 + 1$在数轴上所对应的点一定在原点右边的个数是 ( )',
+  options: [
+  'A. $1$',
+  'B. $2$',
+  'C. $3$',
+  'D. $4$',
+],
+},
+{
+  type: 'choice',
+  remark: 'P28',
+  question: '一个数的立方是它本身，那么这个数是 ( )',
+  options: [
+  'A. $0$',
+  'B. $0$或$1$',
+  'C. $-1$或$1$',
+  'D. $0$或$-1$或$1$',
+],
+},
+{
+  type: 'completion',
+  remark: 'P28',
+  question: `\
+ 计算: $(-\\frac{3}{4})^3=$____；
+ $-(\\frac{3}{4})^3=$____；
+ $-\\frac{3^3}{4}=$____；
+ <br>$(-\\frac{3}{4})^2=$____；
+ $-(\\frac{3}{4})^2=$____；
+ $-\\frac{3^2}{4}=$____；
+`,
+},
+{
+  type: 'completion',
+  remark: 'P28',
+  question: '平方等于它本身的数是____，立方等于它本身的数是____',
+},
+{
+  type: 'completion',
+  remark: 'P28',
+  question: '$(-2 \\cdot 7)^3, (-2 \\cdot 7)^4, (-2 \\cdot 7)^5$的大小关系用"$<$"号连接可表示为____________',
+},
+{
+  type: 'completion',
+  remark: 'P28',
+  question: '若$x^2=\\frac{4}{9}$，则$x=$____，若$x^3=-27$，则$x=$____',
+},
+{
+  type: 'calculation',
+  remark: 'P28',
+  question: '$-(1-0.5)\\div\\frac{1}{3}\\times[2+(-4)^2]$',
+},
+{
+  type: 'calculation',
+  remark: 'P29',
+  question: '$(-2)^3\\times0.25-4\\div[(-\\frac{1}{2})^2-\\frac{3}{8}]-40$',
+},
+{
+  type: 'calculation',
+  remark: 'P29',
+  question: '$(0.25)^{2009}\\times4^{2010}$',
+},
+{
+  type: 'completion',
+  remark: 'P29',
+  question: '如图用苹果垒成的一个『苹果图』，根据题意，第10行有____个苹果，第$n$行有____个苹果。',
+  addition: img('p29.6.png', 180),
+},
+{
+  type: 'completion',
+  remark: 'P30',
+  question: '如果一个数的平方是它的相反数，那么这个数是____；<br>如果一个数的平方是它的倒数，那么这个数是____',
+},
+{
+  type: 'completion',
+  remark: 'P30',
+  question: '如果$|a^4|=|-a^4|$，那么$a$是____',
+},
+{
+  type: 'calculation',
+  remark: 'P30',
+  question: '$-1^2-\\big[1\\frac{3}{7}+(-12)\\div6\\big]^2\\times\\big(-\\frac{3}{4}\\big)^3$',
+},
+{
+  type: 'calculation',
+  remark: 'P30',
+  question: '$\\big(-\\frac{1}{4}\\big)^2\\div\\big(-\\frac{1}{2}\\big)^4\\times(-1)^4-\\big(1\\frac{3}{8}+1\\frac{1}{3}-2\\frac{3}{4}\\big)\\times24$',
+},
+{
+  type: 'program',
+  remark: 'P31',
+  style: {
+  blankHeight: 120,
+},
+  question: `\
+观察下列解题过程
+<br>计算：$1+5+5^2+5+^3+...+5^{24}+5^{25}$
+<br>解：设$S = 1+5+5^2+5+^3+...+5^{24}+5^{25}$
+<br>则$5S = 5+5^2+5+^3+...+5^{24}+5^{25}+5^{26}$
+<br>$\\text{\\textcircled 2} - \\text{\\textcircled 1}$的：$4S = 5^{26}-1,\\therefore S=\\frac{5^{26}-1}{4}$
+<br>你能用你学到的方法计算下面的题吗？
+<br>$1 + 3 + 3^2 + 3^3 + ... + 3^9 + 3^10$
+`,
+},
+{
+  type: 'choice',
+  remark: 'P31',
+  question:`\
+定义一种对正整数$n$的"$C$运算符":$\\text{\\textcircled 1}$当$n$为奇数时，结果为$3n+1$；$\\text{\\textcircled 2}$当$n$ 为偶数时，结果为$\\frac{n}{2^k}$（其中$k$ 是使$\\frac{n}{2^k}$ 为奇数的正整数），并且运算重复进行。例如，$n=66$时，其"$C$运算"如下图。若$n=26$，则第2019次"$C$运算"的结是是 ()`,
+  options: [
+  'A. $40$',
+  'B. $5$',
+  'C. $4$',
+  'D. $1$',
+],
+  addition: img('p31.8.png', 360),
+},
+{
+  type: 'calculation',
+  remark: 'P31',
+  question: `\
+ 已知$|ab - 2| + (b - 1)^2 = 0$；
+<br> 试求$\\frac{1}{ab}+\\frac{1}{(a+1)+(b+1)}+\\frac{1}{(a+2)+(b+2)}+\\frac{1}{(a+3)+(b+3)}$
+`
+},
+{
+  type: 'program',
+  style: {
+  blankHeight: 200,
+},
+  remark: 'P32',
+  question: `\
+本学期我们学习了“有理数乘方”运算，知道乘方的结果叫做“幂”，下面介绍一种有关“幂”的新运算。
+<br>定义：$a^{m}$与$a^{n}$ ($a\\ne0$， $m$、$n$都是正整数) 叫做同底数幂，同底数幂除法记作$a^{m}\\div a^{n}$。
+<br>运算法则如下： 
+<p class="p1">当$m>n$时，$ a ^ { m } \\div { a ^ { n } } = a ^ { m - n }; $</p>
+<p class="p1">当$m=n$时，$ a ^ { m } \\div { a ^ { n } } = 1; $</p>
+<p class="p1">当$m<n$时，$ a ^ { m } \\div { a ^ { n } } = \\frac { 1 } { a ^ { n - m} }$</p>
+
+根据“同底数幂除法”的运算法则，回答下列问题： 
+<br>$(1)$ 填空：$(\\frac{1}{2})^{5} \\div (\\frac{1}{2})^{2} = $____， $4 ^ { 3 } \div { 4 ^ { 5 } }$ = ____；
+<br>$(2)$ 如果 $3 ^ { x - 1 } \\div 3 ^ { 3 x - 4 } = \\frac { 1 } { 2 7 } $ ，求出$x$的值；
+<br>$(3)$ 如果$\\left( x - 1 \\right) ^ { 2 x + 2 } \\div { \\left( x - 1 \\right) ^ { x + 6 } } = 1 $， 请直接写出$x$的值. 
+`,
+},
 ]);

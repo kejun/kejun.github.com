@@ -194,5 +194,42 @@ export const questions = normalize([
       }
     }),
   },
+{
+  type: 'choice',
+  remark: 'P25',
+  question: '计算 $-4^2$ 的结果是 ( )',
+  options: [
+    'A. -8',
+    'B. 8',
+    'C. -16',
+    'D. 16',
+  ], 
+},
+{
+  type: 'completion',
+  remark: 'P25',
+  question: '$-3^2 = $____',
+},
+{
+  type: 'completion',
+  remark: 'P25',
+  question: '$-(-2)^5 = $____',
+},
+{
+  type: 'choice',
+  remark: 'P25',
+  question: '在$-(-0.3), -\\frac{1}{3} + \\frac{1}{3}, |-1|, (-2)^2, -2^2$ 这5个算式中，运算结果为非负有理数的个数为 ( )',
+  options: [
+  'A. $5$',
+  'B. $4$',
+  'C. $3$',
+  'D. $2$',
+],
+},
+{
+  type: 'calculation',
+  remark: 'P25',
+  question: '$(-10)^3$',
+},
 ]);
 
