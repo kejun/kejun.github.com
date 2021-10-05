@@ -6,7 +6,7 @@ export const title = '初一数学作业（2021.09.18）';
 export const questions = normalize([
   {
     type: 'choice',
-    question: '若三个不相等的有理数的和为0，则下列结论定正确的是 ( )',
+    question: '若三个不相等的有理数的和为0，则下列结论一定正确的是 ( )',
     options: [
       'A. 三个加数全是0',
       'B. 至少有两个加数是负数',

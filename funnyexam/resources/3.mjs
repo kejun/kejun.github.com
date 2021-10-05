@@ -156,8 +156,8 @@ export const questions = normalize([
       displayScale: false,
       points: [
         { label: 'a', value: 0 },
-        { label: 'b', value: 1 },
-        { label: 'c', value: 6 },
+        { label: 'c', value: 1 },
+        { label: 'b', value: 6 },
      ],
      scale: {
        extent: [0, 6],

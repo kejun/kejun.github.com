@@ -108,7 +108,8 @@ export const handlePageBreak = () => {
     margin-right: auto;
   `;
   let h = 0;
-  [...document.querySelectorAll('#app > *')].forEach((q) => {
+  setTimeout(() => {
+  [...document.querySelectorAll('#app .question')].forEach((q) => {
     if (q.offsetTop + q.offsetHeight - h > pageHeightLimit) {
       h = h + q.offsetTop;
       const pagebreak = document.createElement('div');
@@ -116,4 +117,5 @@ export const handlePageBreak = () => {
       q.parentNode.insertBefore(pagebreak, q);
     }
   });
+  }, 500);
 };
