@@ -263,7 +263,7 @@ export const questions = normalize([
 {
   type: 'choice',
   remark: 'P28',
-  question: '下列数或式：$(-2)^2, (-\\frac{1}{3})^6, -5^2, 0, m^2 + 1$在数轴上所对应的点一定在原点右边的个数是 ( )',
+  question: '下列数或式：$(-2)^3, (-\\frac{1}{3})^6, -5^2, 0, m^2 + 1$在数轴上所对应的点一定在原点右边的个数是 ( )',
   options: [
   'A. $1$',
   'B. $2$',
@@ -384,7 +384,7 @@ export const questions = normalize([
   remark: 'P31',
   question: `\
  已知$|ab - 2| + (b - 1)^2 = 0$；
-<br> 试求$\\frac{1}{ab}+\\frac{1}{(a+1)+(b+1)}+\\frac{1}{(a+2)+(b+2)}+\\frac{1}{(a+3)+(b+3)}$
+<br> 试求$\\frac{1}{ab}+\\frac{1}{(a+1)(b+1)}+\\frac{1}{(a+2)(b+2)}+\\frac{1}{(a+3)(b+3)}$
 `
 },
 {
