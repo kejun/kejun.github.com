@@ -363,7 +363,7 @@ export const questions = normalize([
 <br>则$5S = 5+5^2+5+^3+...+5^{24}+5^{25}+5^{26}$
 <br>$\\text{\\textcircled 2} - \\text{\\textcircled 1}$的：$4S = 5^{26}-1,\\therefore S=\\frac{5^{26}-1}{4}$
 <br>你能用你学到的方法计算下面的题吗？
-<br>$1 + 3 + 3^2 + 3^3 + ... + 3^9 + 3^10$
+<br>$1 + 3 + 3^2 + 3^3 + ... + 3^9 + 3^{10}$
 `,
 },
 {
