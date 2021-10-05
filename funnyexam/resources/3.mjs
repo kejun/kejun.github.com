@@ -115,7 +115,7 @@ export const questions = normalize([
       blankHeight: 60,
     },
     remark: 'P21',
-    question: '$(\\frac{1}{4}+\\frac{1}{6}-\\frac{1}{12})\\times(-12)$',
+    question: '$(\\frac{1}{4}+\\frac{1}{6}-\\frac{1}{2})\\times(-12)$',
   },
   {
     type: 'calculation',
@@ -146,7 +146,7 @@ export const questions = normalize([
   {
     type: 'completion',
     remark: 'P23',
-    question: '$(-6) \\div (-1\\frac{1}{6}) = (-6) \\times $ ____ $ = $ ____',
+    question: '$(-6) \\div (-\\frac{1}{6}) = (-6) \\times $ ____ $ = $ ____',
   },
   {
     type: 'choice',
@@ -179,7 +179,7 @@ export const questions = normalize([
     type: 'program',
     remark: 'P24',
     question: `
-      已知$|ab|<0$，$\\frac{a}{b} > 0$，且$|c| > |b| > |a|$，如图，数轴上对应的点是$A$，$B$，$C$。
+      已知$ab<0$，$\\frac{a}{c} > 0$，且$|c| > |b| > |a|$，如图，数轴上对应的点是$A$，$B$，$C$。
       <br>$(1)$ 若$|a| = -a$，请在数轴上标出$A$，$B$，$C$的大致位置；
       <br>$(2)$ 在$(1)$的条件下，化简$|a - b| - |b + c| + |c + a|$
     `,
