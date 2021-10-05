@@ -338,7 +338,7 @@ export const questions = normalize([
 {
   type: 'completion',
   remark: 'P30',
-  question: '如果$|a^4|=|-a^4|$，那么$a$是____',
+  question: '如果$|a^4|=-|a^4|$，那么$a$是____',
 },
 {
   type: 'calculation',
