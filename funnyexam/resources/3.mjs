@@ -315,5 +315,77 @@ export const questions = normalize([
     `,
     addition: img('p36.11.0.png', 160),
   },
+  {
+    type: 'program',
+    remark: 'P37',
+    question: '有一组单项式：$-a ， 2a^{ 2 } ， -3a^{ 3 } ， 4a^{ 4 } ， \\cdots ， -19a ^ { 1 9 } ， 20a ^ { 20 }， \\cdots $ .<br> (1)请你说出它们的规律； <br>(2)写出第$100$个和第$2019$个单项式；<br> (3)写出第$2n$ 个和第$(2n+1)$个单项式.',
+  },
+  {
+    type: 'completion',
+    remark: 'P37',
+    question: '如果多项式$-\\frac { 2 } { 3 } x ^ { a - 2 } y ^ { 2 } + x ^ { 2 } y ^ { 2 } $是六次二项式，则$ a ^ { 2 } + 1 =$________',
+  },
+  {
+    type: 'completion',
+    remark: 'P37',
+    question: ' 若$3x-2y-7=0$，则$4y-6x+12=$____',
+  },
+  {
+    type: 'program',
+    remark: 'P38',
+    question: '历史上数学家欧拉最先把关于$x$的多项式用记号$f(x)$来表示，把$x$等于某数$a$时的多项式的值用$f(a)$来表示。已知，对于多项式$f(x)=mx^3+nx+5$，当$x=2$时，多项式的值为$f(2)=8m+2n+5$， 若$f(2)=6$，请求出$ f(-2)$ 的值.',
+  },
+  {
+    type: 'program',
+    remark: 'P38',
+    question: '判断一个正整数能被$3$整除的方法是：把这个正整数各个数位上的数字相加，如果所得的和能够被$ 3 $整除，则这个正整数就能被$3$整除。请证明对于任意两位正整数，这个判断方法都是正确的. ',
+  },
+  {
+    type: 'completion',
+    remark: 'P39',
+    question: ' 如图，在长方形网格中，四边形$ABCD$的面积为________.（用含字母$a, b$ 的代数式表示）',
+    addition: img('p39.9.png', 360),
+  },
+  {
+    type: 'calculation',
+    remark: 'P39',
+    question: '$6x-10x^2+12x^2-5x$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P39',
+    question: '$x^2y-3xy^2+2yx^2-y^2x$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$-6ab-5+ba+4ab-4$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$\\frac{1}{2}x^2y-\\frac{1}{2}xy^2-\\frac{1}{3}xy^2$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$a^2-\\frac{1}{2}ac+2a^2+ac-\\frac{3}{5}a^2$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$3x^2+4x-2x^2-x+x^2-3x-1$，其中$x=-\\frac{1}{2}$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$3a-abc-\\frac{1}{3}c^3-3a+\\frac{1}{3}c^3$，其中$a=\\frac{1}{6},b=2,c=-3$',
+  },
+  {
+    type: 'completion',
+    remark: 'P41',
+    question: '如图2.2一3，下列图形都是由面积为$1$的正方形按一定的规律组成的，其中，第①个图形中面积为$1$的正方形有$2$个，第②个图形中面积为$1$的正方形有$5$个，第③个图形中面积为$1$的正方形有$9$个……按此规律，第$\\textcircled n$个图形中面积为$1$的正方形的个数为____',
+    addition: img('p41.7.png', 400),
+  },
 ]);
 
