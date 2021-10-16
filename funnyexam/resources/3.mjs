@@ -295,7 +295,7 @@ export const questions = normalize([
     type: 'program',
     remark: 'P35',
     question: '如图2.1一1，将连续的自然数$1$至$36$按右图的方式排成一个正方形阵列，用一个小正方形任意圈出其中的$9$个数，设圈出的$9$个数的中心的数为$a$，则这$9$个数的和为____ (用含有$a$的式子表示).<br>$\\textcircled 1$ 你能用具体的例子解释一下你是如何发现这个规律的吗?<br>$\\textcircled 2$ 你有没有想过，如果把条件改为“将连续的自然数$1$至$49$按图2.1-1的方式排成一 个正方形阵列”，结果会有变化吗?如果有变化，请尝试说说理由.',
-    addition: img('p35.12.png', 260),
+    addition: img('p35.12.0.png', 260),
   },
   {
     type: 'completion',
@@ -313,7 +313,7 @@ export const questions = normalize([
     question: ` 
     如图 2 .1一4，在$ △ABC$ 中， $\\angle B = 9 0 ^ { \\circ }$ ， $AB = 22cm$ ， $BC = 20cm$ ， 点$P$从$A$点出发沿$AB$边向点B以$2cm/s$ 的速度移动，点$Q$从点$B$出发沿$BC$边向点$C$以$1cm/s$的速度移动，$P$，$Q$分别从$A$，$B$同时出发.<br> (1)当$P，Q$运动$2s$时，线段$BP=$____$cm$， 线段$BQ=$____$cm$，$ △PBQ$ 的面积$S=$____$cm ^ { 2 }$;<br> (2)当$P，Q$运动$x s(x<1)$ 时，线段$BP=$____$cm$，线段$BQ=$____cm，$△PBQ$ 的面积$S=$____$cm ^ { 2 }$. 
     `,
-    addition: img('p36.11.png', 160),
+    addition: img('p36.11.0.png', 160),
   },
 ]);
 
