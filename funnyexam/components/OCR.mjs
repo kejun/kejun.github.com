@@ -45,6 +45,10 @@ export default function OCR({onComplete}) {
     result && handleClose();
     fileRef.current.click();
   };
+  const handleCopyText = (e) => {
+    e.target.select();
+    navigator.clipboard.writeText(e.target.value).then(() => alert('已复制'));
+  };
   useEffect(() => {
     if (preview) {
       document.body.classList.add('ocr-opened');
@@ -79,7 +83,7 @@ export default function OCR({onComplete}) {
           </div>
         </div>
         <div class="ocr-result-content">
-          <textarea>${result || '处理中...'}</textarea>
+          <textarea onClick=${handleCopyText}>${result || '处理中...'}</textarea>
         </div>
       </div>
     ` : ''}

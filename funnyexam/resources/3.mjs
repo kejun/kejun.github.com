@@ -1,5 +1,5 @@
 import { normalize } from './utils/index.mjs';
-import { xaxis } from './utils/graphic.mjs';
+import { xaxis, img } from './utils/graphic.mjs';
 
 export const title = '七年级数学目标检测（上）';
 
@@ -231,5 +231,89 @@ export const questions = normalize([
   remark: 'P25',
   question: '$(-10)^3$',
 },
+  {
+    type: 'choice',
+    remark: 'P26',
+    question: '设$a，b，c$为非零有理数，$a>b>c$，则下列大小关系一定成立的是 ( )',
+    options: [
+      'A. $a-b>b-c$',
+      'B. $\\frac { 1 } { a } < \\frac { 1 } { b } < \\frac { 1 } { c }$',
+      'C. $a ^ { 2 } > b ^ { 2 } > c ^ { 2 }$',
+      'D. $a-c>b-c$',
+    ],
+  },
+  {
+    type: 'completion',
+    remark: 'P26',
+    question: '若 $a ^ { 2 } = \\left( - 3 \\right) ^ { 2 }$ ， 则$a$的值为____',
+  },
+  {
+    type: 'completion',
+    remark: 'P26',
+    question: '若 $a ^ { 2 } = \\left( - 3 \\right) ^ { 2 }$ ， 则$a$的值为____',
+  },
+  {
+    type: 'calculation',
+    remark: 'P26',
+    question: '$- 2 ^ { 2 } \\div \\left( 3 - \\frac { 1 } { 2 } \\right) - \\left( 2 - 4 \\right)$',
+  }, { type: 'calculation',
+    remark: 'P26',
+    question: '$-1 ^ { 2 } \\times 2 + \\left( - 2 \\right) ^ { 2 } \\div 4 - \\left( - 3 \\right)$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P27',
+    question: '$-3 ^ { 3 } \\div \\frac { 9 } { 4 } \\times { \\left( - \\frac { 2 } { 3 } \\right) ^ { 2 } }$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P27',
+    question: '$2 \\times  \\left( - 3 \\right) ^ { 2 } - 26 \\div \\left( - \\frac { 1 } { 2 } \\right) $',
+  },
+  {
+    type: 'calculation',
+    remark: 'P27',
+    question: '$-2 ^ { 2 } \\div \\left( \\frac { 1 } { 3 } - 1 \\frac { 1 } { 2 } - 3 \\right) \\times 6$',
+  },
+  {
+    type: 'choice',
+    remark: 'P27',
+    question: '$a，b$是两个有理数，下列判断正确的是 ( )',
+    options: [
+      'A. 如果$a>b$，那么$a ^ { 2 } > b ^ { 2 }$',
+      'B. 如果$|a|>|b|$， 那么$a=b$',
+      'C. 如果$a>|b|$， 那么$a>b$',
+      'D. 如果$a \\neq b$， 那么$a ^ { 2 } \\neq b ^ { 2 }$',
+    ],
+  },
+  {
+    type: 'calculation',
+    remark: 'P28',
+    question: '$-1^4+(-2)\\div(-\\frac{1}{3})-|-9|$',
+  },
+  {
+    type: 'program',
+    remark: 'P35',
+    question: '如图2.1一1，将连续的自然数$1$至$36$按右图的方式排成一个正方形阵列，用一个小正方形任意圈出其中的$9$个数，设圈出的$9$个数的中心的数为$a$，则这$9$个数的和为____ (用含有$a$的式子表示).<br>$\\textcircled 1$ 你能用具体的例子解释一下你是如何发现这个规律的吗?<br>$\\textcircled 2$ 你有没有想过，如果把条件改为“将连续的自然数$1$至$49$按图2.1-1的方式排成一 个正方形阵列”，结果会有变化吗?如果有变化，请尝试说说理由.',
+    addition: img('p35.12.png', 260),
+  },
+  {
+    type: 'completion',
+    remark: 'P36',
+    question: '写出一个含有字母$x，y$的二次三项式，其中最高次项的系数为$-2$，一次项不含字母$y$，则 这个多项式可以是________.',
+  },
+  {
+    type: 'completion',
+    remark: 'P36',
+    question: '已知$\\left( a - 2 \\right) x ^ { 2 } y ^ { | a | }$ 是关于$x，y$的四次单项式，则$a$的值为____',
+  },
+  {
+    type: 'completion',
+    remark: 'P36',
+    question: ` 
+    如图 2 .1一4，在$ △ABC$ 中， $\\angle B = 9 0 ^ { \\circ }$ ， $AB = 22cm$ ， $BC = 20cm$ ， 点$P$从$A$点出发沿$AB$边向点B以$2cm/s$ 的速度移动，点$Q$从点$B$出发沿$BC$边向点$C$以$1cm/s$的速度移动，$P$，$Q$分别从$A$，$B$同时出发.<br> (1)当$P，Q$运动$2s$时，线段$BP=$____$cm$， 线段$BQ=$____$cm$，$ △PBQ$ 的面积$S=$____$cm ^ { 2 }$;<br> (2)当$P，Q$运动$x s(x<1)$ 时，线段$BP=$____$cm$，线段$BQ=$____cm，$△PBQ$ 的面积$S=$____$cm ^ { 2 }$. 
+    `,
+    addition: img('p36.11.png', 160),
+  },
 ]);
 

@@ -152,6 +152,7 @@ header .print {
 .question .index {
   margin-right: .5em;
   font-family: Times;
+  transform: scale(.9);
 }
 .question .line {
   display: inline-block;

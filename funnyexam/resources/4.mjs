@@ -402,9 +402,107 @@ export const questions = normalize([
 <p class="p1">当$m<n$时，$ a ^ { m } \\div { a ^ { n } } = \\frac { 1 } { a ^ { n - m} }$</p>
 
 根据“同底数幂除法”的运算法则，回答下列问题： 
-<br>$(1)$ 填空：$(\\frac{1}{2})^{5} \\div (\\frac{1}{2})^{2} = $____， $4 ^ { 3 } \div { 4 ^ { 5 } }$ = ____；
+<br>$(1)$ 填空：$(\\frac{1}{2})^{5} \\div (\\frac{1}{2})^{2} = $____， $4 ^ { 3 } \\div { 4 ^ { 5 } }$ = ____；
 <br>$(2)$ 如果 $3 ^ { x - 1 } \\div 3 ^ { 3 x - 4 } = \\frac { 1 } { 2 7 } $ ，求出$x$的值；
 <br>$(3)$ 如果$\\left( x - 1 \\right) ^ { 2 x + 2 } \\div { \\left( x - 1 \\right) ^ { x + 6 } } = 1 $， 请直接写出$x$的值. 
 `,
 },
+  {
+    type: 'completion',
+    remark: 'P40',
+    question: '在$7x^2-4x+1-x^2+6x$中，$7x^2$与____同类项，$6x$与____是同类项,$-2$与____是同类项.',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$2x^2y-2xy-4xy^2+xy+4x^2-3xy^2$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$a^3+a^2b-ab^2+a^2b-ab^2+b^3$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P40',
+    question: '$-9+6ab-6a^2+7-\\frac{4}{3}ab+\\frac{8}{3}a^2$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P41',
+    question: '$3a^2-5a+2-6a^2+6a-3$，其中$a=-\\frac{1}{2}$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P41',
+    question: '当$x=-4$，$y=2$时，求代数式$-3x^2y+3xy^2+x^3+3x^2y-3xy^2-y^3$的值',
+  },
+  {
+    type: 'calculation',
+    remark: 'P41',
+    question: ' 若$|4a+3b|+(3b+2)^2=0$，求$2(2a+3b)^2-3(2a+3b)+8(2a+3b)^2-7(2a+3b)$的值',
+  },
+  {
+    type: 'calculation',
+    remark: 'P42',
+    question: '$4(a^2b-2ab^2)-(a^2b+2ab^2)$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P42',
+    question: '$\\frac{1-2x}{3}-\\frac{3-x}{4}$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P42',
+    question: '化简求值，$2(x^2y+xy)-3(x^2y-xy)-4x^2y$，其中$x=1$，$y=-1$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P42',
+    question: '化简求值，$2(x^2y+xy)-3(x^2y-xy)-4x^2y$，其中$x=1$，$y=-1$',
+  },
+  {
+    type: 'calculation',
+    remark: 'P42',
+    question: '化简求值，$10 - \\left( 1 - a \\right) - \\left( 1 - a - a ^ { 2 } \\right) + \\left( 1 + a - a ^ { 2 } - a ^ { 3 } \\right)$ ， 其中 $a = \\frac { 1 } { 2 } $',
+  },
+  {
+    type: 'completion',
+    remark: 'P42',
+    question: '$3x-[5x-(2x-1)]=$____',
+  },
+  {
+    type: 'completion',
+    remark: 'P42',
+    question: '$(x + y)^2 - 10x - 10y + 25=\\left( x + y \\right)^{ 2 } - 10( $________$)+25$.',
+  },
+  {
+    type: 'completion',
+    remark: 'P42',
+    question: '$(a-b+c-d)(a+b-c-d)=[(a-d)+($________$)][(a-d)-($________$)]$.',
+  },
+  {
+    type: 'calculation',
+    remark: 'P43',
+    question: '已知 $\\left( a + 2 \\right) ^ { 2 } + \\left( 3b - 3 \\right) ^ { 2 } = 0$ ， 求$ 3 a ^ { 2 } b - \\left[ 2 ab ^ { 2 } - 6 \\left( ab - \\frac { 1 } { 2 } a ^ { 2 } b \\right) + 4ab \\right] - 2ab$的值',
+  },
+  {
+    type: 'completion',
+    remark: 'P43',
+    question: '如图，$a、b、c$在数轴上的位置如图所示，则$|a+b|-|a+c|-|c-b|=$________',
+    addition: xaxis({
+      width: 300,
+      displayScale: false,
+      points: [
+        { label: 'a', value: -2 },
+        { label: 'b', value: -1 },
+        { label: 'o', value: 1 },
+        { label: 'c', value: 2 },
+      ],
+      scale: {
+        extent: [-2, 2],
+      },
+    }),
+  },
 ]);
