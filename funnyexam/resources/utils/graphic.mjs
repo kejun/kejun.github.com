@@ -6,7 +6,7 @@ export const exp = str => katex.renderToString(str, {
   throwOnError: false,
 });
 
-export const img = (url, w) => `<figure><img src="${self.location.host === 'kejun.github.io' ? 'https://raw.githubusercontent.com/kejun/kejun.github.com/master/funnyexam/resources/images/' : './resources/images/'}${url}"${w ? ` width=${w}` : ''}></figure>`;
+export const img = (url, w) => `<figure><img src="${self.location.host === 'kejun.github.io' ? '/funnyexam/resources/images/' : './resources/images/'}${url}"${w ? ` width=${w}` : ''}></figure>`;
 
 export const fract = (n1, n2) => `<span class="fractional"><span class="g">${n1}</span>${n2}</span>`;
 
