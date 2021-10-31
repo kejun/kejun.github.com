@@ -505,4 +505,101 @@ export const questions = normalize([
       },
     }),
   },
+  {
+    type: 'program',
+    remark: 'P45',
+    style: {
+      blankHeight: 80,
+    },
+    question: '$x, y, z$均为整数，且多项式$7x+2y-5z$能被$11$整除，求证：$3x-7y+12z$ 能被$11$整除',
+  },
+  {
+    type: 'choice',
+    remark: 'P46',
+    question: ' 如果$- \\frac {1} {2} a ^ 2 b ^ {2n - 1}$ 是五次单项式，则$n$ 的值为 ( )',
+    options: [
+      'A. $1$ ',
+      'B. $2$',
+      'C. $3$',
+      'D. $4$',
+    ],
+  },
+  {
+    type: 'program',
+    remark: 'P47',
+    style: {
+      blankHeight: 80,
+    },
+    addition: img('zz-p47-12.png', 400),
+    question: '有一长方体形状的物体，它的长、宽、高分别为$a，b，c(a> a，b，c(a>b>c)$， 有三种不同的捆扎方式 (如图所示的虚线)，哪种方式用绳最少?哪种方式用绳最多?说明理由。',
+  },
+  {
+    type: 'choice',
+    remark: 'P50',
+    question: '运用等式性质进行的变形，正确的是 ( )',
+    options: [
+      'A. 如果$a=b$，那么$a+c=b-c$',
+      'B. 如果$ \\frac { a } { c } = \\frac { b } { c }$，那么$a=b$',
+      'C. 如果$a=b$，那么$\\frac {a} {c} = \\frac {b} {c}$',
+      'D. 如果$a ^ 2 = 6a$，那么$a = 6$',
+    ],
+  },
+  {
+    type: 'equation',
+    remark: 'P50',
+    question: '$\\frac {5x} {2} = \\frac {4x - 3} {4}$',
+  },
+  {
+    type: 'choice',
+    remark: 'P51',
+    question: '下列各式中，变形正确的是 ( )',
+    options: [
+      'A. 若$a=b$，则$a+c = b+c$',
+      'B. 若$(a-1)x=2$，则$x = \\frac {2} {a-1}$',
+      'C. 若$a=2b$，则$a = 4b$',
+      'D. 若$a = b + 1$，则$2a = 2b + 1$',
+    ],
+  },
+  {
+    type: 'completion',
+    remark: 'P51',
+    question: '已知$x=3$是关于$x$的一元一次方程$ ax+b=0$ 的解，请写出一组满足条件的$a, b$的值. $a=$____，$b=$____',
+  },
+  {
+    type: 'equation',
+    remark: 'P52',
+    question: '$x + 13 = 5x + 37$',
+  },
+  {
+    type: 'equation',
+    remark: 'P52',
+    question: '$\\frac {1} {2} x - 3 = 6 x + \\frac {1} {4}$',
+  },
+  {
+    type: 'completion',
+    remark: 'P53',
+    question: ' 已知$2x - 3$与$1 - x$ 互为相反数，则$x=$____',
+  },
+  {
+    type: 'program',
+    remark: 'P53',
+    style: {
+      blankHeight: 80
+    },
+    question: ' 是否存在整数$k$，使得关于$x$ 的方程$kx - 1 = x + 2$ 在整数范围内有解？并求出各解.',
+  },
+  {
+    type: 'equation',
+    remark: 'P54',
+    question: '$-5 (x + 1) = \\frac {1} {2}$',
+  },
+  {
+    type: 'program',
+    remark: 'P55',
+    question: `
+    对于两个不相等的有理数$a， b$， 我们规定符号$max \\lbrace a, b \\rbrace$表示$a，b$中的较大值，如$max \\lbrace 2，-3 \\rbrace=2，max \\lbrace -1，0 \\rbrace=0$. 请解答下列问题：
+    <br> (1) $max \\lbrace -1, -1 \\frac {2} {5} \\rbrace = $____;
+    <br> (2) 如果$max \\lbrace x, 2 - x \\rbrace = 2 |x-1| - 5 $， 求$x$的值.
+    `,
+  },
 ]);

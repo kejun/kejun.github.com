@@ -387,5 +387,100 @@ export const questions = normalize([
     question: '如图2.2一3，下列图形都是由面积为$1$的正方形按一定的规律组成的，其中，第①个图形中面积为$1$的正方形有$2$个，第②个图形中面积为$1$的正方形有$5$个，第③个图形中面积为$1$的正方形有$9$个……按此规律，第$\\textcircled n$个图形中面积为$1$的正方形的个数为____',
     addition: img('p41.7.png', 400),
   },
+  {
+    type: 'choice',
+    remark: 'P47',
+    question: `已知有下列方程： 
+    <br>$\\textcircled 1 x - 2 = \\frac { 2 } { x }; \\textcircled 2 0.3 x = 1; \\textcircled 3 \\frac { x } { 2 } = 5 x - 1 \\textcircled 4  x ^ { 2 } - 4 x = 3; \\textcircled 5  x = 6; \\textcircled 6 x + 2 y = 0$.
+     <br>其中一元一次方程的个数是 ( )
+      `,
+    options: [
+      'A. $2$',
+      'B. $3$',
+      'C. $4$',
+      'D. $5$',
+    ],
+  },
+  {
+    type: 'program',
+    remark: 'P47',
+    question: `
+      设某数为$x$，根据题意列方程，不必求解：
+    <br>(1) 比某数的$3$倍大$6$的数恰好等于这个数的一半；
+    <br>(2) 比某数的相反数大$1$的数是$5$；
+    <br>(3) 与某数的差比这个数小$11$.
+    `,
+  },
+  {
+    type: 'completion',
+    remark: 'P48',
+    question: '方程$-2x=4$的解是________',
+  },
+  {
+    type: 'choice',
+    remark: 'P53',
+    question: ' 把方程$\\frac {1} {2} x = 1$变形为$x = 2$，其依据是 ( )',
+    options: [
+      'A. 分数的基本性质',
+      'B. 等式的性质1',
+      'C. 等式的性质2',
+      'D. 解方程中的移项',
+    ],
+  },
+  {
+    type: 'program',
+    remark: 'P59',
+    question: `
+    已知数轴上三点$M, N, O$，$N$对应的数分别为$-2，0，4$，点$P$为数轴上任意一点，其对应的数为$x$.
+    <br>(1) 如果点$P$到点$M$、点$N$的距离相等，那么$x$的值是____.
+    <br>(2) 数轴上是否存在点$P$，使点$P$到点$M$、点$N$的距离之和是$7$?如果存在，求出$x$的值； 如果不存在，请说明理由.
+    <br>(3) 如果点$P$以每秒$6$个单位长度的速度从点$O$向右运动，点$M$ 和点$N$ 分别以每秒$1 $个单位长度和每秒$3$个单位长度的速度也向右运动，且三点同时出发，那么经过几秒，点$P$到点$M$、点$N$的距离相等?
+    `
+  },
+  {
+    type: 'equation',
+    remark: 'P59',
+    question: '$\\frac {y + 2} {2} - \\frac {2y - 1} {3} = 1$',
+  },
+  {
+    type: 'equation',
+    remark: 'P60',
+    question: '$\\frac {2x+1} {3} = 1 - \\frac {x-1} {2}$',
+  },
+  {
+    type: 'choice',
+    remark: 'P60',
+    question: ' 将$\\frac {x} {0.2} - \\frac {0.5+0.01x} {0.03} = 1$ 的分母化为整数，得 ( )',
+    options: [
+      'A. $\\frac {x} {2} - \\frac {0.5 + 0.01x} {3} = 1$',
+      'B. $5x - \\frac {50 + x} {3} = 100$',
+      'C. $\\frac {x} {20} - \\frac {0.5 + 0.01x} {3} = 100$',
+      'D. $5x - \\frac {50 + x} {3} = 1$',
+    ],
+  },
+  {
+    type: 'completion',
+    remark: 'P60',
+    question: ' 已知方程$\\frac {x-2} {5} = 2 - \\frac {x+3} {2}$的解也是方程$| 3x - 2|=b$ 的解，则$b=$____.',
+  },
+  {
+    type: 'program',
+    remark: 'P60',
+    question: `
+     关于$x$的一元一次方程$\\frac {3x-1} {2} + m = 5$，其中$ m $是正整数。
+    <br>(1) 当$ m=3$时，求方程的解；
+    <br>(2) 若方程有正整数解，求$m $的值.
+    `,
+  },
+  {
+    type: 'equation',
+    remark: 'P61',
+    question: '$2 - \\frac {2x + 1} {3} = \\frac {x+1} {2}$',
+  },
+  {
+    type: 'completion',
+    remark: 'P61',
+    question: ' 关于$y$ 的方程$\\frac {ky - 1} {2} - \\frac {y - 2} {3} = 1$ 的解是整数，则整数$k$ 的值为____',
+  },
 ]);
 

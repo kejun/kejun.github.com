@@ -4,6 +4,7 @@ export const types = {
   choice: '选择题',
   completion: '填空题',
   calculation: '计算题',
+  equation: '解方程',
   program: '解答题',
 };
 
@@ -64,6 +65,11 @@ export const questionRender = {
   },
   completion(q, index) {
     return this.base('completion', q, index);
+  },
+  equation(q, index, blankHeight = 0) {
+    return this.base('equation', q, index, `
+      <div class="question-blank" style="height:${blankHeight}px;"></div>
+    `);
   },
   calculation(q, index, blankHeight = 0) {
     return this.base('calculation', q, index, `

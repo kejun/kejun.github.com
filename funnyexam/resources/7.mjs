@@ -16,7 +16,7 @@ export const questions = normalize([
   },
   {
     type: 'choice',
-    question: '全面贯彻落实“大气十条”，抓好大气污染防治，是今年环保工作的重中之重，其中推进燃煤电厂脱硫改造$15000000$千瓦是《政府工作报告》中确定的重点任务之一.将数据$1500000$用科学记数法表示为 ( )',
+    question: '全面贯彻落实“大气十条”，抓好大气污染防治，是今年环保工作的重中之重，其中推进燃煤电厂脱硫改造$15000000$千瓦是《政府工作报告》中确定的重点任务之一.将数据$15000000$用科学记数法表示为 ( )',
     options: [
       'A. $1.5 \\times { 1 0 ^ { 7 } }$',
       'B. $15 \\times { 1 0 ^ { 8 } }$',
@@ -159,12 +159,12 @@ export const questions = normalize([
     question: '化简: $5 x ^ { 2 } y - 2 x y - 4 \\left( x ^ { 2 } y - \\frac { 1 } { 2 } x y \\right)$',
   },
   {
-    type: 'calculation',
-    question: '解方程: $4(2x-1)-3(5x+1)=14$',
+    type: 'equation',
+    question: '$4(2x-1)-3(5x+1)=14$',
   },
   {
-    type: 'calculation',
-    question: '解方程: $\\frac { 1 - 3 x } { 2 } - \\frac { 3 - 5 x } { 3 } = 1$',
+    type: 'equation',
+    question: '$\\frac { 1 - 3 x } { 2 } - \\frac { 3 - 5 x } { 3 } = 1$',
   },
   {
     type: 'program',
@@ -199,7 +199,7 @@ export const questions = normalize([
       blankHeight: 120,
     },
     question: `\
-    一般情况下，对于数 $a$ 和 $b$ ， $\\frac { a } { 2 } + \\frac { b } { 4 } \\ne \\frac { a + b } { 2 + 4 }$ ("$\\ne$"不等号)，但是对于某些特殊的数$ a $和$ b$ ，$ \\frac { a } { 2 } + \\frac { b } { 4 } = \\frac { a + b } { 2 + 4 } $. 我们把这些特殊的数$ a $和$b$，称为“理想数对”，记作$\\langle a，b \\rangle$ .例如当$ a=1，b=-4 $时，有$ \\frac { 1 } { 2 } + \\frac { 4 } { 4 } = \\frac { 1 + \\left( - 4 \\right) } { 2 + 4 }$ ， 那么$ \\langle 1，-4 \\rangle$ 就是“理想数对”。
+    一般情况下，对于数 $a$ 和 $b$ ， $\\frac { a } { 2 } + \\frac { b } { 4 } \\ne \\frac { a + b } { 2 + 4 }$ ("$\\ne$"不等号)，但是对于某些特殊的数$ a $和$ b$ ，$ \\frac { a } { 2 } + \\frac { b } { 4 } = \\frac { a + b } { 2 + 4 } $. 我们把这些特殊的数$ a $和$b$，称为“理想数对”，记作$\\langle a，b \\rangle$ .例如当$ a=1，b=-4 $时，有$ \\frac { 1 } { 2 } + \\frac { -4 } { 4 } = \\frac { 1 + \\left( - 4 \\right) } { 2 + 4 }$ ， 那么$ \\langle 1，-4 \\rangle$ 就是“理想数对”。
     <br>(1) $\\langle 3，-12 \\rangle，\\langle -2，4 \\rangle$ 可以称为“理想数对”的是________.
     <br>(2) 如果$ \\langle 2，x \\rangle$ 是“理想数对”，那么$x=$____
     <br>(3) 若$ \\langle m，n \\rangle$ 是“理想数对”，求 $3 \\left[ \\left( 9 n - 4 m \\right) - 8 \\left( n - \\frac { 7 } { 6 } m \\right) \\right] - 4 m - 12$ 的值`,

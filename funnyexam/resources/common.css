@@ -177,10 +177,12 @@ header .print {
   min-width: 20%;
   max-width: 50%;
 }
+.question-equation,
 .question-calculation {
   display: flex;
   flex-wrap: wrap;
 }
+.question-equation .question,
 .question-calculation .question{
   width: 50%;
   min-height: 6em;

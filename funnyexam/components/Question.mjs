@@ -59,11 +59,17 @@ export default function renderQuestion(questions, title, isRenderSelected) {
     if (type === 'calculation') {
       results.push('<div class="question-calculation">');
     }
+    if (type === 'equation') {
+      results.push('<div class="question-equation">');
+    }
     qs.forEach((q) => {
       index++;
       results.push(questionRender[type](q, index, q.style ? q.style.blankHeight : 0));
     });
     if (type === 'calculation') {
+      results.push('</div>');
+    }
+    if (type === 'equation') {
       results.push('</div>');
     }
   });
