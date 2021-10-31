@@ -184,7 +184,7 @@ header .print {
 }
 .question-equation .question,
 .question-calculation .question{
-  width: 50%;
+  min-width: 50%;
   min-height: 6em;
 }
 .question-calculation .question:last-child {
