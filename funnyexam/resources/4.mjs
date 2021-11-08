@@ -7,7 +7,7 @@ export const questions = normalize([
   {
     type: 'completion',
     remark: 'P1',
-    question: '学校在大桥东面9千米处，那么大桥在学校____面9千米。',
+    question: '学校在大桥东面9千米处，那么大桥在学校____面-9千米。',
   },
   {
     type: 'choice',
