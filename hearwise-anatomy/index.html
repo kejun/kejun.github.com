@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>HearWise · 从声音到知识</title>
+<style>
+:root{--bg:#f1f1ea;--paper:#fcfcf7;--ink:#253632;--muted:#68766f;--line:#d7ded5;--accent:#2e756d;--warm:#a17c43;--error:#b45343;--metal:#b7c7bb;--side:#8ea49a;--face:#d9e2d7;--slot:#536d63;--shadow:rgba(45,64,49,.1);color-scheme:light}
+[data-theme=dark]{--bg:#18201e;--paper:#202b27;--ink:#e3ebe3;--muted:#a4b9ac;--line:#42564b;--accent:#80beb0;--warm:#d6ad71;--error:#eb9685;--metal:#506d5d;--side:#334f40;--face:#6a8774;--slot:#17291e;--shadow:rgba(0,0,0,.25);color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.6}button,input{font:inherit}button,.file-label{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:7px;padding:8px 12px;cursor:pointer;min-height:42px}button:hover,.file-label:hover{border-color:var(--accent);background:var(--bg)}button:focus-visible,a:focus-visible,input:focus-visible,[role=button]:focus-visible{outline:3px solid var(--accent);outline-offset:3px}button:disabled{opacity:.45;cursor:default}a{color:var(--accent);text-underline-offset:3px}p{margin:0 0 12px}h1,h2,h3{line-height:1.25;margin:0}h1{font-size:clamp(27px,3vw,42px);font-weight:600;letter-spacing:-.035em}h2{font-size:20px;font-weight:600}h3{font-size:13px;margin:22px 0 8px;color:var(--muted)}small,.muted{color:var(--muted)}.mono{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:12px;letter-spacing:.06em}.app{max-width:1570px;margin:auto;padding:32px 38px 26px}.intro{display:flex;justify-content:space-between;gap:32px;align-items:start;margin-bottom:26px}.eyebrow{color:var(--accent);margin-bottom:10px;font-size:11px;letter-spacing:.18em}.summary{max-width:790px;color:var(--muted);margin-top:14px;font-size:15px}.tools{display:flex;gap:8px;flex-shrink:0;align-items:center;flex-wrap:wrap}.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:4px;padding:3px 7px;font-size:11px;margin:12px 6px 0 0}.badge:before{content:"";height:5px;width:5px;background:var(--accent);border-radius:50%}.notice{font-size:13px;padding:10px 14px;border:1px solid var(--line);border-left:3px solid var(--warm);background:var(--paper);margin:0 0 18px;overflow-wrap:anywhere}.notice:empty{display:none}.notice.error{border-left-color:var(--error)}.domains{display:flex;gap:10px;margin:0 0 18px;flex-wrap:wrap}.domain{flex:1;min-width:160px;text-align:left;padding:12px 14px;display:grid;grid-template-columns:1fr auto;gap:3px 10px}.domain strong{font-size:14px}.domain small{font-size:11px;grid-column:1/3;line-height:1.5}.domain span{font-family:ui-monospace,monospace;color:var(--accent);font-size:12px}.domain[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}.layout{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(310px,1fr);gap:18px;align-items:start}.figure,.inspector{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}.figure-head{padding:15px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:12px}.crumbs{display:flex;gap:5px;align-items:center;flex-wrap:wrap}.crumbs button{padding:2px 5px;min-height:30px;border-color:transparent;border-radius:3px;font-size:12px}.figure-controls{display:flex;gap:4px;flex-shrink:0}.figure-controls button{padding:4px 10px;min-height:32px;font-size:12px}.viewport{overflow:auto;min-height:360px;scrollbar-color:var(--line) transparent}.scene{display:block;width:100%;height:auto;min-width:350px;user-select:none}.scene text{fill:var(--ink);font-family:inherit}.station{cursor:pointer;outline:none}.station .selection-ring{fill:none;stroke:transparent;stroke-width:2}.station.selected .selection-ring,.station:focus-visible .selection-ring{stroke:var(--accent)}.station .status-led{fill:var(--line);stroke:var(--slot);stroke-width:1}.station[data-state=running] .status-led{fill:var(--accent)}.station[data-state=error] .status-led{fill:var(--error)}.station[data-state=ok] .status-led{fill:var(--accent);opacity:.6}.station[data-state=running] .working-part{fill:var(--accent)}.station .label{font-size:15px;font-weight:550}.station .sub-label{font-size:10px;fill:var(--muted)}.edge{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round}.edge.control{stroke-dasharray:6 6}.edge.active{stroke:var(--warm)}.packet{fill:var(--warm);stroke:var(--paper);stroke-width:2;pointer-events:none}.legend{padding:6px 20px 12px;display:flex;gap:18px;flex-wrap:wrap;font-size:11px;color:var(--muted)}.legend i{display:inline-block;width:7px;height:7px;background:var(--accent);border-radius:50%;margin-right:5px}.legend .err{background:var(--error)}.legend .data{background:var(--warm)}.playback{border-top:1px solid var(--line);padding:17px 20px}.step-heading{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.step-heading strong{font-size:14px}.step-heading span{color:var(--accent);font-family:ui-monospace,monospace;font-size:12px}.step-description{color:var(--muted);font-size:13px;min-height:42px;margin:0 0 14px}.transport{display:flex;align-items:center;gap:8px}.transport button{padding:6px 10px;min-width:38px}.transport .primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}.transport input{accent-color:var(--accent);min-width:70px;flex:1}.key-hint{font-size:10px;margin:10px 0 0;color:var(--muted)}.inspector{position:sticky;top:18px}.tabs{display:flex;border-bottom:1px solid var(--line);padding:8px 12px 0;gap:8px}.tabs button{background:none;border:0;border-radius:0;border-bottom:2px solid transparent;padding:10px 6px;font-size:12px}.tabs button[aria-selected=true]{border-bottom-color:var(--accent);color:var(--accent)}.detail{padding:23px 24px 25px;max-height:790px;overflow:auto;overflow-wrap:anywhere}.detail .description{color:var(--muted);font-size:13px;margin:12px 0}.detail .evidence{font-size:10px;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}.io{display:grid;grid-template-columns:1fr 1fr;gap:12px}.io-box{border-top:1px solid var(--line);padding-top:8px}.io-box strong{font-size:11px;color:var(--muted);font-weight:500}.io-box ul{margin:6px 0 0;padding-left:15px;font-size:12px}.behaviour{font-size:13px;border-left:2px solid var(--accent);padding-left:10px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.metric{padding:10px 0;border-top:1px solid var(--line)}.metric strong{display:block;font-size:21px;font-weight:500;line-height:1.4}.metric span{font-size:11px;color:var(--muted)}.fine-print{font-size:10px;color:var(--muted);line-height:1.7}.action{width:100%;text-align:left;margin-top:12px;display:flex;justify-content:space-between}.link-row{display:block;padding:10px 0;border-top:1px solid var(--line);font-size:12px}.link-row small{display:block;overflow-wrap:anywhere}.span-row{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:9px 0;background:none;font-size:12px;min-height:42px}.span-row strong{display:block;font-weight:500}.span-row small{font-size:10px}.span-row.error strong{color:var(--error)}.span-bar{display:block;width:100%;height:4px;background:var(--bg);border-radius:2px;position:relative;margin-top:6px}.span-bar i{position:absolute;min-width:2px;height:100%;background:var(--accent);border-radius:2px}.span-row.error .span-bar i{background:var(--error)}.span-attrs{white-space:pre-wrap;font-size:11px;line-height:1.7;background:var(--bg);padding:12px;border-radius:5px;max-height:300px;overflow:auto;overflow-wrap:anywhere}.relations{font-size:12px;margin:0;padding-left:15px}.relations li{padding:4px 0}.filter-errors{width:100%;margin:12px 0;text-align:left}.filter-errors[aria-pressed=true]{color:var(--error);border-color:var(--error)}footer{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:10px;color:var(--muted);margin-top:18px}.file-input{position:absolute;width:1px;height:1px;opacity:0}.file-label:focus-within{outline:3px solid var(--accent)}[hidden]{display:none!important}.figure:fullscreen{background:var(--paper);overflow:auto}.figure:fullscreen .viewport{height:calc(100vh - 230px)}.figure:fullscreen .scene{height:100%;width:auto;margin:auto}@media(min-width:1500px){.detail{max-height:930px}}@media(max-width:1000px){.app{padding:24px 20px}.intro{gap:15px}.layout{grid-template-columns:minmax(0,1.5fr) minmax(290px,1fr)}}@media(max-width:760px){.app{padding:22px 14px}.intro{display:block}.tools{margin-top:14px}.summary{font-size:13px}.layout{grid-template-columns:1fr}.inspector{position:static}.detail{max-height:none;padding:20px}.domain{min-width:140px;padding:10px}.domains{gap:8px}.figure-head{padding:10px}.figure-controls{gap:2px}.figure-controls button{padding:3px 7px}.viewport{min-height:240px}.scene{min-width:350px}.playback{padding:14px}.legend{padding:8px 14px;font-size:10px;gap:12px}.transport{gap:5px}.transport button{padding:5px 8px}.step-description{min-height:0}.domain strong{font-size:12px}.notice{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+.domain-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 10px;font-size:12px}.domain-controls select,.record-filters input{color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:8px;min-height:40px;max-width:100%}.domain-load{position:relative;padding-bottom:6px}.domain-load i{display:block;height:3px;background:var(--accent);margin-top:4px}.domain-activity{font-variant-numeric:tabular-nums}.domain-activity[data-active=true]{color:var(--accent);font-weight:600}.record-filters{display:grid;gap:8px;margin:14px 0;grid-template-columns:1fr 1fr}.record-filters label{grid-column:1/-1;font-size:11px;color:var(--muted)}.record-filters input{display:block;width:100%;margin-top:4px;font-size:12px}.pagination{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;margin:12px 0}.pagination button{font-size:11px;padding:6px}.raw-record{font-size:12px;margin-top:16px}.raw-record summary{cursor:pointer;min-height:40px}.error-message{color:var(--error)}.state-table{width:100%;border-collapse:collapse;font-size:12px}.state-table th,.state-table td{border-bottom:1px solid var(--line);text-align:left;padding:6px}.state-table th{font-weight:400;color:var(--muted)}.mechanical-readout{fill:var(--accent)!important}.station[data-action=reject] .selection-ring,.station[data-action=error] .selection-ring{stroke:var(--error);stroke-dasharray:4 4}
+.station[data-state=error] .mechanical-readout{fill:var(--error)!important}
+
+/* Project-specific reading view; original skill remains unchanged. */
+.app{max-width:1600px;padding-top:26px}.intro{margin-bottom:17px}.summary{max-width:880px;font-size:14px}.tools{max-width:238px;justify-content:flex-end}.badge{margin-top:5px;text-decoration:none}.guide{border-top:1px solid var(--line);padding:12px 0 14px;margin-bottom:8px}.guide-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.guide-top .eyebrow{margin:0;font-size:12px;letter-spacing:.04em}.guide-top button{border:0;background:none;color:var(--accent);font-size:12px;padding:0 8px;min-height:30px}.guide-choices{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}.guide-choices button{font-size:13px;background:transparent;min-height:40px}.guide-choices button[aria-pressed=true]{background:var(--accent);color:var(--paper);border-color:var(--accent)}#guide-body{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;margin-top:14px;border-left:3px solid var(--accent);padding:12px 16px;background:var(--paper);border-radius:0 7px 7px 0}.guide-copy strong{font-size:15px}.guide-copy p{font-size:13px;margin:6px 0;color:var(--ink)}#guide-evidence{font-size:11px;color:var(--muted)}#guide-steps{display:flex;align-items:center;flex-wrap:wrap;gap:6px}#guide-steps button{font-size:12px;min-height:38px;padding:6px 9px}#guide-steps button[aria-current=step]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent)}.domains{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.domain{min-width:0;padding:8px 12px}.domain small{font-size:10px}.domain strong{font-size:13px}.domain span{font-size:11px}.layout{grid-template-columns:minmax(0,1.9fr) minmax(330px,1fr)}.edge{stroke:var(--side);stroke-width:2;opacity:.26}.edge.related{stroke:var(--accent);stroke-width:2.8;opacity:.7}.edge.active{opacity:1}.detail{max-height:840px}.link-row{font-size:12px}.fine-print{font-size:11px}.node-link{min-height:32px;font-size:12px;border:0;padding:2px 5px;text-align:left;background:none;color:var(--accent);text-decoration:underline;text-underline-offset:3px}.child-nav{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.child-nav button{font-size:12px;padding:5px 8px;min-height:35px}.detail-back{width:100%;font-size:12px;color:var(--accent);margin-bottom:15px;text-align:left}.architecture-mode .transport,.architecture-mode .key-hint{display:none}.architecture-mode .playback{padding:12px 20px}.architecture-mode .step-description{min-height:0;margin-bottom:0}.architecture-mode .step-heading{margin-bottom:5px}.architecture-mode .legend .err{background:var(--line)}
+@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr)}}
+@media(max-width:760px){.app{padding:20px 14px}.tools{max-width:none;justify-content:flex-start;margin-top:12px}.domains{grid-template-columns:repeat(2,minmax(0,1fr))}.domain small{display:none}.domain strong{font-size:12px}.layout{grid-template-columns:1fr}#guide-body{grid-template-columns:1fr;gap:10px;padding:10px 12px}.guide-choices{display:grid;grid-template-columns:1fr 1fr}.guide-choices button{font-size:12px;padding:6px}.detail{max-height:none}.figure-head{gap:4px;flex-wrap:wrap}.figure-controls{margin-left:auto}.guide-copy p{font-size:13px}.summary{font-size:13px}.inspector{scroll-margin-top:12px}.figure{scroll-margin-top:12px}.playback .step-description{font-size:12px}}
+</style>
+</head>
+<body data-theme="light">
+<div class="app">
+<header class="intro">
+<div><div class="eyebrow mono">HEARWISE / CODE ANATOMY</div><h1 id="title"></h1><p class="summary" id="summary"></p><span class="badge" id="mode-badge"></span><a class="badge" href="https://github.com/kejun/hearwise/tree/027f2deb486421d64c57e05eea814a7c416abef7" target="_blank" rel="noopener noreferrer">v1.1.1 · 027f2deb</a><span class="badge">2026-10-12 · 48 个部件</span></div>
+<div class="tools"><button id="example-trace" hidden>体验 Trace</button><label class="file-label">导入标准 Trace<input class="file-input" id="trace-file" type="file" accept=".json,.jsonl,.trace,application/json" aria-label="导入本地 Trace 文件"></label><button id="restore" hidden>恢复架构</button><button id="theme" aria-label="切换深浅主题">深色</button></div>
+</header>
+<section class="guide" aria-label="代码导读">
+<div class="guide-top"><span class="eyebrow">沿问题阅读</span><button id="guide-home">回到全貌 ↗</button></div>
+<div class="guide-choices" id="guide-choices"></div>
+<div id="guide-body" hidden><div class="guide-copy"><strong id="guide-title"></strong><p id="guide-text"></p><span id="guide-evidence">按代码讲解执行条件，不模拟实际运行。</span></div><nav id="guide-steps" aria-label="导读步骤"></nav></div>
+</section>
+<div id="notice" class="notice" role="status" aria-live="polite"></div>
+<div class="domain-controls"><label>业务域比较 <select id="domain-metric"><option value="count">记录量</option><option value="cumulativeMs">累计耗时</option><option value="errors">错误数</option><option value="tokens">已记录 token</option></select></label><small>条形比较当前文件的全量记录；活动随回放变化。累计耗时包含重叠。</small></div>
+<nav id="domains" class="domains" aria-label="业务域筛选"></nav>
+<main class="layout">
+<section class="figure" id="figure" aria-label="机械解剖与回放">
+<div class="figure-head"><nav id="crumbs" class="crumbs" aria-label="层级路径"></nav><div class="figure-controls"><button id="zoom-out" aria-label="缩小图形">−</button><button id="zoom-in" aria-label="放大图形">＋</button><button id="fit">适配</button><button id="fullscreen">全屏</button></div></div>
+<div class="viewport" id="viewport"><svg id="scene" class="scene" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="点击机械部件查看详情"></svg></div>
+<div class="legend"><span><i></i>选中 / Trace 活动</span><span>实线：数据关系 · 虚线：控制关系</span><span><i class="err"></i>已记录错误</span><span>点击部件 · 可进入内部</span></div>
+<div class="playback"><div class="step-heading"><strong id="step-title"></strong><span id="position"></span></div><p class="step-description" id="step-description"></p><div class="transport"><button id="back" aria-label="上一步">‹</button><button id="play" class="primary">播放</button><button id="next" aria-label="下一步">›</button><input id="scrubber" type="range" min="0" max="1" value="0" step="1" aria-label="回放位置"></div><p class="key-hint">图形中可用 Tab 选择部件，Enter 查看；方向键调整回放，Esc 返回。</p></div>
+</section>
+<aside class="inspector" aria-label="部件与记录详情"><div class="tabs" role="tablist" aria-label="详情类型"><button id="tab-component" role="tab" aria-selected="true" aria-controls="detail">部件</button><button id="tab-trace" role="tab" aria-selected="false" aria-controls="detail">执行记录</button><button id="tab-source" role="tab" aria-selected="false" aria-controls="detail">来源与口径</button></div><div id="detail" class="detail" role="tabpanel" aria-labelledby="tab-component"></div></aside>
+</main>
+<footer><span>AGENT ANATOMY v1.0.0 · 代码来源固定到 commit · 离线可用</span><span id="footer-note">合成演示；没有实际性能数据。</span></footer>
+</div>
+<script id="anatomy-model" type="application/json">{"schemaVersion":1,"title":"HearWise · 从声音到知识","summary":"沿着一段声音，拆开字幕、翻译、播报与知识图谱。依据 kejun/hearwise v1.1.1 的实际代码；点击机械部件可进入内部，查看输入、输出、调度规则和代码证据。","template":"software","mode":"architecture","theme":"light","sources":[{"id":"revision","title":"代码快照 · v1.1.1","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/package.json#L1-L40","ref":"package.json:1–40 · commit 027f2deb"},{"id":"scope","title":"阅读范围与表达口径","ref":"读取日期：2026-10-12。完整 revision：027f2deb486421d64c57e05eea814a7c416abef7。九个总览部件是按职责划分的阅读视图，不是九个部署服务。已阅读 AGENTS.md、README、入口、队列、工作流、存储、前端音频与追踪代码。未运行 HearWise 云端请求，未提供真实 Trace。所有参数为代码默认值，均非实测性能。"},{"id":"entry","title":"后端装配与调度优先级","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/server.mjs#L22-L113","ref":"server.mjs:22–113 · commit 027f2deb"},{"id":"prefs","title":"浏览器 Key 与本地偏好","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/app.js#L38-L50","ref":"public/app.js:38–50 · commit 027f2deb"},{"id":"fish_key","title":"Fish Key 与播报设置","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/app.js#L246-L260","ref":"public/app.js:246–260 · commit 027f2deb"},{"id":"audio","title":"浏览器采音与双向消息","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/app.js#L1455-L1593","ref":"public/app.js:1455–1593 · commit 027f2deb"},{"id":"pcm","title":"16 kHz PCM 分帧与尾包提交","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/audio-processor.js#L1-L51","ref":"public/audio-processor.js:1–51 · commit 027f2deb"},{"id":"asr","title":"ASR 会话、临时字幕与定稿分叉","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/server.mjs#L929-L1066","ref":"server.mjs:929–1066 · commit 027f2deb"},{"id":"preview","title":"临时翻译节流与迟到响应隔离","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/app.js#L843-L893","ref":"public/app.js:843–893 · commit 027f2deb"},{"id":"preview_api","title":"临时翻译准入与同语言直通","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/server.mjs#L628-L662","ref":"server.mjs:628–662 · commit 027f2deb"},{"id":"frontier","title":"字幕前沿与尾部更新","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/caption-frontier.js#L1-L50","ref":"public/caption-frontier.js:1–50 · commit 027f2deb"},{"id":"mt","title":"翻译模型与 HTTP 请求","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/server.mjs#L258-L278","ref":"server.mjs:258–278 · commit 027f2deb"},{"id":"mt_queue","title":"共享双工位与实时/历史公平调度","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/translation-queue.mjs#L1-L87","ref":"translation-queue.mjs:1–87 · commit 027f2deb"},{"id":"mt_commit","title":"翻译提交、通知与恢复","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/server.mjs#L354-L450","ref":"server.mjs:354–450 · commit 027f2deb"},{"id":"kqueue","title":"知识合批与会话串行调度","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/knowledge-queue.mjs#L1-L166","ref":"knowledge-queue.mjs:1–166 · commit 027f2deb"},{"id":"kworkflow","title":"知识检查点、预算与定向修复","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/knowledge-workflow.mjs#L104-L292","ref":"knowledge-workflow.mjs:104–292 · commit 027f2deb"},{"id":"kparse","title":"知识结构校验与原文引用","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/knowledge.mjs#L134-L294","ref":"knowledge.mjs:134–294 · commit 027f2deb"},{"id":"kapi","title":"知识提取与补全请求","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/knowledge.mjs#L366-L424","ref":"knowledge.mjs:366–424 · commit 027f2deb"},{"id":"kmodel","title":"知识模型配置","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/knowledge-name.mjs#L1-L8","ref":"knowledge-name.mjs:1–8 · commit 027f2deb"},{"id":"relation_queue","title":"关系低优先级与最多两个工位","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/relation-queue.mjs#L1-L166","ref":"relation-queue.mjs:1–166 · commit 027f2deb"},{"id":"relation_workflow","title":"每窗口请求预算、超时与提交","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/relation-workflow.mjs#L1-L126","ref":"relation-workflow.mjs:1–126 · commit 027f2deb"},{"id":"relation_contract","title":"关系语义、输入范围与证据协议","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/relations.mjs#L1-L83","ref":"relations.mjs:1–83 · commit 027f2deb"},{"id":"relation_parse","title":"关系解析与确定性校验","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/relations.mjs#L83-L243","ref":"relations.mjs:83–243 · commit 027f2deb"},{"id":"relation_evidence","title":"服务器建立原文证据索引","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/relation-evidence.mjs","ref":"relation-evidence.mjs · commit 027f2deb"},{"id":"relation_store","title":"关系窗口、事务、增量任务与指纹","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/relation-storage.mjs","ref":"relation-storage.mjs · commit 027f2deb"},{"id":"provider","title":"前台让路及共享冷却","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/provider-admission.mjs#L1-L42","ref":"provider-admission.mjs:1–42 · commit 027f2deb"},{"id":"graph","title":"关系生成入口与状态读取","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/knowledge-graph.js","ref":"public/knowledge-graph.js · commit 027f2deb"},{"id":"layout","title":"关联节点与独立节点布局","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/knowledge-graph-layout.js#L142-L179","ref":"public/knowledge-graph-layout.js:142–179 · commit 027f2deb"},{"id":"renderer","title":"Cytoscape 渲染、更新与事件","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/knowledge-graph-renderer.js","ref":"public/knowledge-graph-renderer.js · commit 027f2deb"},{"id":"speech","title":"播报消费会话与缓冲反压","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/speech-service.mjs#L9-L222","ref":"speech-service.mjs:9–222 · commit 027f2deb"},{"id":"speech_control","title":"控制协议、进度回报与提前播报开关","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/speech-service.mjs#L223-L343","ref":"speech-service.mjs:223–343 · commit 027f2deb"},{"id":"units","title":"最终文本分段与整篇文本切分","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/speech-scheduler.mjs#L1-L74","ref":"speech-scheduler.mjs:1–74 · commit 027f2deb"},{"id":"incremental","title":"提前播报的前缀覆盖账本","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/incremental-speech.mjs#L1-L116","ref":"incremental-speech.mjs:1–116 · commit 027f2deb"},{"id":"qwen","title":"千问实时 TTS 适配器","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/qwen-tts.mjs","ref":"qwen-tts.mjs · commit 027f2deb"},{"id":"fish","title":"Fish Audio HTTP 音频流与错误分类","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/fish-tts.mjs","ref":"fish-tts.mjs · commit 027f2deb"},{"id":"playback","title":"24 kHz 环形缓冲与实际播放反馈","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/speech-buffer.js#L1-L45","ref":"public/speech-buffer.js:1–45 · commit 027f2deb"},{"id":"player","title":"前端播报协议与播放器控制","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/speech-controller.js","ref":"public/speech-controller.js · commit 027f2deb"},{"id":"media","title":"系统媒体控制接入","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/speech-media-session.js","ref":"public/speech-media-session.js · commit 027f2deb"},{"id":"storage","title":"SQLite、收听、片段、句子与恢复","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/storage.mjs#L13-L122","ref":"storage.mjs:13–122 · commit 027f2deb"},{"id":"checkpoint","title":"知识批次和分片检查点","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/storage.mjs#L342-L507","ref":"storage.mjs:342–507 · commit 027f2deb"},{"id":"export","title":"一致性快照与恢复前备份","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/data-transfer.mjs#L37-L210","ref":"data-transfer.mjs:37–210 · commit 027f2deb"},{"id":"import","title":"追加/覆盖预览与事务导入","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/data-transfer.mjs#L241-L453","ref":"data-transfer.mjs:241–453 · commit 027f2deb"},{"id":"manual","title":"名称替换、引用偏移与原子保存","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/knowledge-name-replacement.mjs#L1-L136","ref":"knowledge-name-replacement.mjs:1–136 · commit 027f2deb"},{"id":"revision_guard","title":"知识版本指纹与兼容校验","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/knowledge-revision.mjs","ref":"knowledge-revision.mjs · commit 027f2deb"},{"id":"editor","title":"统一纠正名称入口","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/knowledge-name-correction.js","ref":"public/knowledge-name-correction.js · commit 027f2deb"},{"id":"edit_api","title":"知识编辑、建议与保存路由","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/server.mjs#L695-L787","ref":"server.mjs:695–787 · commit 027f2deb"},{"id":"runtime","title":"Effect 生命周期与取消传播","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/src/server/runtime/tasks.ts#L21-L125","ref":"src/server/runtime/tasks.ts:21–125 · commit 027f2deb"},{"id":"diagnostics","title":"默认追踪、白名单与有界事件缓存","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/src/server/runtime/diagnostics.ts#L7-L85","ref":"src/server/runtime/diagnostics.ts:7–85 · commit 027f2deb"},{"id":"trace_steps","title":"22 类追踪步骤与事件","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/src/shared/diagnostics.ts#L1-L49","ref":"src/shared/diagnostics.ts:1–49 · commit 027f2deb"},{"id":"business","title":"五大业务域与异常洞察","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/src/server/diagnostics/business.ts#L4-L149","ref":"src/server/diagnostics/business.ts:4–149 · commit 027f2deb"},{"id":"trace_report","title":"离线业务追踪报告","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/scripts/trace-report.mjs#L1-L58","ref":"scripts/trace-report.mjs:1–58 · commit 027f2deb"},{"id":"stop","title":"停止采音与尾部刷新","url":"https://github.com/kejun/hearwise/blob/027f2deb486421d64c57e05eea814a7c416abef7/public/app.js#L1663-L1696","ref":"public/app.js:1663–1696 · commit 027f2deb"}],"domains":[{"id":"recognition","name":"采音与字幕","description":"声音输入与画面反馈"},{"id":"translation","name":"翻译","description":"临时与定稿分开调度"},{"id":"speech","name":"播报","description":"文本变成实际播放的声音"},{"id":"knowledge","name":"对话知识","description":"抽取、修复与人工纠错"},{"id":"relation","name":"关系图谱","description":"按原文证据连接条目"},{"id":"data","name":"本地数据","description":"持久化、恢复与迁移"},{"id":"diagnostics","name":"执行追踪","description":"业务归属、状态与异常"}],"nodes":[{"id":"capture","domainId":"recognition","label":"采音与识别","kind":"sensor","description":"浏览器采集音频，本地服务转发到云端 ASR；定稿是后续处理的共同起点。","inputs":["麦克风或标签页声音","用户授权与语言设置"],"outputs":["临时识别文本","已保存的最终原文"],"behaviour":"浏览器 → /ws → 千问流式识别。临时文本先上屏；sentence_end 定稿后写入 SQLite，再触发翻译与知识整理。录音源切换或继续收听创建新的 run。","evidence":"source","sources":["audio","pcm","asr"]},{"id":"translate","domainId":"translation","label":"翻译调度台","kind":"queue","description":"临时字幕追求及时反馈，最终译文负责保存与后续播报。","inputs":["临时文本","最终句、历史待译句"],"outputs":["临时译文","已持久化的最终译文"],"behaviour":"总并发默认 2，临时请求最多占 1 个工位，且不能抢排队中的定稿。qwen-mt-flash 完成后保存并广播；同语言明确匹配时本地直通。","evidence":"source","sources":["preview_api","mt","mt_queue","mt_commit"],"mechanism":{"concurrency":2}},{"id":"speech","domainId":"speech","label":"语音播报","kind":"speaker","description":"独立的语音消费会话按顺序读取文本，合成音频并等待浏览器播放反馈。","inputs":["实时最终译文","整篇原文或译文","可选提前播报短句"],"outputs":["24 kHz PCM 音频","播放进度与终态"],"behaviour":"默认在用户开启后播报之后的新句。实时、全文、试听和重播使用同一服务；Qwen 或 Fish Audio 由适配器提供音频。生成完成与实际播放完成分别记录。","evidence":"source","sources":["speech","speech_control","player","playback"]},{"id":"caption","domainId":"recognition","label":"字幕与页面反馈","kind":"display","description":"原文、临时译文、最终译文和后台处理通知，在浏览器汇合。","inputs":["sentence / segment-final","translation-updated / knowledge-upserted"],"outputs":["当前大字幕","全文记录与知识卡片"],"behaviour":"页面使用句子身份和请求版本隔离迟到响应；原文先出现，临时译文随后更新，最终译文替换同句预览。等待新翻译期间保留旧的可读内容。","evidence":"source","sources":["audio","preview","frontier"]},{"id":"knowledge","domainId":"knowledge","label":"知识整理机芯","kind":"processor","description":"从最终原文整理具体对象、对话事实与引用；模型输出必须经过本地校验。","inputs":["已入库的最终原文","本次收听已有条目和候选"],"outputs":["知识条目与原文依据","待修复项与持久化检查点"],"behaviour":"先短暂合批，同一收听串行处理；有效项先落库，无效但可修复项进入定向补全。空结果正常完成。知识整理不以最终译文作为前置条件。","evidence":"source","sources":["asr","kqueue","kworkflow","kparse"],"mechanism":{"concurrency":2}},{"id":"relation","domainId":"relation","label":"关系与图谱","kind":"tool","description":"对已有知识条目建立有原文依据的关系，并把关联与独立对象展示出来。","inputs":["用户点击生成关系","候选条目、原文、最终译文"],"outputs":["关系、限定条件与原文引用","可搜索、筛选、点击的图谱"],"behaviour":"查看图谱不调用模型。生成任务在后台按窗口处理，最多 2 个并发；有翻译、知识任务或播报消费者时等待。没有充分依据就不连线，零关系可以是正常结果。","evidence":"source","sources":["entry","relation_queue","relation_workflow","relation_contract","graph"],"mechanism":{"concurrency":2}},{"id":"data","domainId":"data","label":"本地档案柜","kind":"database","description":"SQLite 是收听内容和可恢复任务的持久化来源；浏览器保留连接设置与界面偏好。","inputs":["原文、译文、知识、关系","任务检查点与导入文件"],"outputs":["历史记录、全文导出","待处理任务与数据快照"],"behaviour":"后端通过 node:sqlite 打开 listenings.sqlite，启用 WAL 和外键；结构版本为 12。Key 在浏览器 localStorage 和后端运行期内存使用，不随数据库导出。","evidence":"source","sources":["storage","entry","prefs","fish_key","export","import"]},{"id":"correction","domainId":"knowledge","label":"人工名称纠正","kind":"console","description":"把误识别词直接替换为用户指定的新名称，例如 Deebo → Tibo。","inputs":["新名称与 revision","关联句子和引用"],"outputs":["名称、原文与引用同步更新","可沿用的当前收听纠正规则"],"behaviour":"统一入口；手动保存无需模型。通过版本校验后，在一个事务中替换相关内容并调整引用偏移，保留条目和关系 ID。模型只在点击获取建议时调用。","evidence":"source","sources":["manual","revision_guard","editor","edit_api"]},{"id":"observe","domainId":"diagnostics","label":"执行追踪仪","kind":"memory","description":"默认采集关键后端链路，按业务域组织任务、调用和安全事件。","inputs":["识别、翻译、知识、关系、播报的事件"],"outputs":["execution_trace 日志","有界诊断快照与离线报告"],"behaviour":"server.mjs 创建运行时即开启追踪，无需 HEARWISE_TRACE=1。Effect 管理取消和子步骤；业务报告再按五个域归类。这里没有实测日志，因此活动、耗时和 token 均未知。","evidence":"source","sources":["entry","runtime","diagnostics","trace_steps","business"]},{"id":"audio_source","domainId":"recognition","label":"音源选择器","kind":"console","description":"浏览器获取用户授权的声音。","inputs":["麦克风或标签页选择"],"outputs":["MediaStream"],"behaviour":"麦克风调用 getUserMedia，标签页调用 getDisplayMedia；同一次收听可追加新的片段。源音频不在服务端直接读取。","evidence":"source","sources":["audio"],"parentId":"capture"},{"id":"pcm_frames","domainId":"recognition","label":"PCM 分帧器","kind":"processor","description":"AudioWorklet 将采样统一为识别输入。","inputs":["浏览器输入样本"],"outputs":["16 kHz / PCM16 / 单声道"],"behaviour":"每包 320 个样本，即 20 ms 音频；必要时插值重采样。结束时 flush 剩余尾包。浏览器 socket 缓冲达到 512,000 字节时该发送分支不再发送新包；此处未实现持久重传队列。","evidence":"source","sources":["pcm","audio","stop"],"parentId":"capture"},{"id":"recognition_session","domainId":"recognition","label":"ASR 会话","kind":"router","description":"本地 WebSocket 连接到千问流式识别服务。","inputs":["PCM 包、语言、断句参数"],"outputs":["sentence 文本与句子身份"],"behaviour":"模型为 qwen-audio-3.0-asr-flash-streaming。服务端收到 task-started 才创建收听 run；附加断句参数被拒绝时可回退重连。识别会话自身有追踪。","evidence":"source","sources":["asr","entry"],"parentId":"capture"},{"id":"source_commit","domainId":"recognition","label":"定稿分流器","kind":"router","description":"同一个最终句在落盘后分流到多个业务。","inputs":["sentence_end=true 的 ASR 文本"],"outputs":["segments 记录","定稿通知、翻译任务、知识合批"],"behaviour":"按 run 与 sentence_id 去重。新增句先 addSegment，再通知播报、发送 segment-final，并安排翻译和知识。冲突定稿保留首次文本且停止相关播报。","evidence":"source","sources":["asr","storage"],"parentId":"capture"},{"id":"mt_preview","domainId":"translation","label":"临时预览入口","kind":"console","description":"为当前字幕请求临时译文。","inputs":["未定稿文本与请求版本"],"outputs":["临时译文或最终译文优先提示"],"behaviour":"前端按约 1.2 秒节流；超过 3000 个 JS 字符等待定稿，不截断原文。服务端只在定稿队列空且共享工位可用时准入；忙时返回 429，不等同于云服务限流。","evidence":"source","sources":["preview","preview_api"],"parentId":"translate"},{"id":"mt_schedule","domainId":"translation","label":"共享翻译工位","kind":"queue","description":"实时最终句、历史补齐和播报队首共同竞争执行机会。","inputs":["按 segment.id 去重的任务"],"outputs":["下一项可执行翻译"],"behaviour":"总并发 2；最新 2 个实时待译句形成窗口。连续派发 3 个实时任务且最老后台已等 10 秒时，让给后台。播报队首在既有预算中交替优先。500 是内存清单软阈值：超出时只尝试移走最老后台任务，完整待办仍在 SQLite。","evidence":"source","sources":["mt_queue","mt_commit"],"parentId":"translate","mechanism":{"concurrency":2}},{"id":"mt_http","domainId":"translation","label":"翻译模型","kind":"processor","description":"将原文交给 qwen-mt-flash。","inputs":["原文、目标语言、API Key"],"outputs":["译文字符串"],"behaviour":"HTTP 请求默认 15 秒超时；同语言明确匹配走本地直通，auto 仍调用模型。请求被取消或输出为空不能作为成功译文提交。","evidence":"source","sources":["mt","mt_commit","preview_api"],"parentId":"translate"},{"id":"mt_commit","domainId":"translation","label":"译文提交与通知","kind":"database","description":"保存最终译文，再唤醒等待者。","inputs":["翻译结果或失败"],"outputs":["translation_state","translation-updated"],"behaviour":"更新 segments 后广播，并调用 speech.notify；失败保存 failed 状态。继续处理从 pendingTranslations 恢复，临时译文不写入最终译文位置。","evidence":"source","sources":["mt_commit"],"parentId":"translate"},{"id":"speech_consumer","domainId":"speech","label":"播报消费会话","kind":"console","description":"每个播放连接有独立游标、epoch、暂停和退出状态。","inputs":["用户开启/暂停/跳转/停止"],"outputs":["顺序语音单元与状态"],"behaviour":"实时播报只取开启之后的句子；全文播报读取整条记录，包含未加载的句子。实时停止后默认最多等 20 秒收尾，暂停时间另计；暂停最长 5 分钟，全文不受实时收尾窗口限制。","evidence":"source","sources":["speech","speech_control"],"parentId":"speech"},{"id":"speech_units","domainId":"speech","label":"文本切段与账本","kind":"queue","description":"最终文本按句切段；提前播报使用独立原文覆盖账本。","inputs":["最终译文或全文文本","可选稳定英文前缀"],"outputs":["待合成文本单元"],"behaviour":"全文根据语速按标点和词界切分，完整保留正文。提前播报仅在本次会话明确开启且英语→中文时启用；已播前缀若被修订就停止播报，不能把一般临时字幕当作可朗读文本。","evidence":"source","sources":["units","incremental","speech_control"],"parentId":"speech"},{"id":"speech_synthesis","domainId":"speech","label":"双服务商适配器","kind":"processor","description":"选择 Qwen 实时 TTS 或 Fish Audio。","inputs":["文本、音色、语速、服务商 Key"],"outputs":["逐块 PCM 音频或分类错误"],"behaviour":"Qwen 使用实时连接，Fish 使用 HTTP 流。适配器连接、生成和返回音频是不同阶段；音频到达后通过 /ws/tts 发送给浏览器。服务商模型及可选项以代码快照为准。","evidence":"source","sources":["qwen","fish","speech"],"parentId":"speech"},{"id":"speech_backpressure","domainId":"speech","label":"播放反压闸门","kind":"router","description":"用实际消费量限制超前生成，防止缓冲持续增长。","inputs":["已发送样本、已消费样本","已完成语音单元"],"outputs":["继续合成或暂停发起下一段"],"behaviour":"待播音频达到 4 秒，或未播完单元数达到 2 时，不再发起新一段。正在合成的流仍可能继续；未消费样本超过 32 秒或 socket 缓冲超过 1 MiB 时停止并提示。4 秒是发起阈值，不是硬容量。","evidence":"source","sources":["speech"],"parentId":"speech"},{"id":"speech_output","domainId":"speech","label":"浏览器扬声器","kind":"speaker","description":"环形缓冲把网络音频变成声卡采样，并回报播放进度。","inputs":["24 kHz PCM16 与单元编号"],"outputs":["扬声器输出","consumedSamples / playedUnit"],"behaviour":"缓冲默认最多 32 秒；连续输入先累积约 0.2 秒再开始，短尾段结束后可直接播放。播放器根据声卡采样率插值，单元实际播放完再回报；Media Session 提供系统可用的控制。","evidence":"source","sources":["playback","player","media"],"parentId":"speech"},{"id":"caption_original","domainId":"recognition","label":"原文显示","kind":"display","description":"未定稿识别文本立即进入当前原文区。","inputs":["sentence 消息"],"outputs":["当前句原文"],"behaviour":"临时原文用于反馈与可选提前播报观察；知识抽取只使用已保存的最终句。","evidence":"source","sources":["audio","asr"],"parentId":"caption"},{"id":"caption_preview","domainId":"recognition","label":"临时译文前沿","kind":"display","description":"保留已读内容，随当前句刷新译文。","inputs":["临时翻译结果"],"outputs":["可更新的大字幕"],"behaviour":"前端用 translationVersion 拒绝过时请求结果；没有新的结果时继续显示上次可读内容。","evidence":"source","sources":["preview","frontier"],"parentId":"caption"},{"id":"caption_final","domainId":"recognition","label":"定稿替换","kind":"display","description":"同句最终译文到达后替换预览。","inputs":["segment-final / translation-updated"],"outputs":["持久原译文与最终字幕"],"behaviour":"前端通过 runId、句子身份与当前焦点决定更新目标，后台补齐不应把焦点拉回旧句。","evidence":"source","sources":["audio","frontier"],"parentId":"caption"},{"id":"caption_notifications","domainId":"recognition","label":"状态与卡片更新","kind":"router","description":"后台处理结果经 WebSocket 和读接口回到页面。","inputs":["knowledge-upserted","processing / graph revision"],"outputs":["增量卡片、进度与图谱刷新"],"behaviour":"知识条目增量更新保留用户展开状态；图谱终态后读取最终结果。页面显示是持久化结果的投影，不拥有模型任务的最终状态。","evidence":"source","sources":["audio","graph","entry"],"parentId":"caption"},{"id":"knowledge_batch","domainId":"knowledge","label":"短暂合批仓","kind":"queue","description":"把连续到达的最终句打包为持久化抽取任务。","inputs":["segments 中尚未抽取的原文"],"outputs":["extraction_jobs"],"behaviour":"安静约 1.5 秒、达到 3 句或 1200 字符可触发；最长合批等待 4 秒。这些是触发条件，不是结果时延承诺。强制 flush 会排空尾部。","evidence":"source","sources":["kqueue","checkpoint"],"parentId":"knowledge"},{"id":"knowledge_schedule","domainId":"knowledge","label":"会话调度器","kind":"console","description":"同一收听串行，不同收听共享执行工位。","inputs":["持久任务、内存 Key、冷却时间"],"outputs":["获准执行的知识批次"],"behaviour":"默认跨收听并发 2，可由环境参数设为 1–4。翻译忙时准入上限降为 1，默认让路最多 1.5 秒，再在其他约束满足时运行；同收听开始间隔默认至少 2 秒。已在运行的任务不会被强制杀掉。","evidence":"source","sources":["entry","kqueue","provider"],"parentId":"knowledge","mechanism":{"concurrency":2}},{"id":"knowledge_extract","domainId":"knowledge","label":"抽取与本地校验","kind":"processor","description":"qwen3.8-flash 提议对象，本地代码检查身份与引用。","inputs":["focus 原文、上下文、已有候选"],"outputs":["合法条目","拒绝项与可修复目标"],"behaviour":"关闭 thinking，初次请求 30 秒超时。协议区分正式收录、观察和排除；原文引用必须能回到实际文本。没有符合条件的条目也可以成功结束。","evidence":"source","sources":["kmodel","kapi","kparse"],"parentId":"knowledge"},{"id":"knowledge_repair","domainId":"knowledge","label":"定向补全工位","kind":"tool","description":"保留成功项，针对有锚点的失败项补齐。","inputs":["未解决项、原对象身份与原文"],"outputs":["修复后的条目或未解决结果"],"behaviour":"每分片定向修复至多一次，15 秒请求超时；重试预算与请求次数存进检查点。额外请求预算默认 2，协议重试另有限制，不能理解为每个请求都固定重试两次。","evidence":"source","sources":["kworkflow","kapi"],"parentId":"knowledge"},{"id":"knowledge_checkpoint","domainId":"knowledge","label":"检查点提交器","kind":"database","description":"将条目和阶段进度一起保存。","inputs":["合法条目、未解决项、预算"],"outputs":["可恢复分片与页面通知"],"behaviour":"执行结果区分 continue 与 terminal、ok/empty/partial/invalid。保存成功项后广播；人工继续只重开未解决工作。旧策略任务保持自身协议，不能把新旧重试规则混在一起。","evidence":"source","sources":["kworkflow","checkpoint","entry"],"parentId":"knowledge"},{"id":"relation_windows","domainId":"relation","label":"证据窗口","kind":"memory","description":"为符合条件的原文范围准备关系输入。","inputs":["已有条目、最终原文、最终译文"],"outputs":["候选身份与证据 ID"],"behaviour":"最终译文辅助理解，原文决定证据。输入上限包括 48 个候选、12 个片段和 14,000 原文字符；这些是单请求协议上限。证据引用由服务端建立，模型不生成引用偏移。","evidence":"source","sources":["relation_contract","relation_evidence","relation_store"],"parentId":"relation"},{"id":"relation_admission","domainId":"relation","label":"后台准入闸门","kind":"router","description":"关系任务不能抢占正在进行的前台业务。","inputs":["窗口任务","前台忙状态与 provider 冷却"],"outputs":["等待原因或获准发起的请求"],"behaviour":"全局最多 2 个并发，默认发起间隔 2 秒、安静窗口 6 秒。翻译、知识任务或播报消费者存在时继续等；429 冷却在知识/关系间共享。等待本身不代表模型报错。","evidence":"source","sources":["entry","relation_queue","provider"],"parentId":"relation","mechanism":{"concurrency":2}},{"id":"relation_extract","domainId":"relation","label":"语义关系判定","kind":"processor","description":"模型判断明确表达的关系和限定条件。","inputs":["原文证据、候选 ID、辅助译文"],"outputs":["relations 与原文证据 ID"],"behaviour":"qwen3.8-flash，关闭 thinking。不按共现或传递性猜测；保留否定、计划、不确定性和时间。每窗口最多 3 次请求，单次 30 秒超时；确定性输入错误不应消耗付费重试。","evidence":"source","sources":["relation_workflow","relation_contract","relation_parse","kmodel"],"parentId":"relation","mechanism":{"retryLimit":2}},{"id":"relation_commit","domainId":"relation","label":"证据校验与提交","kind":"database","description":"本地校验引用和输入版本，再原子提交关系。","inputs":["模型候选、证据索引、窗口指纹"],"outputs":["持久关系、过滤诊断、进度"],"behaviour":"空结果与候选全部被过滤均可完成；请求、覆盖或保存问题才保留后续工作。取消或过期输入丢弃迟到响应；已完成付费请求的存储失败不会自动重放模型调用。","evidence":"source","sources":["relation_parse","relation_workflow","relation_store"],"parentId":"relation"},{"id":"relation_graph","domainId":"relation","label":"图谱观察窗","kind":"display","description":"已有知识条目与关系进入 Cytoscape 视图。","inputs":["正式条目、实际关系、筛选条件"],"outputs":["关联组件与独立节点分区"],"behaviour":"有关联的节点放上方，独立节点放下方；仅用真实关系计算布局。节点可看简介和原文，关系可看依据与限定。搜索、筛选、缩放和全屏都不需要模型调用。","evidence":"source","sources":["layout","renderer","graph"],"parentId":"relation"},{"id":"data_records","domainId":"data","label":"收听档案层","kind":"database","description":"一条收听包含多次 run，每个 run 包含最终句。","inputs":["收听、run 与 segment"],"outputs":["可分页历史与完整全文"],"behaviour":"唯一索引限制一条收听同时只有一个 active run；run + ASR 句子 ID 去重。segments 保存原文、译文和翻译状态；知识、事实、提及与关系通过 ID 关联。","evidence":"source","sources":["storage"],"parentId":"data"},{"id":"data_recovery","domainId":"data","label":"任务恢复层","kind":"memory","description":"重启后从持久化任务状态恢复工作。","inputs":["任务检查点与未完成状态"],"outputs":["待继续任务"],"behaviour":"启动将活动收听标为 interrupted，并恢复知识与关系检查点。运行期 Key 不在 SQLite 中；恢复模型任务需要显式提供内存 Key。停止采集后已排队翻译和知识仍可继续。","evidence":"source","sources":["storage","checkpoint","entry","mt_commit"],"parentId":"data"},{"id":"data_snapshot","domainId":"data","label":"一致性导出","kind":"database","description":"从数据库创建可独立使用的事务一致快照。","inputs":["当前 SQLite / WAL 状态"],"outputs":["完整 .sqlite 备份"],"behaviour":"使用 VACUUM INTO，把已提交但仍在 WAL 中的页纳入快照；不是简单复制正在使用的主文件。导出后检查完整性与数据库版本。","evidence":"source","sources":["export"],"parentId":"data"},{"id":"data_import","domainId":"data","label":"迁移与恢复","kind":"tool","description":"校验、预览、选择追加或覆盖，再事务提交。","inputs":["导入数据库与模式","预览 revision"],"outputs":["新增收听或替换后的档案"],"behaviour":"append 以 listening ID 判断：同 ID 整条跳过，不合并句子；replace 替换本地业务表内容。导入前备份并核验预览 revision，检查外键；执行时要求无冲突活动。","evidence":"source","sources":["import","export"],"parentId":"data"},{"id":"correct_editor","domainId":"knowledge","label":"统一编辑入口","kind":"console","description":"卡片与图谱详情打开同一个纠正名称交互。","inputs":["用户输入的新名称"],"outputs":["保存请求或获取建议请求"],"behaviour":"手动输入可直接保存；获取校对建议由用户明确点击，每次至多调用一次模型。建议并不自动生效。","evidence":"source","sources":["editor","edit_api"],"parentId":"correction"},{"id":"correct_guard","domainId":"knowledge","label":"并发版本闸门","kind":"router","description":"保存前检查对象和引用的版本。","inputs":["revision、jobId、新名称"],"outputs":["允许保存或 409 冲突"],"behaviour":"检查活动任务、已存在同名对象、纠正规则和内容指纹。相同 jobId 的重复请求读取既有结果；不允许一个任务 ID 携带另一份修改。","evidence":"source","sources":["manual","revision_guard","edit_api"],"parentId":"correction"},{"id":"correct_replace","domainId":"knowledge","label":"原子替换器","kind":"tool","description":"在关联原文和条目文本中替换误识别词。","inputs":["条目快照与新名称"],"outputs":["更新的原文、名称、引用与偏移"],"behaviour":"一个事务更新 canonical_name、关联句子、事实、引用与关系证据偏移；保留已有 ID 和已完成译文，不自动重译或重建图谱。英文按词边界且忽略大小写替换。","evidence":"source","sources":["manual"],"parentId":"correction"},{"id":"correct_rule","domainId":"knowledge","label":"纠正规则柜","kind":"memory","description":"将本次人工决定留给当前收听的后续识别使用。","inputs":["旧词、新词、条目身份"],"outputs":["当前收听有效的替换规则"],"behaviour":"规则持久化到 knowledge_corrections；后续临时原文和定稿沿用。规则限制在当前收听，其他收听与未关联历史段落不被批量改写。","evidence":"source","sources":["manual","asr"],"parentId":"correction"},{"id":"trace_lifecycle","domainId":"diagnostics","label":"Effect 生命周期","kind":"console","description":"将既有 Promise 操作包进可取消、有父子步骤的任务。","inputs":["任务标识与 operation"],"outputs":["任务结果、子 span 与清理"],"behaviour":"ManagedRuntime 管理 scope；AbortSignal 向子步骤传播。删除收听和关闭应用会取消所属任务。Effect 覆盖关键异步链路，不能推断整个代码库都已经改为 Effect。","evidence":"source","sources":["runtime","entry"],"parentId":"observe"},{"id":"trace_events","domainId":"diagnostics","label":"安全事件记录","kind":"memory","description":"记录状态、时间与白名单属性。","inputs":["running/event/succeeded/failed/cancelled"],"outputs":["有界事件缓存","execution_trace 行"],"behaviour":"默认 enabled=true，缓存默认 2000 条，上限 10,000。覆盖时计 dropped_events；stdout 背压或接收失败记 sink_errors。事件名和属性按白名单保留，追踪不记录模型正文或 API Key。","evidence":"source","sources":["diagnostics","entry","trace_steps"],"parentId":"observe"},{"id":"trace_business","domainId":"diagnostics","label":"业务归属透镜","kind":"processor","description":"把底层 span 归到用户能理解的业务对象。","inputs":["已采集事件与任务身份"],"outputs":["五个业务域及异常洞察"],"behaviour":"识别、翻译、知识、关系、播报分别聚合。已生成音频不能直接等同已播放；子步骤失败后恢复也保留历史。缺少起止记录表示证据不完整，不能自动断言任务仍在运行。","evidence":"source","sources":["business"],"parentId":"observe"},{"id":"trace_report","domainId":"diagnostics","label":"离线报告输出","kind":"display","description":"从已有日志构建可下钻的业务报告。","inputs":["execution_trace 日志或诊断快照"],"outputs":["业务域、任务、调用、时间线与证据"],"behaviour":"npm run trace:report 生成独立 HTML，不调用模型。耗时累计包含并行和父子重叠，不能当整次墙钟耗时。本解剖页默认没有日志；标准 Trace 导入入口不直接接受 HearWise 的逐事件日志。","evidence":"source","sources":["trace_report","diagnostics","business"],"parentId":"observe"}],"edges":[{"id":"e1","to":"caption","label":"临时与定稿消息","kind":"data","evidence":"source","sources":["asr","audio"],"from":"capture"},{"id":"e2","to":"data","label":"定稿先保存","kind":"data","evidence":"source","sources":["asr","storage"],"from":"capture"},{"id":"e3","to":"translate","label":"最终句触发翻译","kind":"data","evidence":"source","sources":["asr","mt_commit"],"from":"capture"},{"id":"e4","to":"knowledge","label":"最终原文触发合批","kind":"data","evidence":"source","sources":["asr","kqueue"],"from":"capture"},{"id":"e5","to":"caption","label":"预览结果与定稿通知","kind":"data","evidence":"source","sources":["preview","mt_commit"],"from":"translate"},{"id":"e6","to":"speech","label":"保存后唤醒播报","kind":"data","evidence":"source","sources":["mt_commit","speech"],"from":"translate"},{"id":"e7","to":"data","label":"最终译文落盘","kind":"data","evidence":"source","sources":["mt_commit"],"from":"translate"},{"id":"e8","to":"data","label":"条目与检查点","kind":"data","evidence":"source","sources":["checkpoint","kworkflow"],"from":"knowledge"},{"id":"e9","to":"relation","label":"正式条目成为关系候选","kind":"data","evidence":"source","sources":["relation_contract","relation_store"],"from":"knowledge"},{"id":"e10","to":"data","label":"关系与证据落盘","kind":"data","evidence":"source","sources":["relation_workflow","relation_store"],"from":"relation"},{"id":"e11","to":"speech","label":"按游标读取原文/译文","kind":"data","evidence":"source","sources":["speech"],"from":"data"},{"id":"e12","to":"data","label":"原子替换与纠正规则","kind":"data","evidence":"source","sources":["manual"],"from":"correction"},{"id":"e13","to":"pcm_frames","label":"音频样本","kind":"data","evidence":"source","sources":["audio","pcm"],"from":"audio_source"},{"id":"e14","to":"recognition_session","label":"PCM16 分包","kind":"data","evidence":"source","sources":["audio","asr"],"from":"pcm_frames"},{"id":"e15","to":"source_commit","label":"最终句","kind":"data","evidence":"source","sources":["asr"],"from":"recognition_session"},{"id":"e16","to":"mt_http","label":"共享预算内请求","kind":"data","evidence":"source","sources":["preview_api"],"from":"mt_preview"},{"id":"e17","to":"mt_http","label":"派发最终任务","kind":"data","evidence":"source","sources":["mt_commit"],"from":"mt_schedule"},{"id":"e18","to":"mt_commit","label":"译文提交","kind":"data","evidence":"source","sources":["mt_commit"],"from":"mt_http"},{"id":"e19","to":"speech_units","label":"顺序取文本","kind":"data","evidence":"source","sources":["speech","units"],"from":"speech_consumer"},{"id":"e20","to":"speech_synthesis","label":"逐段合成","kind":"data","evidence":"source","sources":["speech"],"from":"speech_units"},{"id":"e21","to":"speech_output","label":"音频流","kind":"data","evidence":"source","sources":["speech","playback"],"from":"speech_synthesis"},{"id":"e22","to":"speech_backpressure","label":"实际消费回报","kind":"data","evidence":"source","sources":["speech_control","player"],"from":"speech_output"},{"id":"e23","to":"caption_preview","label":"请求当前句预览","kind":"data","evidence":"source","sources":["preview","audio"],"from":"caption_original"},{"id":"e24","to":"caption_final","label":"最终结果替换预览","kind":"data","evidence":"source","sources":["audio","frontier"],"from":"caption_preview"},{"id":"e25","to":"knowledge_schedule","label":"持久任务","kind":"data","evidence":"source","sources":["kqueue"],"from":"knowledge_batch"},{"id":"e26","to":"knowledge_extract","label":"准入后抽取","kind":"data","evidence":"source","sources":["kqueue","kworkflow"],"from":"knowledge_schedule"},{"id":"e27","to":"knowledge_checkpoint","label":"合法项先保存","kind":"data","evidence":"source","sources":["kworkflow"],"from":"knowledge_extract"},{"id":"e28","to":"knowledge_repair","label":"只传可修复失败项","kind":"data","evidence":"source","sources":["kworkflow"],"from":"knowledge_extract"},{"id":"e29","to":"knowledge_checkpoint","label":"修复结果与剩余问题","kind":"data","evidence":"source","sources":["kworkflow"],"from":"knowledge_repair"},{"id":"e30","to":"relation_admission","label":"待处理窗口","kind":"data","evidence":"source","sources":["relation_queue"],"from":"relation_windows"},{"id":"e31","to":"relation_extract","label":"预约请求预算","kind":"data","evidence":"source","sources":["relation_workflow"],"from":"relation_admission"},{"id":"e32","to":"relation_commit","label":"候选关系与证据 ID","kind":"data","evidence":"source","sources":["relation_workflow"],"from":"relation_extract"},{"id":"e33","to":"relation_graph","label":"已保存图谱数据","kind":"data","evidence":"source","sources":["graph"],"from":"relation_commit"},{"id":"e34","to":"data_snapshot","label":"事务一致快照","kind":"data","evidence":"source","sources":["export"],"from":"data_records"},{"id":"e35","to":"data_import","label":"数据库备份文件","kind":"data","evidence":"source","sources":["import","export"],"from":"data_snapshot"},{"id":"e36","to":"correct_guard","label":"名称 / revision / jobId","kind":"data","evidence":"source","sources":["editor","manual"],"from":"correct_editor"},{"id":"e37","to":"correct_replace","label":"通过校验","kind":"data","evidence":"source","sources":["manual"],"from":"correct_guard"},{"id":"e38","to":"correct_rule","label":"持久化替换规则","kind":"data","evidence":"source","sources":["manual"],"from":"correct_replace"},{"id":"e39","to":"trace_events","label":"步骤起止与事件","kind":"data","evidence":"source","sources":["runtime","diagnostics"],"from":"trace_lifecycle"},{"id":"e40","to":"trace_business","label":"事件配对与归属","kind":"data","evidence":"source","sources":["business"],"from":"trace_events"},{"id":"e41","to":"trace_report","label":"聚合与异常洞察","kind":"data","evidence":"source","sources":["trace_report"],"from":"trace_business"},{"id":"e42","to":"speech_synthesis","label":"允许或暂停下一段生成","kind":"control","evidence":"source","sources":["speech"],"from":"speech_backpressure"}]}</script>
+<script>
+const MAX_BYTES = 15 * 1024 * 1024;
+const MAX_SPANS = 15000;
+const kinds = ['queue','console','processor','memory','tool','router','database','sensor','speaker','display'];
+const evidences = ['source','provided','inference','demo','unknown'];
+const idPattern = /^[a-z0-9][a-z0-9_-]{0,63}$/;
+const MECHANICAL_ACTIONS = ['idle','enqueue','dequeue','process','read','write','retry','reject','error','complete'];
+const counters = ['queueDepth','activeWorkers','retries','completed','failed','rejected'];
+function need(test, message) { if (!test) throw new Error(message); }
+function textField(value, label, limit = 6000) {
+  need(typeof value === 'string' && value.trim().length > 0 && value.length <= limit, `${label} 必须是非空文本（最多 ${limit} 字符）`);
+}
+function ids(items, label, limit) {
+  need(Array.isArray(items) && items.length <= limit, `${label} 必须是数组，最多 ${limit} 项`);
+  const seen = new Set();
+  for (const item of items) {
+    need(item && typeof item.id === 'string' && idPattern.test(item.id), `${label} ID 无效`);
+    need(!seen.has(item.id), `${label} ID 重复: ${item.id}`);
+    seen.add(item.id);
+  }
+  return seen;
+}
+function safeUrl(value) {
+  try { const u = new URL(value); return ['https:','http:'].includes(u.protocol) ? u.href : null; }
+  catch { return null; }
+}
+function validateModel(model) {
+  need(model && typeof model === 'object' && !Array.isArray(model), '模型必须是对象');
+  need(model.schemaVersion === 1, 'schemaVersion 必须为 1');
+  textField(model.title, 'title', 200); textField(model.summary, 'summary');
+  need(['agent','software','ai-pipeline'].includes(model.template), '未知模板');
+  need(['demo','architecture','trace'].includes(model.mode), '未知 mode');
+  if (model.theme !== undefined) need(['light','dark'].includes(model.theme), '未知 theme');
+  // Imported activity buckets have their own bounded allowance. A valid authored
+  // model must remain importable when its ordinary node/domain budget is full.
+  const domains = ids(model.domains, 'domains', 41), nodes = ids(model.nodes, 'nodes', 281);
+  need(model.domains.filter(d => !d.traceGenerated).length <= 40, '最多 40 个业务域');
+  need(model.domains.filter(d => d.traceGenerated).length <= 1, '最多一个导入生成的未归属域');
+  need(model.nodes.filter(n => !n.traceGenerated).length <= 240, '最多 240 个建模部件');
+  const edges = ids(model.edges, 'edges', 600), sources = ids(model.sources, 'sources', 120);
+  need(domains.size > 0 && nodes.size > 0, '至少需要一个业务域和一个部件');
+  for (const d of model.domains) { textField(d.name, 'domain.name', 80); textField(d.description, 'domain.description'); }
+  for (const s of model.sources) {
+    textField(s.title, 'source.title', 300);
+    if (s.url !== undefined) need(safeUrl(s.url), '来源链接必须使用 HTTP/HTTPS');
+    if (s.ref !== undefined) textField(s.ref, 'source.ref');
+  }
+  const byId = new Map(model.nodes.map(n => [n.id, n]));
+  const evidence = item => {
+    need(evidences.includes(item.evidence), `无效 evidence: ${item.id}`);
+    need(Array.isArray(item.sources) && item.sources.every(s => sources.has(s)), `来源引用无效: ${item.id}`);
+    need(item.evidence !== 'source' || item.sources.length > 0, `来源事实缺少证据: ${item.id}`);
+  };
+  const scopes = new Map();
+  for (const n of model.nodes) {
+    need(domains.has(n.domainId), `部件业务域不存在: ${n.id}`);
+    need(kinds.includes(n.kind), `未知部件 kind: ${n.id}`);
+    textField(n.label, 'node.label', 80); textField(n.description, 'node.description'); textField(n.behaviour, 'node.behaviour');
+    for (const field of ['inputs','outputs']) need(Array.isArray(n[field]) && n[field].length <= 30 && n[field].every(v => typeof v === 'string' && v.length <= 1000), `${n.id}.${field} 无效`);
+    evidence(n);
+    if (n.mechanism !== undefined) {
+      need(n.mechanism && typeof n.mechanism === 'object' && !Array.isArray(n.mechanism), 'mechanism 必须是对象');
+      for (const [field, max] of [['capacity',64],['concurrency',16],['retryLimit',100]]) {
+        const v = n.mechanism[field];
+        if (v !== undefined) need(Number.isInteger(v) && v >= (field === 'retryLimit' ? 0 : 1) && v <= max, `mechanism.${field} 超出范围`);
+      }
+      need(Object.keys(n.mechanism).every(k => ['capacity','concurrency','retryLimit'].includes(k)), '未知 mechanism 字段');
+    }
+    let current = n; const seen = new Set([n.id]);
+    while (current.parentId) {
+      const parent = byId.get(current.parentId);
+      need(parent && parent.domainId === n.domainId, `父部件缺失或跨业务域: ${n.id}`);
+      need(!seen.has(parent.id), `部件层级成环: ${n.id}`);
+      seen.add(parent.id); current = parent;
+    }
+    const scope = n.parentId ? `parent:${n.parentId}` : `domain:${n.domainId}`;
+    if (!n.traceGenerated) scopes.set(scope, (scopes.get(scope) || 0) + 1);
+    else need(!n.parentId && model.nodes.filter(x => x.traceGenerated && x.domainId === n.domainId).length === 1, '每域最多一个导入生成的根部件');
+  }
+  for (const [scope, count] of scopes) need(count <= 16, `${scope} 有 ${count} 个直接部件，请拆分层级（最多 16）`);
+  for (const e of model.edges) {
+    need(nodes.has(e.from) && nodes.has(e.to), `连线端点不存在: ${e.id}`);
+    need(['control','data'].includes(e.kind), `未知连线 kind: ${e.id}`);
+    textField(e.label, 'edge.label', 200); evidence(e);
+  }
+  if (model.steps !== undefined) {
+    ids(model.steps, 'steps', 100);
+    for (const s of model.steps) {
+      textField(s.title, 'step.title', 200); textField(s.description, 'step.description');
+      need(Array.isArray(s.active) && s.active.every(n => nodes.has(n)), `步骤部件引用无效: ${s.id}`);
+      need(Array.isArray(s.edges) && s.edges.every(e => edges.has(e)), `步骤连线引用无效: ${s.id}`);
+      if (s.states !== undefined) {
+        need(s.states && typeof s.states === 'object' && !Array.isArray(s.states), 'step.states 必须是完整状态快照对象');
+        for (const [id, state] of Object.entries(s.states)) {
+          need(nodes.has(id) && state && typeof state === 'object' && !Array.isArray(state), '机械状态部件无效');
+          need(Object.keys(state).every(k => [...counters,'action'].includes(k)), '未知机械状态字段');
+          for (const k of counters) if (state[k] !== undefined) need(Number.isSafeInteger(state[k]) && state[k] >= 0, `机械状态 ${k} 必须为非负整数`);
+          if (state.action !== undefined) need(MECHANICAL_ACTIONS.includes(state.action), '未知机械动作');
+          const m = byId.get(id).mechanism || {};
+          for (const [field, limit] of [['queueDepth','capacity'],['activeWorkers','concurrency'],['retries','retryLimit']]) {
+            if (state[field] !== undefined) need(m[limit] !== undefined && state[field] <= m[limit], `${id}.${field} 缺少对应容量或超过约束`);
+          }
+        }
+      }
+    }
+  }
+  if (model.mode === 'demo') need(model.steps?.length > 0, '演示模式必须有 steps');
+  if (model.exampleTrace !== undefined) {
+    need(model.exampleTrace?.synthetic === true, 'exampleTrace 必须明确声明 synthetic:true');
+    normalizeTrace(model.exampleTrace);
+  }
+  if (model.spans !== undefined) {
+    need(Array.isArray(model.spans) && model.spans.length <= MAX_SPANS, 'spans 必须是数组且不超过上限');
+    for (const s of model.spans) {
+      need(s && typeof s.id === 'string' && typeof s.traceId === 'string' && typeof s.name === 'string', 'span 标识无效');
+      need(Number.isFinite(s.startMs) && Number.isFinite(s.endMs) && s.endMs >= s.startMs, 'span 时间无效');
+      need(nodes.has(s.nodeId) && byId.get(s.nodeId).domainId === s.domainId, 'span 归属无效');
+      need(['ok','error','unknown'].includes(s.status), 'span 状态无效');
+      need(s.attributes && typeof s.attributes === 'object' && !Array.isArray(s.attributes), 'span 属性无效');
+    }
+  }
+  if (model.mode === 'trace') need(model.spans?.length > 0, '追踪模式必须有已归属的完成 span；使用 --trace 导入');
+  if (model.traceMeta !== undefined) {
+    need(model.traceMeta && Array.isArray(model.traceMeta.warnings) && model.traceMeta.warnings.every(w => typeof w.message === 'string' && Number.isFinite(w.count)), 'traceMeta.warnings 无效');
+  }
+  return model;
+}
+function parseModel(input) {
+  if (typeof input !== 'string') return validateModel(input);
+  if (input.length > MAX_BYTES) throw new Error('模型超过 15 MiB');
+  let raw = input.trim();
+  if (!raw.startsWith('{')) {
+    const blocks = [...raw.matchAll(/```(?:anatomy|json)\s*\n([\s\S]*?)\n```/g)];
+    need(blocks.length === 1, 'Markdown 需要且只能包含一个 anatomy/json JSON 代码块；自然语言请先由 Agent 整理为模型');
+    raw = blocks[0][1];
+  }
+  try { return validateModel(JSON.parse(raw)); }
+  catch (error) { throw new Error(`模型无效: ${error.message}`); }
+}
+function otelValue(v) {
+  if (!v || typeof v !== 'object') return v;
+  if ('stringValue' in v) return v.stringValue;
+  if ('boolValue' in v) return v.boolValue;
+  if ('intValue' in v) return v.intValue;
+  if ('doubleValue' in v) return v.doubleValue;
+  if (v.arrayValue) return (v.arrayValue.values || []).map(otelValue);
+  if (v.kvlistValue) return attrs(v.kvlistValue.values);
+  return null;
+}
+function attrs(items) { return Object.fromEntries((items || []).filter(a => a && typeof a.key === 'string').map(a => [a.key, otelValue(a.value)])); }
+function explicitStatus(v) { return ['ok','error','unknown'].includes(v) ? v : 'unknown'; }
+function normalizeTrace(input) {
+  let raw = input;
+  if (typeof input === 'string') {
+    need(input.length <= MAX_BYTES, 'Trace 超过 15 MiB');
+    try { raw = JSON.parse(input); }
+    catch {
+      try { raw = input.split(/\r?\n/).filter(l => l.trim()).map(l => JSON.parse(l)); }
+      catch { throw new Error('Trace 不是有效的 JSON 或 JSONL'); }
+    }
+  }
+  const diagnostics = new Map();
+  const warn = message => diagnostics.set(message, (diagnostics.get(message) || 0) + 1);
+  let spans = [], format = 'canonical', origin = null;
+  if (raw?.resourceSpans) {
+    format = 'OTLP JSON'; const all = [];
+    need(Array.isArray(raw.resourceSpans), 'resourceSpans 必须是数组');
+    for (const resource of raw.resourceSpans) {
+      for (const scope of resource.scopeSpans || resource.instrumentationLibrarySpans || []) {
+        for (const span of scope.spans || []) all.push({span, resource: attrs(resource.resource?.attributes), scope: scope.scope || scope.instrumentationLibrary || null});
+      }
+    }
+    need(all.length <= MAX_SPANS, `最多 ${MAX_SPANS} 个 span`);
+    const valid = [];
+    for (const item of all) {
+      try {
+        need(typeof item.span.startTimeUnixNano === 'string' && /^\d+$/.test(item.span.startTimeUnixNano) && typeof item.span.endTimeUnixNano === 'string' && /^\d+$/.test(item.span.endTimeUnixNano), '纳秒时间必须是十进制字符串');
+        const start = BigInt(item.span.startTimeUnixNano), end = BigInt(item.span.endTimeUnixNano);
+        need(start > 0n && end >= start, '无效纳秒时间');
+        valid.push({...item, start, end});
+      } catch { warn('排除未完成或时间无效的 OTLP span'); }
+    }
+    if (valid.length) {
+      const base = valid.reduce((m, s) => s.start < m ? s.start : m, valid[0].start);
+      origin = {startTimeUnixNano: base.toString()};
+      spans = valid.map(({span: s, resource, scope, start, end}) => ({
+        id: s.spanId, traceId: s.traceId || 'otlp', parentId: s.parentSpanId || null, name: s.name,
+        startMs: Number(start - base) / 1e6, endMs: Number(end - base) / 1e6,
+        status: s.status?.code === 2 || s.status?.code === 'STATUS_CODE_ERROR' ? 'error' : s.status?.code === 1 || s.status?.code === 'STATUS_CODE_OK' ? 'ok' : 'unknown',
+        attributes: {...resource, ...attrs(s.attributes)}, resourceAttributes:resource, instrumentationScope:scope,
+        statusMessage:s.status?.message || '', events:s.events || [], links:s.links || [], raw:s
+      }));
+    }
+  } else if (Array.isArray(raw?.traceEvents) || (Array.isArray(raw) && raw.some(s => s?.ph))) {
+    format = 'Chrome Trace'; const events = raw.traceEvents || raw;
+    need(events.length <= MAX_SPANS * 4, 'Chrome Trace 事件数量过多');
+    const times = events.filter(e => ['X','B','E'].includes(e?.ph) && Number.isFinite(e.ts)).map(e => e.ts);
+    const baseUs = times.length ? Math.min(...times) : 0;
+    origin = {startTimeMicroseconds:baseUs};
+    const stacks = new Map(); let sequence = 0;
+    const sorted = events.map((e, i) => ({e, i})).sort((a,b) => (Number(a.e.ts) || 0) - (Number(b.e.ts) || 0) || a.i - b.i);
+    for (const {e} of sorted) {
+      if (['M','i','I','C'].includes(e.ph)) continue;
+      if (!['X','B','E'].includes(e.ph)) { warn('忽略不支持的 Chrome 事件类型'); continue; }
+      if (!Number.isFinite(e.ts) || (e.ph === 'X' && !Number.isFinite(e.dur))) { warn('排除时间无效的 Chrome 事件'); continue; }
+      const thread = `${e.pid ?? 0}/${e.tid ?? 0}`;
+      const stack = stacks.get(thread) || []; stacks.set(thread, stack);
+      const make = (event, end, id, parentId = null) => ({id, traceId: `chrome:${event.pid ?? 0}`, parentId: event.args?.parentId || parentId,
+        name: event.name, startMs: (event.ts - baseUs) / 1000, endMs: (end - baseUs) / 1000,
+        status: explicitStatus(event.args?.status ?? (event.args?.error === true ? 'error' : undefined)), attributes: event.args || {}, raw:event});
+      if (e.ph === 'X') spans.push(make(e, Number(e.ts) + Number(e.dur), `chrome-${++sequence}`));
+      else if (e.ph === 'B') stack.push({event:e, id:`chrome-${++sequence}`, parentId:stack.at(-1)?.id || null});
+      else if (e.ph === 'E') {
+        const begin = stack.pop();
+        if (!begin) warn('排除没有对应 B 的 E 事件');
+        else {
+          const event = {...begin.event, args:{...begin.event.args, ...e.args}};
+          spans.push({...make(event, Number(e.ts), begin.id, begin.parentId),raw:{begin:begin.event,end:e}});
+        }
+      } else warn('忽略不支持的 Chrome 事件类型');
+    }
+    for (const stack of stacks.values()) for (const unused of stack) warn('排除没有对应 E 的未完成 B 事件');
+  } else {
+    spans = Array.isArray(raw) ? raw : raw?.spans || (raw && 'startMs' in raw ? [raw] : undefined);
+    need(Array.isArray(spans), 'Trace 需要 spans、traceEvents、resourceSpans 或 span 数组');
+  }
+  need(spans.length <= MAX_SPANS, `最多 ${MAX_SPANS} 个 span`);
+  const valid = [], seen = new Set();
+  for (const [index, s] of spans.entries()) {
+    const start = s?.startMs, end = s?.endMs;
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end < start || !s.name || typeof s.name !== 'string') { warn('排除未完成或字段无效的 span'); continue; }
+    const id = String(s.id ?? `span-${index}`), traceId = String(s.traceId ?? 'default');
+    const key = JSON.stringify([traceId,id]);
+    if (seen.has(key)) { warn('排除重复 traceId/span ID'); continue; } seen.add(key);
+    const attributes = s.attributes && typeof s.attributes === 'object' && !Array.isArray(s.attributes) ? s.attributes : {};
+    valid.push({...s, id, traceId, parentId:s.parentId ? String(s.parentId) : null, name:s.name, startMs:start, endMs:end,
+      status:explicitStatus(s.status), attributes, raw:s.raw || s,
+      nodeId:s.nodeId ?? attributes['anatomy.node_id'], domainId:s.domainId ?? attributes['business.domain'] ?? attributes['anatomy.domain_id']});
+  }
+  need(valid.length > 0, '没有可回放的完成 span');
+  const base = Math.min(...valid.map(s => s.startMs));
+  if (!origin) origin = {startMs:base};
+  for (const s of valid) { s.startMs -= base; s.endMs -= base; }
+  valid.sort((a,b) => a.startMs - b.startMs || a.endMs - b.endMs);
+  return {spans:valid, format, origin, synthetic:raw?.synthetic === true, warnings:[...diagnostics].map(([message,count]) => ({message,count}))};
+}
+function attachTrace(model, trace) {
+  validateModel(model); const result = JSON.parse(JSON.stringify(model));
+  result.nodes = result.nodes.filter(n => !n.traceGenerated);
+  result.domains = result.domains.filter(d => !d.traceGenerated);
+  const nodes = new Map(result.nodes.map(n => [n.id,n]));
+  const domains = new Map(result.domains.map(d => [d.id,d]));
+  const warnings = [...trace.warnings]; const counts = new Map(); let unmapped = 0;
+  const warn = message => counts.set(message, (counts.get(message) || 0) + 1);
+  const exact = (items, value, field) => {
+    const matches = items.filter(item => item.id === value || item[field] === value);
+    return matches.length === 1 ? matches[0] : null;
+  };
+  const used = new Set([...nodes.keys(), ...domains.keys()]);
+  const unique = base => { let id = base, i = 1; while (used.has(id)) id = `${base}-${i++}`; used.add(id); return id; };
+  const buckets = new Map(); let unknownDomain;
+  result.spans = trace.spans.map(s => {
+    let node = s.nodeId ? nodes.get(s.nodeId) : exact(result.nodes, s.name, 'label');
+    let domain = s.domainId ? exact(result.domains, s.domainId, 'name') : null;
+    if (s.nodeId && !node) warn('显式 nodeId 未匹配部件');
+    if (s.domainId && !domain) warn('显式 domainId 未匹配业务域');
+    if (node && domain && domain.id !== node.domainId) warn('nodeId 与 domainId 冲突，按部件所属业务域归属');
+    if (node) domain = domains.get(node.domainId);
+    if (!domain) {
+      unmapped++;
+      if (!unknownDomain) {
+        unknownDomain = {id:unique('trace-unmapped'), name:'未归属', description:'没有明确业务域或部件映射的记录。', traceGenerated:true};
+        result.domains.push(unknownDomain); domains.set(unknownDomain.id, unknownDomain);
+      }
+      domain = unknownDomain;
+    }
+    if (!node) {
+      node = buckets.get(domain.id);
+      if (!node) {
+        node = {id:unique(`trace-activity-${buckets.size}`), domainId:domain.id, label:domain === unknownDomain ? '未归属活动' : `${domain.name}活动`, kind:'processor',
+          description:'已导入 span 的聚合部件；未建立这些 span 之间的调用关系。', behaviour:'按时间回放记录中的活动。', inputs:[], outputs:[], evidence:'provided', sources:[], traceGenerated:true};
+        result.nodes.push(node); nodes.set(node.id,node); buckets.set(domain.id,node);
+      }
+    }
+    return {...s, nodeId:node.id, domainId:domain.id};
+  });
+  warnings.push(...[...counts].map(([message,count]) => ({message,count})));
+  result.mode = 'trace'; result.traceMeta = {format:trace.format, origin:trace.origin, synthetic:trace.synthetic === true, warnings, unmapped};
+  validateModel(result);
+  return result;
+}
+function spanStats(spans) {
+  let duration = 0, errors = 0, tokens = 0, tokenFields = 0;
+  for (const s of spans) {
+    duration += s.endMs - s.startMs; errors += Number(s.status === 'error');
+    for (const keys of [['gen_ai.usage.input_tokens','input_tokens','prompt_tokens'],['gen_ai.usage.output_tokens','output_tokens','completion_tokens']]) {
+      const key = keys.find(k => s.attributes?.[k] !== undefined);
+      const raw = key ? s.attributes[key] : undefined;
+      const value = typeof raw === 'string' && /^\d+(?:\.\d+)?$/.test(raw) ? Number(raw) : raw;
+      if (typeof value === 'number' && Number.isFinite(value) && value >= 0) { tokens += value; tokenFields++; }
+    }
+  }
+  return {count:spans.length, errors, cumulativeMs:duration, meanMs:spans.length ? duration / spans.length : null,
+    rangeMs:spans.length ? Math.max(...spans.map(s => s.endMs)) - Math.min(...spans.map(s => s.startMs)) : null,
+    tokens:tokenFields ? tokens : null, tokenFields};
+}
+function descendants(model, id) {
+  const set = new Set([id]); let changed = true;
+  while (changed) { changed = false; for (const n of model.nodes) if (set.has(n.parentId) && !set.has(n.id)) { set.add(n.id); changed = true; } }
+  return set;
+}
+function buildTraceIndex(model) {
+  const nodes = new Map(model.nodes.map(n => [n.id,n]));
+  const byNode = new Map(model.nodes.map(n => [n.id,[]])), byDomain = new Map(model.domains.map(d => [d.id,[]]));
+  const byTrace = new Map(), byIdentity = new Map(), children = new Map(), search = new Map();
+  const depth = n => {let value=0;while(n.parentId){value++;n=nodes.get(n.parentId);}return value;};
+  const bottomUp = [...model.nodes].sort((a,b) => depth(b)-depth(a));
+  for (const s of model.spans || []) {
+    let n=nodes.get(s.nodeId);while(n){byNode.get(n.id).push(s);n=nodes.get(n.parentId);}
+    byDomain.get(s.domainId)?.push(s);
+    if(!byTrace.has(s.traceId))byTrace.set(s.traceId,[]);byTrace.get(s.traceId).push(s);
+    byIdentity.set(JSON.stringify([s.traceId,s.id]),s);
+    const parentKey=JSON.stringify([s.traceId,s.parentId]);
+    if(s.parentId){if(!children.has(parentKey))children.set(parentKey,[]);children.get(parentKey).push(s);}
+    search.set(s,`${s.traceId} ${s.id} ${s.name} ${JSON.stringify(s.attributes)} ${s.statusMessage || ''}`.toLowerCase());
+  }
+  return {nodes,byNode,byDomain,byTrace,byIdentity,children,search,bottomUp,spans:model.spans || []};
+}
+function traceActivity(index,cursor) {
+  const empty=()=>({running:0,completed:0,errors:0,unknown:0,total:0});
+  const nodes=new Map([...index.nodes.keys()].map(id=>[id,empty()]));
+  const domains=new Map([...index.byDomain.keys()].map(id=>[id,empty()]));const active=[];
+  for(const s of index.spans){
+    const running=s.startMs<=cursor&&s.endMs>cursor, done=s.endMs<=cursor;
+    if(running)active.push(s);
+    for(const item of [nodes.get(s.nodeId),domains.get(s.domainId)]){
+      item.total++;item.running+=Number(running);item.completed+=Number(done);
+      item.errors+=Number(done&&s.status==='error');item.unknown+=Number(done&&s.status==='unknown');
+    }
+  }
+  for(const n of index.bottomUp)if(n.parentId){const child=nodes.get(n.id),parent=nodes.get(n.parentId);for(const k of Object.keys(child))parent[k]+=child[k];}
+  return {nodes,domains,active};
+}
+function mechanicalState(model,nodeId,cursor) {
+  // Only explicit, complete demo snapshots drive counters. Span activity alone
+  // cannot establish queue length, concurrency capacity or retry policy.
+  return model.mode==='demo' ? model.steps?.[Math.round(cursor)]?.states?.[nodeId] || null : null;
+}
+function escapeHtml(value) { return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function scriptJson(value) { return JSON.stringify(value).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029'); }
+
+function isoPoint(x, y, z = 0) { return [(x - y) * .866, (x + y) * .5 - z]; }
+function pointString(points) { return points.map(p => p.map(v => v.toFixed(2)).join(',')).join(' '); }
+function polygon(points, fill, stroke = 'var(--side)') { return `<polygon points="${pointString(points)}" fill="${fill}" stroke="${stroke}" stroke-width=".8" stroke-linejoin="round"/>`; }
+function solid(x, y, z, w, d, h, tone = 'var(--face)') {
+  const p = (a,b,c) => isoPoint(a,b,c);
+  return polygon([p(x,y+d,z),p(x+w,y+d,z),p(x+w,y+d,z+h),p(x,y+d,z+h)],'var(--metal)') +
+    polygon([p(x+w,y,z),p(x+w,y+d,z),p(x+w,y+d,z+h),p(x+w,y,z+h)],'var(--side)') +
+    polygon([p(x,y,z+h),p(x+w,y,z+h),p(x+w,y+d,z+h),p(x,y+d,z+h)],tone);
+}
+function screw(x,y,z) { const [a,b] = isoPoint(x,y,z); return `<ellipse cx="${a}" cy="${b}" rx="2.5" ry="1.4" fill="var(--paper)" stroke="var(--side)" stroke-width=".8"/><path d="M${a-1.5},${b}h3" stroke="var(--side)" stroke-width=".8"/>`; }
+function rod(x,y,z,w,d,h) { return solid(x,y,z,w,d,h,'var(--metal)'); }
+function cylinder(x,y,z,r,h,tone='var(--face)') {
+  const [cx,b] = isoPoint(x,y,z), t = b-h, rx = r*1.12, ry = r*.55;
+  return `<path d="M${cx-rx},${t}v${h}a${rx},${ry} 0 0 0 ${rx*2},0v-${h}a${rx},${ry} 0 0 1 -${rx*2},0" fill="url(#drum-tone)" stroke="var(--side)" stroke-width=".9"/><ellipse cx="${cx}" cy="${t}" rx="${rx}" ry="${ry}" fill="${tone}" stroke="var(--side)" stroke-width=".9"/>`;
+}
+function faceLine(points, color='var(--slot)', width=1) { return `<polyline points="${pointString(points.map(p=>isoPoint(...p)))}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linecap="round"/>`; }
+function stationMachine(node) {
+  const {kind}=node;
+  let parts = '';
+  for (const [x,y] of [[-53,-39],[43,-39],[-53,29],[43,29]]) parts += solid(x,y,-9,10,10,10,'var(--side)');
+  parts += solid(-62,-48,0,124,96,10);
+  parts += solid(-48,-35,10,96,70,3,'var(--metal)');
+  for (const [x,y] of [[-55,-41],[55,-41],[-55,41],[55,41]]) parts += screw(x,y,11);
+  const rails = () => rod(-38,-24,13,4,64,12) + rod(34,-24,13,4,64,12);
+  if (kind === 'queue') {
+    parts += rails() + rod(-40,-28,13,80,4,38);
+    parts += rod(-40,32,13,80,5,18) + solid(-15,35,13,30,12,6,'var(--warm)');
+  } else if (kind === 'processor') {
+    parts += solid(-35,-29,13,70,58,7,'var(--slot)');
+    for(let i=0;i<7;i++) {
+      parts += rod(-42,-23+i*7,16,7,3,3) + rod(35,-23+i*7,16,7,3,3);
+      parts += rod(-27+i*8,-36,16,3,7,3) + rod(-27+i*8,29,16,3,7,3);
+    }
+    parts += solid(-25,-20,21,50,40,16,'var(--metal)');
+    for(let i=0;i<7;i++) parts += rod(-22+i*7,-18,37,2,36,14);
+    parts += solid(-11,-10,52,22,20,3,'var(--warm)');
+    for(const [x,y] of [[-34,-28],[29,-28],[-34,24],[29,24]]) parts += rod(x,y,14,5,5,46);
+    parts += rod(-34,-28,59,68,4,4) + rod(-34,25,59,68,4,4);
+    parts += `<ellipse class="working-part" cx="0" cy="-53" rx="7" ry="3.5" fill="var(--warm)"/>`;
+  } else if (kind === 'memory' || kind === 'database') {
+    parts += cylinder(0,0,14,33,14,'var(--metal)');
+    for(let i=0;i<3;i++) {
+      parts += cylinder(0,0,31+i*16,29,12,i===2?'var(--face)':'var(--metal)');
+      parts += cylinder(0,0,43+i*16,7,3,'var(--warm)');
+    }
+    parts += rod(-39,-25,14,5,50,68) + rod(34,-25,14,5,50,68);
+    parts += rod(-39,-26,81,78,5,5);
+    parts += solid(-20,29,14,40,8,12,'var(--slot)');
+    for(let i=0;i<4;i++) { const [a,b]=isoPoint(-13+i*8,34,26);parts+=`<circle cx="${a}" cy="${b}" r="1.6" fill="var(--warm)"/>`; }
+  } else if (kind === 'tool') {
+    parts += rails();
+    for(const x of [-34,30]) parts += rod(x,-22,13,5,6,76);
+    parts += rod(-34,-23,89,69,7,6);
+    parts += solid(-9,-26,91,18,13,10,'var(--warm)');
+    parts += rod(-3,-21,54,6,6,37) + cylinder(0,-18,48,8,9);
+    parts += rod(-13,-22,34,6,8,15) + rod(7,-22,34,6,8,15);
+    parts += solid(-17,9,14,34,28,8,'var(--metal)') + solid(-9,16,22,18,13,9,'var(--warm)');
+    parts += faceLine([[-31,-22,69],[-31,35,20]],'var(--slot)',2);
+  } else if (kind === 'sensor') {
+    parts += cylinder(0,0,13,23,6) + cylinder(0,0,19,6,31);
+    parts += cylinder(0,0,50,15,35,'var(--metal)') + cylinder(0,0,85,15,4,'var(--slot)');
+    for(let i=0;i<5;i++) {
+      const [a,b]=isoPoint(0,0,55+i*6);
+      parts += `<ellipse cx="${a}" cy="${b}" rx="16" ry="6" fill="none" stroke="var(--side)" stroke-width="1.2"/>`;
+    }
+    parts += solid(-34,20,13,19,14,8,'var(--slot)') + solid(15,20,13,19,14,8,'var(--slot)');
+  } else if (kind === 'speaker') {
+    parts += solid(-34,-26,13,68,52,56,'var(--metal)');
+    const [a,b]=isoPoint(10,27,43);
+    parts += `<ellipse cx="${a}" cy="${b}" rx="24" ry="28" fill="var(--slot)" stroke="var(--side)" stroke-width="3"/><ellipse cx="${a}" cy="${b}" rx="17" ry="21" fill="var(--side)"/><ellipse cx="${a}" cy="${b}" rx="9" ry="11" fill="var(--slot)"/>`;
+    for(let i=0;i<5;i++) parts += rod(-26+i*10,-20,69,3,30,2);
+    parts += cylinder(-26,34,13,5,6,'var(--warm)');
+  } else if (kind === 'router') {
+    parts += solid(-39,-28,13,78,56,28,'var(--metal)');
+    for(let i=0;i<4;i++) {
+      parts += solid(-29+i*17,18,32,11,8,10,'var(--slot)');
+      parts += solid(-29+i*17,-17,41,10,28,3);
+      for(let j=0;j<3;j++) parts+=faceLine([[-27+i*17,-12+j*7,45],[-21+i*17,-12+j*7,45]],'var(--side)',1);
+    }
+    parts += cylinder(-25,35,13,5,6,'var(--warm)') + cylinder(24,35,13,5,6,'var(--warm)');
+  } else {
+    parts += rod(-32,-22,13,5,6,64) + rod(28,-22,13,5,6,64);
+    parts += solid(-39,-28,58,78,10,44,'var(--metal)');
+    const screen=[isoPoint(-31,-17,67),isoPoint(31,-17,67),isoPoint(31,-17,94),isoPoint(-31,-17,94)];
+    parts += polygon(screen,'var(--slot)');
+    for(let i=0;i<3;i++) parts += faceLine([[-25,-16,72+i*7],[i===2?5:21,-16,72+i*7]],i===0?'var(--warm)':'var(--face)',1.5);
+    parts += solid(-33,4,13,66,33,9);
+    for(let i=0;i<6;i++) parts += solid(-27+i*10,11,22,6,17,2,'var(--metal)');
+    parts += cylinder(-26,33,23,5,5,'var(--warm)') + cylinder(24,33,23,5,5);
+  }
+  // A socket on each side of the base is the endpoint of structural links.
+  for(const [x,y] of [[-62,32],[62,-32]]) {const [a,b]=isoPoint(x,y,3);parts+=`<circle cx="${a}" cy="${b}" r="4.5" fill="var(--slot)" stroke="var(--metal)" stroke-width="2"/>`;}
+  parts += `<circle class="status-led" cx="-5" cy="40" r="6"/>`;
+  return parts;
+}
+function clippedLabel(value, limit) {
+  let size=0, output='';
+  for(const ch of String(value)) {size+=/[\u2e80-\uffff]/.test(ch)?1:.56;if(size>limit)return output+'…';output+=ch;}
+  return output;
+}
+function mechanismMarkup(node,state) {
+  const m=node.mechanism||{};let parts='';
+  if(state?.queueDepth!==undefined){
+    if(m.capacity<=16){
+      for(let i=0;i<state.queueDepth;i++)parts+=solid(-28,-15+i*2,24+i*3,56,20,2,'var(--warm)');
+    }else{
+      parts+=solid(-28,-15,16,56,40,44*state.queueDepth/m.capacity,'var(--warm)');
+    }
+  }
+  if(m.concurrency){
+    for(let i=0;i<m.concurrency;i++){
+      const x=-45+(i%8)*12,y=55+Math.floor(i/8)*10;
+      parts+=`<rect class="worker-slot" data-busy="${state?.activeWorkers===undefined?'unknown':i<state.activeWorkers}" x="${x}" y="${y}" width="9" height="7" rx="1" fill="${state?.activeWorkers===undefined?'var(--line)':i<state.activeWorkers?'var(--accent)':'var(--paper)'}" stroke="var(--side)"/>`;
+    }
+  }
+  if(m.retryLimit!==undefined){
+    const angle=state?.retries===undefined?-120:-120+240*state.retries/Math.max(1,m.retryLimit);
+    parts+=`<g class="retry-dial" transform="translate(60 53)"><circle r="12" fill="var(--paper)" stroke="var(--side)"/><path d="M0,0L0,-9" transform="rotate(${angle})" stroke="${state?.retries===undefined?'var(--muted)':'var(--warm)'}" stroke-width="2"/><text text-anchor="middle" y="24" style="font-size:10px">${state?.retries===undefined?'?':state.retries}/${m.retryLimit}</text></g>`;
+  }
+  return parts;
+}
+function sceneMarkup(model, visible, graphEdges, selectedId, compact=false) {
+  const cols = Math.min(compact?2:3, visible.length), rows = Math.ceil(visible.length / cols), rowGap=compact?310:280;
+  const width = cols*300 + 80, height = rows*rowGap + 60;
+  const positions = new Map(visible.map((n,i) => [n.id,{x:180 + (i%cols)*300,y:145 + Math.floor(i/cols)*rowGap}]));
+  let markup = `<defs><linearGradient id="drum-tone"><stop offset="0" stop-color="var(--metal)"/><stop offset=".6" stop-color="var(--face)"/><stop offset="1" stop-color="var(--side)"/></linearGradient></defs>`;
+  const edgePaths = [];
+  for(const edge of graphEdges) {
+    const from=positions.get(edge.from), to=positions.get(edge.to); if(!from||!to) continue;
+    const a=[from.x+80.6,from.y+12], b=[to.x-81.4,to.y-18];
+    const middle=(a[0]+b[0])/2;
+    const path=`M${a[0]},${a[1]}C${middle},${a[1]+(a[0]>b[0]?70:0)} ${middle},${b[1]+(a[0]>b[0]?70:0)} ${b[0]},${b[1]}`;
+    const key=`edge-path-${edgePaths.length}`;
+    markup+=`<path id="${key}" data-edge-id="${escapeHtml(edge.id)}" class="edge ${edge.kind}" d="${path}"><title>${escapeHtml(edge.label)} (${edge.evidence})</title></path><circle class="packet" data-packet-id="${escapeHtml(edge.id)}" r="5" visibility="hidden"/>`;
+    edgePaths.push({id:edge.id,pathId:key});
+  }
+  const labels={source:'来源事实',provided:'输入依据',inference:'推断',demo:'合成示例',unknown:'未知'};
+  visible.forEach((node,i) => {
+    const pos=positions.get(node.id), domain=model.domains.find(d=>d.id===node.domainId);
+    const childCount=model.nodes.filter(n=>n.parentId===node.id).length;
+    const subtitle=`${domain.name} / ${labels[node.evidence]}${childCount?` / 内含 ${childCount} 部件`:''}`;
+    markup+=`<g class="station ${selectedId===node.id?'selected':''}" data-node-id="${node.id}" data-state="unknown" tabindex="0" role="button" aria-label="${escapeHtml(node.label)}，${childCount?'可进入内部，':''}查看详情" transform="translate(${pos.x},${pos.y})"><title>${escapeHtml(node.label)} · ${escapeHtml(node.description)}</title><ellipse class="selection-ring" cx="0" cy="10" rx="113" ry="75"/><ellipse cx="0" cy="50" rx="104" ry="25" fill="var(--shadow)"/>${stationMachine(node)}<g class="mechanical-parts"></g><text x="-80" y="100" class="label" style="font-size:${compact?26:18}px">${String(i+1).padStart(2,'0')} · ${escapeHtml(clippedLabel(node.label,compact?10:15))}</text><text x="-80" y="${compact?124:119}" class="sub-label" style="font-size:${compact?20:12}px">${escapeHtml(clippedLabel(subtitle,compact?14:28))}</text><text x="-80" y="${compact?146:137}" class="mechanical-readout" style="font-size:${compact?20:11}px"></text></g>`;
+  });
+  return {markup,width,height,edgePaths};
+}
+
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const original = parseModel(JSON.parse($('anatomy-model').textContent));
+  let model = JSON.parse(JSON.stringify(original));
+  const state = {domain:null,parent:null,selected:null,tab:'component',scope:'view',errors:false,span:null,cursor:0,phase:0,playing:false,zoom:1,last:0,page:0,query:'',traceId:'',domainMetric:'count'};
+  let index=buildTraceIndex(model), indexedModel=model, activity=null, activityCursor=null;
+  let traceDuration=Math.max(0,...index.spans.map(s=>s.endMs));
+  let ordinals=new Map(index.spans.map((s,i)=>[s,i+1]));
+  let domainStats=new Map([...index.byDomain].map(([id,spans])=>[id,spanStats(spans)]));
+  const pageSize=100;
+  const actionNames={idle:'待机',enqueue:'入队',dequeue:'出队',process:'处理',read:'读取',write:'写入',retry:'重试',reject:'拒绝',error:'失败',complete:'完成'};
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const evidenceNames = {source:'来源事实',provided:'用户或文件提供',inference:'推断',demo:'合成演示',unknown:'未知'};
+  const statusNames = {running:'运行中',pending:'尚未开始',ok:'完成',error:'错误',unknown:'状态未记录',idle:'待机'};
+  const fmt = v => v === null || v === undefined ? '未提供' : Number(v).toLocaleString('zh-CN',{maximumFractionDigits:2});
+  const ms = v => v === null || v === undefined ? '未提供' : `${fmt(v)} ms`;
+  const h = escapeHtml;
+  let visible = [], edgePaths = [], frame = null;
+  function allSpans() { return model.spans || []; }
+  function duration() { return traceDuration; }
+  function maxCursor() { return model.mode === 'trace' ? duration() : Math.max(0,(model.steps?.length || 1)-1); }
+  function nodeSet(id) { return descendants(model,id); }
+  function spansForNode(id) { return index.byNode.get(id) || []; }
+  function currentActivity() {
+    if(!activity||activityCursor!==state.cursor){activity=traceActivity(index,state.cursor);activityCursor=state.cursor;}
+    return activity;
+  }
+  function visibleNodes() { return model.nodes.filter(n=>(state.parent ? n.parentId === state.parent : !n.parentId) && (!state.domain || n.domainId===state.domain)); }
+  function viewSpans() {
+    if(state.traceId) return index.byTrace.get(state.traceId) || [];
+    if(state.scope==='node' && state.selected) return spansForNode(state.selected);
+    return state.domain ? index.byDomain.get(state.domain) || [] : allSpans();
+  }
+  function nodeState(id) {
+    const set = nodeSet(id);
+    if(model.mode==='demo') {
+      const actions=[...set].map(n=>mechanicalState(model,n,state.cursor)?.action);
+      if(actions.includes('error')||actions.includes('reject'))return 'error';
+      if((model.steps[Math.round(state.cursor)]?.active || []).some(n=>set.has(n)))return 'running';
+      return actions.includes('complete')?'ok':'idle';
+    }
+    if(model.mode!=='trace') return 'unknown';
+    const a=currentActivity().nodes.get(id);
+    if(!a?.total)return 'unknown';
+    if(a.running)return 'running';
+    if(a.errors)return 'error';
+    if(!a.completed)return 'pending';
+    return a.unknown?'unknown':'ok';
+  }
+  function pause() { state.playing=false; if(frame!==null) cancelAnimationFrame(frame); frame=null; $('play').textContent='播放'; }
+  function resetNavigation() {
+    state.domain=null; state.parent=null; state.selected=model.nodes.find(n=>!n.parentId)?.id;
+    state.tab='component'; state.scope='view'; state.errors=false; state.span=null; state.cursor=0; state.phase=0;state.page=0;state.query='';state.traceId='';
+  }
+  function resetRecordFilters(){state.scope='view';state.errors=false;state.span=null;state.page=0;state.query='';state.traceId='';}
+  function notify(message,error=false) { $('notice').textContent=message; $('notice').classList.toggle('error',error); }
+  function renderDomains() {
+    const total=spanStats(allSpans());
+    const metric=state.domainMetric, metricNames={count:'条记录',cumulativeMs:'ms 累计',errors:'条错误',tokens:'已记录 token'};
+    const maximum=Math.max(1,...[...domainStats.values()].map(s=>s[metric]||0));
+    const item=(id,name,description,count,errors,stats) => `<button class="domain" data-domain="${id || ''}" aria-pressed="${state.domain===id}"><strong>${h(name)}</strong><span>${model.mode==='trace'?`${count} SPANS`:`${count} 部件`}</span><small>${h(description)}${errors?` · ${errors} 个错误`:''}</small>${model.mode==='trace'&&id?`<small class="domain-load">${fmt(stats[metric])} ${metricNames[metric]}<i style="width:${(stats[metric]||0)/maximum*100}%"></i></small>`:''}<small data-activity-for="${id||''}" class="domain-activity"></small></button>`;
+    $('domains').innerHTML=item(null,'全貌','从业务域到部件，再到执行记录。',model.mode==='trace'?total.count:model.nodes.length,total.errors)+model.domains.map(d=>{
+      const stats=domainStats.get(d.id);
+      return item(d.id,d.name,d.description,model.mode==='trace'?stats.count:model.nodes.filter(n=>n.domainId===d.id).length,stats.errors,stats);
+    }).join('');
+    $('domains').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+      state.domain=b.dataset.domain || null; state.parent=null; resetRecordFilters();
+      state.selected=visibleNodes()[0]?.id; draw();
+    }));
+  }
+  function renderCrumbs() {
+    const crumbs=[{id:'',label:'全貌'}];
+    if(state.domain) crumbs.push({id:`domain:${state.domain}`,label:model.domains.find(d=>d.id===state.domain).name});
+    const chain=[]; let parent=model.nodes.find(n=>n.id===state.parent);
+    while(parent) { chain.unshift(parent); parent=model.nodes.find(n=>n.id===parent.parentId); }
+    for(const n of chain) crumbs.push({id:n.id,label:n.label});
+    $('crumbs').innerHTML=crumbs.map((c,i)=>`${i?'<span class="muted">/</span>':''}<button data-crumb="${c.id}">${h(c.label)}</button>`).join('');
+    $('crumbs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+      const id=b.dataset.crumb; resetRecordFilters();
+      if(!id) {state.parent=null;state.domain=null;}
+      else if(id.startsWith('domain:')) {state.domain=id.slice(7);state.parent=null;}
+      else state.parent=id;
+      state.selected=visibleNodes()[0]?.id; draw();
+    }));
+  }
+  function drawScene() {
+    visible=visibleNodes();
+    if(!visible.length) { $('scene').innerHTML='<text x="30" y="60">当前层级没有部件</text>'; $('scene').setAttribute('viewBox','0 0 400 180'); edgePaths=[]; return; }
+    const visibleIds=new Set(visible.map(n=>n.id)), nodes=new Map(model.nodes.map(n=>[n.id,n]));
+    const owner=id=>{let n=nodes.get(id);while(n&&!visibleIds.has(n.id)) n=nodes.get(n.parentId);return n?.id;};
+    const edges=model.edges.map(e=>({...e,from:owner(e.from),to:owner(e.to)})).filter(e=>e.from&&e.to&&e.from!==e.to);
+    const scene=sceneMarkup(model,visible,edges,state.selected,window.matchMedia('(max-width: 760px)').matches);
+    $('scene').setAttribute('viewBox',`0 0 ${scene.width} ${scene.height}`); $('scene').innerHTML=scene.markup; edgePaths=scene.edgePaths;
+    $('scene').querySelectorAll('.station').forEach(g=>{
+      const select=()=>{state.selected=g.dataset.nodeId;state.tab='component';state.span=null;renderInspector();syncActivity();if(window.matchMedia('(max-width:760px)').matches)document.querySelector('.inspector').scrollIntoView({block:'start'});};
+      g.addEventListener('click',select);g.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){event.preventDefault();select();}});
+    });
+    setZoom(state.zoom);
+  }
+  function statsMarkup(spans) {
+    if(model.mode!=='trace') return '<p class="fine-print">没有导入实际 Trace；延迟、调用量和 token 均未提供。</p>';
+    const s=spanStats(spans);
+    return `<div class="metrics"><div class="metric"><strong>${fmt(s.count)}</strong><span>完成 span 记录</span></div><div class="metric"><strong>${fmt(s.errors)}</strong><span>错误记录</span></div><div class="metric"><strong>${s.count?ms(s.meanMs):'无记录'}</strong><span>平均 span 耗时</span></div><div class="metric"><strong>${fmt(s.tokens)}</strong><span>已记录 token 求和</span></div></div><p class="fine-print">记录时间范围 ${ms(s.rangeMs)}；span 累计耗时 ${ms(s.cumulativeMs)}。累计包含并行及父子重叠，不能当墙钟时间。Token 只统计已记录字段，父子重复上报可能重复计数。</p>`;
+  }
+  function sourceMarkup(ids) {
+    return ids.map(id=>{
+      const s=model.sources.find(source=>source.id===id);if(!s)return '';
+      const label=safeUrl(s.url)?`<a href="${h(safeUrl(s.url))}" target="_blank" rel="noopener noreferrer">${h(s.title)}</a>`:h(s.title);
+      return `<div class="link-row">${label}${s.ref?`<small>${h(s.ref)}</small>`:''}</div>`;
+    }).join('') || '<p class="fine-print">未提供外部来源。请检查本项的证据分类。</p>';
+  }
+  function focusNode(id, mobileScroll=false) {
+    const n=model.nodes.find(n=>n.id===id); if(!n)return;
+    pause();resetRecordFilters();state.domain=n.parentId?n.domainId:null;state.parent=n.parentId||null;state.selected=id;state.tab='component';draw();
+    if(mobileScroll&&window.matchMedia('(max-width:760px)').matches)document.querySelector('.inspector').scrollIntoView({block:'start'});
+  }
+  function renderComponent() {
+    const n=model.nodes.find(n=>n.id===state.selected);if(!n) return '<p>选择一个部件查看机制。</p>';
+    const children=model.nodes.filter(child=>child.parentId===n.id);
+    const edges=model.edges.filter(e=>e.from===n.id||e.to===n.id);
+    return `<button class="detail-back" id="detail-back">↑ 返回图形${n.parentId?' · 当前内部层':''}</button><div class="evidence">${h(evidenceNames[n.evidence])} / <span id="current-node-state">${model.mode==='architecture'?'运行状态未提供':statusNames[nodeState(n.id)]}</span></div><h2>${h(n.label)}</h2><p class="description">${h(n.description)}</p><div class="io"><div class="io-box"><strong>输入</strong><ul>${(n.inputs.length?n.inputs:['未声明']).map(t=>`<li>${h(t)}</li>`).join('')}</ul></div><div class="io-box"><strong>输出</strong><ul>${(n.outputs.length?n.outputs:['未声明']).map(t=>`<li>${h(t)}</li>`).join('')}</ul></div></div><h3>机制</h3><p class="behaviour">${h(n.behaviour)}</p><div id="mechanical-detail"></div>${children.length?`<button id="drill" class="action">进入内部 · ${children.length} 个部件 <span>↗</span></button>`:''}${children.length?`<div class="child-nav">${children.map(c=>`<button data-jump-node="${c.id}">${h(c.label)} ↗</button>`).join('')}</div>`:''}<h3>已记录的活动</h3>${statsMarkup(spansForNode(n.id))}${model.mode==='trace'?'<button id="node-records" class="action">查看该部件的执行记录 <span>→</span></button>':''}<h3>连接关系</h3><ul class="relations">${edges.map(e=>{const other=model.nodes.find(node=>node.id===(e.from===n.id?e.to:e.from));return `<li>${e.from===n.id?'→':'←'} <button class="node-link" data-jump-node="${other.id}">${h(other.label)}</button>：${h(e.label)} <small>(${h(evidenceNames[e.evidence])})</small></li>`;}).join('')||'<li>未声明连接</li>'}</ul><h3>部件依据</h3>${sourceMarkup(n.sources)}`;
+  }
+  function spanButton(s,label) {
+    return `<button class="action" data-related-span="${ordinals.get(s)}">${h(label)} · ${h(s.name)} <span>→</span></button>`;
+  }
+  function renderSpan(span) {
+    const key=JSON.stringify([span.traceId,span.id]);
+    const parent=span.parentId?index.byIdentity.get(JSON.stringify([span.traceId,span.parentId])):null;
+    const children=index.children.get(key)||[];
+    return `<button id="records-back" class="action">← 返回执行记录</button><h3>记录详情</h3><h2>${h(span.name)}</h2><p class="description">${statusNames[span.status]} · ${ms(span.endMs-span.startMs)}</p><div class="link-row">traceId <small>${h(span.traceId)}</small></div><button id="whole-trace" class="action">查看本次处理的全部 ${index.byTrace.get(span.traceId).length} 条记录 →</button><div class="link-row">span ID <small>${h(span.id)}</small></div><h3>调用关系</h3>${parent?spanButton(parent,'父记录'):`<p class="fine-print">${span.parentId?`${h(span.parentId)}（父记录未在文件中找到）`:'没有父记录'}</p>`}${children.slice(0,20).map(s=>spanButton(s,'子记录')).join('')}${children.length>20?'<p class="fine-print">此处预览前 20 个子记录，其余可在本次处理的完整列表中分页查看。</p>':''}<div class="link-row">时间 <small>${ms(span.startMs)} → ${ms(span.endMs)}</small></div>${span.statusMessage?`<h3>错误消息</h3><p class="error-message">${h(span.statusMessage)}</p>`:''}<h3>属性</h3><pre class="span-attrs">${h(JSON.stringify(span.attributes,null,2))}</pre>${span.events?.length?`<h3>事件与异常</h3><pre class="span-attrs">${h(JSON.stringify(span.events,null,2))}</pre>`:''}${span.links?.length?`<h3>关联记录</h3><pre class="span-attrs">${h(JSON.stringify(span.links,null,2))}</pre>`:''}<details class="raw-record"><summary>原始输入记录</summary><pre class="span-attrs">${h(JSON.stringify(span.raw||span,null,2))}</pre></details>`;
+  }
+  function renderTrace() {
+    if(model.mode!=='trace') return `<h2>执行记录</h2><p class="description">选择本地 Trace 文件后可回放活动、定位错误并检查原始属性。${model.mode==='demo'?'当前为合成教学步骤。':'当前为静态架构，没有运行记录。'}</p><p class="fine-print">支持标准 span JSON / JSONL、Chrome Trace 和 OTLP JSON；文件仅在浏览器解析。HearWise 原生 execution_trace 是逐事件日志，需先配对起止并映射到部件，不能直接上传到此入口。可在来源页查看代码中的 trace:report 原生报告流程。</p>`;
+    if(state.span) {const span=allSpans()[state.span-1];if(span)return renderSpan(span);}
+    const spans=viewSpans(), query=state.query.trim().toLowerCase();
+    const filtered=spans.filter(s=>(!state.errors||s.status==='error')&&(!query||index.search.get(s).includes(query)));
+    const pages=Math.max(1,Math.ceil(filtered.length/pageSize));state.page=Math.min(state.page,pages-1);
+    const rows=filtered.slice(state.page*pageSize,(state.page+1)*pageSize), total=duration()||1;
+    const name=state.traceId?`本次处理 · ${state.traceId}`:state.scope==='node'?model.nodes.find(n=>n.id===state.selected)?.label:state.domain?model.domains.find(d=>d.id===state.domain).name:'全部记录';
+    return `<h2>${h(name)}</h2><p class="description">选择记录会定位所属部件；按 traceId 查看一次处理及其父子调用。</p>${statsMarkup(spans)}<form id="record-filters" class="record-filters"><label>搜索名称、ID 或属性<input id="record-search" type="search" value="${h(state.query)}" placeholder="例如错误消息或文档编号"></label><label>完整 traceId<input id="trace-filter" value="${h(state.traceId)}" placeholder="留空查看当前范围"></label><button type="submit">应用筛选</button><button type="button" id="clear-records">全部记录</button></form>${state.traceId?'':`<button id="record-scope" class="action">${state.scope==='node'?'查看当前业务域全部记录':'仅查看所选部件'} <span>↔</span></button>`}<button id="errors" class="filter-errors" aria-pressed="${state.errors}">只看错误 · ${spans.filter(s=>s.status==='error').length} 条</button><div class="pagination"><button id="page-prev" ${state.page===0?'disabled':''}>上一页</button><span>${state.page+1} / ${pages} 页 · ${filtered.length} 条</span><button id="page-next" ${state.page===pages-1?'disabled':''}>下一页</button></div><p class="fine-print">统计包含当前范围全部记录；搜索与错误筛选作用于下方列表。</p>${rows.length?rows.map(s=>`<button class="span-row ${s.status==='error'?'error':''}" data-span-index="${ordinals.get(s)}"><strong>${h(s.name)}</strong><small>${h(s.traceId)} · ${h(s.id)}</small><small>${ms(s.startMs)} → ${ms(s.endMs)} · ${statusNames[s.status]}</small><span class="span-bar"><i style="left:${s.startMs/total*100}%;width:${(s.endMs-s.startMs)/total*100}%"></i></span></button>`).join(''):'<p class="description">没有匹配记录。可清除筛选或检查 traceId。</p>'}`;
+  }
+  function renderSources() {
+    const warnings=model.traceMeta?.warnings || [];
+    return `<h2>来源与统计口径</h2><p class="description">每个部件与连接都区分来源事实、输入依据、推断、合成演示和未知。当前图形包含 ${model.nodes.filter(n=>n.evidence==='demo').length} 个合成部件。</p>${sourceMarkup(model.sources.map(s=>s.id))}<h3>追踪输入</h3><p class="fine-print">${model.mode==='trace'?`${h(model.traceMeta?.format||'标准 span')}；未归属 ${model.traceMeta?.unmapped||0} 条。${model.traceMeta?.synthetic?'此追踪已标记为合成数据。':''}`:'尚未导入实际记录。'}${model.traceMeta?.fileName?` 文件：${h(model.traceMeta.fileName)}`:''}</p>${warnings.length?`<h3>导入诊断</h3><ul class="relations">${warnings.map(w=>`<li>${h(w.message)} × ${h(w.count)}</li>`).join('')}</ul>`:''}<h3>度量的边界</h3><p class="fine-print">总时间范围是最早开始到最晚结束。平均与累计耗时按 span 计算，包含父子和并行重叠。Token 只求和输入文件提供的字段，不能保证消除父子重复记录。费用未提供，也不推算。</p><h3>图形的含义</h3><p class="fine-print">机械部件是解释机制的隐喻。合成模式的流动表示教学步骤；Trace 模式仅根据 span 点亮活动，不推测未记录的传输。回放不是实时采集。</p>`;
+  }
+  function renderInspector() {
+    for(const tab of ['component','trace','source']) $('tab-'+tab).setAttribute('aria-selected',String(state.tab===tab));
+    $('detail').setAttribute('aria-labelledby','tab-'+state.tab);
+    $('detail').innerHTML=state.tab==='component'?renderComponent():state.tab==='trace'?renderTrace():renderSources();
+    if($('drill')) $('drill').onclick=()=>{state.parent=state.selected;state.domain=model.nodes.find(n=>n.id===state.selected).domainId;state.selected=visibleNodes()[0]?.id;resetRecordFilters();draw();$('figure').scrollIntoView({block:'start'});};
+    if($('node-records')) $('node-records').onclick=()=>{resetRecordFilters();state.tab='trace';state.scope='node';renderInspector();};
+    if($('records-back')) $('records-back').onclick=()=>{Object.assign(state,state.returnTo||{});state.span=null;state.tab='trace';draw();};
+    if($('whole-trace')) $('whole-trace').onclick=()=>{const s=allSpans()[state.span-1];resetRecordFilters();state.traceId=s.traceId;state.domain=null;state.parent=null;state.selected=visibleNodes()[0]?.id;state.tab='trace';draw();};
+    if($('record-scope')) $('record-scope').onclick=()=>{state.scope=state.scope==='node'?'view':'node';state.page=0;state.span=null;renderInspector();};
+    if($('errors')) $('errors').onclick=()=>{state.errors=!state.errors;state.page=0;renderInspector();};
+    if($('page-prev')) $('page-prev').onclick=()=>{state.page--;renderInspector();};
+    if($('page-next')) $('page-next').onclick=()=>{state.page++;renderInspector();};
+    if($('record-filters')) $('record-filters').onsubmit=event=>{event.preventDefault();state.query=$('record-search').value;state.traceId=$('trace-filter').value.trim();state.page=0;renderInspector();};
+    if($('clear-records')) $('clear-records').onclick=()=>{resetRecordFilters();state.domain=null;state.parent=null;state.selected=visibleNodes()[0]?.id;draw();};
+    $('detail').querySelectorAll('[data-span-index],[data-related-span]').forEach(b=>b.onclick=()=>selectSpan(Number(b.dataset.spanIndex||b.dataset.relatedSpan)));
+    if($('detail-back'))$('detail-back').onclick=()=>{$('figure').scrollIntoView({block:'start'});};
+    $('detail').querySelectorAll('[data-jump-node]').forEach(b=>b.onclick=()=>focusNode(b.dataset.jumpNode));
+    syncMechanicalDetail();
+  }
+  function selectSpan(ordinal){
+    const s=allSpans()[ordinal-1];if(!s)return;
+    if(!state.span)state.returnTo=Object.fromEntries(['domain','parent','selected','scope','errors','page','query','traceId'].map(k=>[k,state[k]]));
+    pause();state.span=ordinal;state.tab='trace';state.selected=s.nodeId;
+    const n=index.nodes.get(s.nodeId);state.domain=n.domainId;state.parent=n.parentId||null;
+    state.cursor=s.status==='error'?s.endMs:s.startMs;state.phase=0;draw();
+    $('scene').querySelector('.station.selected')?.scrollIntoView({block:'nearest',inline:'nearest'});
+  }
+  function mechanicalReadout(n,s){
+    const m=n.mechanism||{},parts=[];
+    if(m.capacity!==undefined)parts.push(`队列 ${s?.queueDepth??'?'}/${m.capacity}`);
+    if(m.concurrency!==undefined)parts.push(`工位 ${s?.activeWorkers??'?'}/${m.concurrency}`);
+    if(s?.failed!==undefined)parts.push(`失败 ${s.failed}`);
+    if(s?.rejected!==undefined)parts.push(`拒绝 ${s.rejected}`);
+    if(s?.completed!==undefined&&!m.concurrency)parts.push(`完成 ${s.completed}`);
+    if(s?.action)parts.push(actionNames[s.action]);
+    return parts.join(' · ');
+  }
+  function syncMechanicalDetail(){
+    const target=$('mechanical-detail'),n=index.nodes.get(state.selected);if(!target||!n)return;
+    const s=mechanicalState(model,n.id,state.cursor),previous=mechanicalState(model,n.id,state.cursor-1);
+    if(!n.mechanism&&!s){target.innerHTML='';return;}
+    const labels={queueDepth:'等待任务',activeWorkers:'占用工位',retries:'重试次数',completed:'完成数',failed:'失败数',rejected:'拒绝数'};
+    target.innerHTML=`<h3>机械状态 · ${model.mode==='demo'?'合成快照':'未提供快照'}</h3><p class="fine-print">${h(mechanicalReadout(n,s))}</p>${s?`<table class="state-table"><tbody>${Object.entries(labels).filter(([k])=>s[k]!==undefined).map(([k,label])=>`<tr><th>${label}</th><td>${previous?.[k]===undefined?'未提供':fmt(previous[k])} → <strong>${fmt(s[k])}</strong></td></tr>`).join('')}</tbody></table><p class="fine-print">前一步 → 当前步骤；每步为完整快照，缺失字段不继承、不推算。重试计数按场景中声明的任务计算。</p>`:'<p class="fine-print">配置表示容量约束；当前数量未知。仅有 span 活动不足以推算队列或重试次数。</p>'}`;
+  }
+  function syncActivity() {
+    $('scene').querySelectorAll('.station').forEach(g=>{
+      const n=index.nodes.get(g.dataset.nodeId),s=mechanicalState(model,n.id,state.cursor);
+      g.dataset.state=nodeState(n.id);g.classList.toggle('selected',n.id===state.selected);g.dataset.action=s?.action||'unknown';
+      const key=JSON.stringify(s);if(g.dataset.mechanicalKey!==key){g.querySelector('.mechanical-parts').innerHTML=mechanismMarkup(n,s);g.dataset.mechanicalKey=key;}
+      const readout=g.querySelector('.mechanical-readout'),label=clippedLabel([mechanicalReadout(n,s),model.mode==='trace'?statusNames[nodeState(n.id)]:''].filter(Boolean).join(' · '),window.matchMedia('(max-width: 760px)').matches?14:29);
+      if(readout.textContent!==label)readout.textContent=label;
+    });
+    syncMechanicalDetail();
+    $('domains').querySelectorAll('[data-activity-for]').forEach(el=>{
+      const id=el.dataset.activityFor;
+      if(model.mode==='trace'){
+        const a=id?currentActivity().domains.get(id):[...currentActivity().domains.values()].reduce((sum,v)=>{for(const k of Object.keys(sum))sum[k]+=v[k];return sum;},{running:0,completed:0,errors:0,total:0});
+        el.textContent=a.total?`此刻 ${a.running} 项活动 · 已结束 ${a.completed} · 已发生 ${a.errors} 个错误`:'没有运行记录';
+        el.dataset.active=String(a.running>0);
+      }else if(model.mode==='demo'){
+        const count=(model.steps[Math.round(state.cursor)]?.active||[]).filter(n=>!id||index.nodes.get(n).domainId===id).length;
+        el.textContent=`当前步骤 ${count} 个活动部件`;el.dataset.active=String(count>0);
+      }else{el.textContent='运行状态未提供';el.dataset.active='false';}
+    });
+    if($('current-node-state')) $('current-node-state').textContent=statusNames[nodeState(state.selected)];
+    const activeEdges=model.mode==='demo'?(model.steps[Math.round(state.cursor)]?.edges||[]):[];
+    for(const edge of edgePaths) {
+      const path=$(edge.pathId);path.classList.toggle('active',activeEdges.includes(edge.id));const selectedEdges=model.edges.filter(e=>e.from===state.selected||e.to===state.selected);path.classList.toggle('related',model.mode==='architecture'&&selectedEdges.some(e=>e.id===edge.id));
+      const packet=$('scene').querySelector(`[data-packet-id="${edge.id}"]`);
+      const show=model.mode==='demo'&&state.playing&&!reduced.matches&&activeEdges.includes(edge.id);
+      packet.setAttribute('visibility',show?'visible':'hidden');
+      if(show) {const p=path.getPointAtLength(path.getTotalLength()*state.phase);packet.setAttribute('cx',p.x);packet.setAttribute('cy',p.y);}
+    }
+    $('scrubber').value=state.cursor;
+    if(model.mode==='demo') {
+      const step=model.steps[Math.round(state.cursor)];$('step-title').textContent=step.title;$('step-description').textContent=step.description;
+      $('position').textContent=`${Math.round(state.cursor)+1} / ${model.steps.length}`;
+    } else if(model.mode==='trace') {
+      const active=currentActivity().active.filter(s=>!state.domain||s.domainId===state.domain);
+      $('step-title').textContent=active.length?`${active.length} 项活动正在运行`:'当前时间没有运行中的记录';
+      $('step-description').textContent=active.length?active.slice(0,3).map(s=>s.name).join(' · ')+(active.length>3?' …':''):'活动灯来自已导入 span；连线不模拟未记录的消息。';
+      $('position').textContent=`${ms(state.cursor)} / ${ms(duration())}`;
+    } else {$('step-title').textContent='静态架构';$('step-description').textContent='点击部件查看输入、输出和依据，再进入内部。连线是代码中的关系；九个总览部件是职责分组，并非九个独立服务。';$('position').textContent='';}
+    $('play').textContent=state.playing?'暂停':'播放';
+  }
+  function draw() {
+    document.body.classList.toggle('architecture-mode',model.mode==='architecture');
+    if(indexedModel!==model){index=buildTraceIndex(model);indexedModel=model;traceDuration=Math.max(0,...index.spans.map(s=>s.endMs));ordinals=new Map(index.spans.map((s,i)=>[s,i+1]));domainStats=new Map([...index.byDomain].map(([id,spans])=>[id,spanStats(spans)]));activity=null;activityCursor=null;}
+    $('domain-metric').disabled=model.mode!=='trace';$('domain-metric').value=state.domainMetric;$('domain-metric').closest('.domain-controls').hidden=model.mode!=='trace';
+    $('title').textContent=model.title;$('summary').textContent=model.summary;
+    $('mode-badge').textContent=model.mode==='demo'?'合成演示 · 无实际性能数据':model.mode==='trace'?(model.traceMeta?.synthetic?'合成 Trace 回放':'本地 Trace 回放'):'来源架构 · 静态视图';
+    $('footer-note').textContent=model.mode==='trace'?'架构来自当前模型；活动来自导入记录。':model.mode==='architecture'?'架构依据见来源；未导入运行记录。':'合成教学模板不代表实际项目；度量未提供。';
+    renderDomains();renderCrumbs();drawScene();renderInspector();
+    $('scrubber').max=maxCursor();$('scrubber').step=model.mode==='trace'?'any':'1';
+    for(const id of ['play','back','next','scrubber']) $(id).disabled=model.mode==='architecture'||maxCursor()===0;
+    syncActivity();
+  }
+  function setZoom(value) {state.zoom=Math.max(.75,Math.min(3,value));$('scene').style.width=`${state.zoom*100}%`;}
+  function advance(amount) {pause();state.cursor=Math.min(maxCursor(),Math.max(0,state.cursor+amount));state.phase=0;syncActivity();}
+  function loop(time) {
+    if(!state.playing)return;
+    const elapsed=Math.min(100,time-state.last);state.last=time;
+    if(model.mode==='demo') {
+      state.phase+=elapsed/1800;
+      if(state.phase>=1) {state.phase=0;if(state.cursor>=maxCursor()){pause();syncActivity();return;}state.cursor++;}
+    } else {
+      state.cursor+=elapsed*Math.max(1,duration()/15000);
+      if(state.cursor>=maxCursor()){state.cursor=maxCursor();pause();syncActivity();return;}
+    }
+    syncActivity();frame=requestAnimationFrame(loop);
+  }
+  $('play').onclick=()=>{
+    if(state.playing){pause();syncActivity();return;}
+    if(state.cursor>=maxCursor()){state.cursor=0;state.phase=0;}
+    state.playing=true;state.last=performance.now();syncActivity();frame=requestAnimationFrame(loop);
+  };
+  $('back').onclick=()=>advance(model.mode==='trace'?-Math.max(1,duration()/20):-1);
+  $('next').onclick=()=>advance(model.mode==='trace'?Math.max(1,duration()/20):1);
+  $('scrubber').oninput=()=>{pause();state.cursor=Number($('scrubber').value);state.phase=0;syncActivity();};
+  $('zoom-in').onclick=()=>setZoom(state.zoom+.25);$('zoom-out').onclick=()=>setZoom(state.zoom-.25);$('fit').onclick=()=>setZoom(1);
+  $('domain-metric').onchange=()=>{state.domainMetric=$('domain-metric').value;renderDomains();syncActivity();};
+  $('theme').onclick=()=>{const dark=document.body.dataset.theme!=='dark';document.body.dataset.theme=dark?'dark':'light';$('theme').textContent=dark?'浅色':'深色';};
+  $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('figure').requestFullscreen();}catch{notify('此浏览器不支持全屏；可以使用图形缩放。');}};
+  for(const tab of ['component','trace','source']) $('tab-'+tab).onclick=()=>{state.tab=tab;state.span=null;renderInspector();};
+  document.querySelector('.tabs').addEventListener('keydown',event=>{
+    if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
+    const tabs=['component','trace','source'];state.tab=tabs[(tabs.indexOf(state.tab)+(event.key==='ArrowRight'?1:2))%3];renderInspector();$('tab-'+state.tab).focus();event.preventDefault();
+  });
+  $('trace-file').onchange=async()=>{
+    const file=$('trace-file').files[0];if(!file)return;pause();
+    try {
+      if(file.size>MAX_BYTES)throw new Error('Trace 超过 15 MiB');
+      const input=await file.text();if(/execution_trace |"step_key"\s*:/.test(input))throw new Error('这是 HearWise 逐事件日志，请先用原生 trace:report 流程查看，或转为已配对并映射的标准 span');const trace=normalizeTrace(input), next=attachTrace(original,trace);next.traceMeta.fileName=file.name;
+      model=next;resetNavigation();draw();$('restore').hidden=false;
+      notify(`已导入 ${trace.spans.length} 条完成记录。未归属 ${model.traceMeta.unmapped} 条${model.traceMeta.warnings.length?'；存在导入诊断，详见“来源与口径”':''}。`);
+    } catch(error) {notify(`导入失败：${error.message}。当前画面已保留。`,true);}
+    $('trace-file').value='';
+  };
+  $('example-trace').hidden=!original.exampleTrace;
+  $('example-trace').onclick=()=>{
+    pause();model=attachTrace(original,normalizeTrace(original.exampleTrace));resetNavigation();state.tab='trace';draw();$('restore').hidden=false;
+    notify(`已加载 ${model.spans.length} 条合成追踪，含 ${spanStats(model.spans).errors} 条错误和 ${model.traceMeta.unmapped} 条未归属记录。所有数值仅供教学。`);
+  };
+  $('restore').onclick=()=>{pause();model=JSON.parse(JSON.stringify(original));resetNavigation();draw();$('restore').hidden=true;notify('已恢复 HearWise 代码架构。');};
+  document.addEventListener('keydown',event=>{
+    if(['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)||event.target.closest('.tabs'))return;
+    if(event.key==='Escape'&&state.parent){state.parent=model.nodes.find(n=>n.id===state.parent)?.parentId||null;state.selected=visibleNodes()[0]?.id;resetRecordFilters();draw();}
+    if(['ArrowLeft','ArrowRight'].includes(event.key)&&event.target.closest('#figure')){advance((event.key==='ArrowRight'?1:-1)*(model.mode==='trace'?Math.max(1,duration()/20):1));event.preventDefault();}
+  });
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){pause();syncActivity();}});
+  if('IntersectionObserver' in window) new IntersectionObserver(entries=>{if(!entries[0].isIntersecting){pause();syncActivity();}},{threshold:0}).observe($('figure'));
+  reduced.addEventListener('change',()=>{pause();syncActivity();});
+  let resizeTimer;
+  window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{drawScene();syncActivity();},120);});
+  document.body.dataset.theme=model.theme||'light';$('theme').textContent=model.theme==='dark'?'浅色':'深色';
+  
+  const guides=[
+    {title:'字幕怎样变成声音',steps:[
+      ['source_commit','原文先落库，再分流','ASR 定稿先保存为 segment，然后分别通知页面、安排翻译和知识整理。翻译不是知识抽取的必经前置步骤。'],
+      ['mt_schedule','最终译文优先','临时译文与最终翻译共享 2 个工位；定稿排队时预览让路。播报队首也只能在既有预算内优先。'],
+      ['mt_commit','译文完成唤醒播报','最终译文保存后广播到页面，并唤醒独立播报消费会话。临时字幕显示成功不表示这一句已可正常播报。'],
+      ['speech_backpressure','生成速度要跟着播放速度','发起下一段前检查待播量与未播完单元数。4 秒是暂停继续发起的阈值；32 秒是过量保护边界。'],
+      ['speech_output','听完才算播放完成','PCM 抵达浏览器只是生成和传输成功。浏览器实际消费样本、完成单元后，才回报播放进度。']
+    ]},
+    {title:'知识怎样可靠补全',steps:[
+      ['knowledge_batch','先把定稿原文合成批次','安静 1.5 秒、3 句或 1200 字符可以触发，最多等 4 秒。这个等待之后还要经过调度、网络与模型。'],
+      ['knowledge_schedule','同一收听按顺序处理','同收听串行，默认跨收听并发 2；翻译忙时最多让路 1.5 秒，并限制新的并发准入。'],
+      ['knowledge_extract','模型给出候选，本地检查依据','具体对象、身份与原文引用按协议校验。合法空结果不等于处理失败。'],
+      ['knowledge_repair','只补有依据的失败项','成功项已保存。定向修复锁定原对象，每分片至多一次，不重发整批成功项。'],
+      ['knowledge_checkpoint','检查点支持继续处理','记录阶段、预算和未解决项。停止采音后仍可完成排队工作；重启后的模型任务还需要有效 Key。']
+    ]},
+    {title:'图谱为何没有连线',steps:[
+      ['relation','先区分查看与生成','查看图谱使用已有数据；点击生成关系才创建模型工作。正式知识条目即使没有边也应显示。'],
+      ['relation_admission','等待不等于失败','翻译、知识或播报消费者存在时关系任务让路。等待译文、安静窗口、冷却或 Key 都有不同原因。'],
+      ['relation_windows','先检查输入证据','候选来自已有条目，原文是依据，最终译文只辅助理解；窗口按实际内容版本推进。'],
+      ['relation_extract','共同出现不必有关系','模型只输出原文明说且证据充分的关系。没有关系可返回空数组；每窗口最多 3 次请求，不无限重试。'],
+      ['relation_commit','再区分正常零结果与执行失败','空结果和候选被过滤可以正常完成。请求失败、覆盖不完整或保存问题则有后续状态；成功关系保留。'],
+      ['relation_graph','图谱保留独立对象','关联组件在上方，独立条目在下方。零条边不代表知识条目消失，也不能仅凭零条边判断故障。']
+    ]},
+    {title:'误识别怎样被纠正',steps:[
+      ['correct_editor','用户直接输入正确名称','例如 Deebo → Tibo。手动保存无需 Key，也不调用模型；建议按钮是独立且显式的请求。'],
+      ['correct_guard','先检查版本与并发','条目和关联原文变化会导致 revision 不一致。409 要读回核对，不能用旧页面覆盖新内容。'],
+      ['correct_replace','一次事务同步替换','更新名称、关联原文、事实和引用位置，保留对象与关系 ID。已完成译文保留，不顺带触发重译。'],
+      ['correct_rule','当前收听继续沿用','替换规则持久保留，后续识别在本次收听沿用新写法；其他收听不受影响。']
+    ]}
+  ];
+  let guideIndex=-1,guideStep=0;
+  function showGuide(index,step=0){
+    guideIndex=index;guideStep=step;const g=guides[index],item=g.steps[step];
+    $('guide-body').hidden=false;$('guide-title').textContent=`${step+1} / ${g.steps.length} · ${item[1]}`;$('guide-text').textContent=item[2];
+    $('guide-steps').innerHTML=g.steps.map((a,i)=>`<button data-guide-step="${i}" aria-current="${i===step?'step':'false'}">${i+1} · ${h(model.nodes.find(n=>n.id===a[0]).label)}</button>`).join('');
+    $('guide-steps').querySelectorAll('button').forEach(b=>b.onclick=()=>showGuide(index,Number(b.dataset.guideStep)));
+    $('guide-choices').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));
+    focusNode(item[0]);
+  }
+  $('guide-choices').innerHTML=guides.map((g,i)=>`<button data-guide="${i}" aria-pressed="false">${g.title} →</button>`).join('');
+  $('guide-choices').querySelectorAll('button').forEach(b=>b.onclick=()=>showGuide(Number(b.dataset.guide)));
+  $('guide-home').onclick=()=>{guideIndex=-1;$('guide-body').hidden=true;$('guide-choices').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed','false'));pause();resetNavigation();draw();};
+
+  resetNavigation();draw();
+  if(model.mode==='demo')notify('这是合成教学场景。播放查看机制，点击部件检查输入输出；导入实际 Trace 后才显示度量。');
+  else if(model.mode==='trace'&&model.traceMeta?.synthetic)notify('这是合成 Trace 示例。数值仅用于验证回放和错误下钻，不代表真实项目性能。');
+})();
+
+</script>
+</body>
+</html>
