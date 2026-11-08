@@ -219,7 +219,14 @@ main > :not(.hero) { position: relative; }
   border: 1px solid var(--edge);
   background: var(--panel);
 }
-.about-avatar { display: grid; place-items: center; width: 72px; height: 72px; border: 1px solid #695740; background: #272238; }
+.about-avatar {
+  display: block;
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+  box-shadow: 3px 3px 0 #090a16;
+}
 .about h2 { font-size: clamp(22px, 2.5vw, 30px); }
 main { padding-bottom: 65px; }
 .footer { border-top: 1px solid var(--edge); color: var(--muted); font-size: 12px; }
@@ -254,8 +261,7 @@ main { padding-bottom: 65px; }
   .project-top { margin-bottom: 12px; }
   .bench { margin-top: 48px; grid-template-columns: minmax(0, 1fr); padding: 19px; gap: 18px; }
   .about { margin-top: 48px; padding: 18px; gap: 15px; }
-  .about-avatar { width: 51px; height: 51px; }
-  .about-avatar img { width: 35px; height: 35px; }
+  .about-avatar { width: 62px; height: 62px; }
   main { padding-bottom: 43px; }
 }
 @media (prefers-reduced-motion: reduce) {
