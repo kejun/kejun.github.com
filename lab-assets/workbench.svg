@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="306" viewBox="0 0 260 153" shape-rendering="crispEdges">
+  <title>深夜电子工作台</title>
+  <desc>一盏铜色台灯照着电路板与烙铁，老式显示器上跳动着绿色波形。</desc>
+  <defs>
+    <pattern id="wall" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path fill="#222844" d="M0 0h1v1H0z"/>
+    </pattern>
+    <pattern id="screen" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path fill="#244c49" d="M0 0h1v8H0zM1 0h7v1H1z"/>
+    </pattern>
+    <pattern id="vents" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path fill="#1a2037" d="M0 0h2v3H0z"/>
+    </pattern>
+  </defs>
+
+  <!-- Room and a city window -->
+  <path fill="#161b31" d="M0 0h260v153H0z"/>
+  <path fill="#191f37" d="M0 6h260v2H0zM0 88h260v21H0z"/>
+  <path fill="url(#wall)" d="M0 0h260v108H0z"/>
+  <path fill="#101529" d="M0 97h260v12H0zM151 13h88v65h-88z"/>
+  <path fill="#3b4265" d="M151 12h87v62h-87z"/>
+  <path fill="#686994" d="M151 12h87v2h-87zM151 14h2v58h-2z"/>
+  <path fill="#12182f" d="M155 16h79v54h-79z"/>
+  <path fill="#202645" d="M156 39h77v30h-77z"/>
+  <path fill="#292e52" d="M156 51h77v18h-77z"/>
+  <path fill="#343a60" d="M156 59h77v10h-77z"/>
+  <path fill="#9992cc" d="M161 25h2v1h-2zM175 32h1v2h-1zM204 27h1v1h-1zM227 35h1v2h-1z"/>
+  <path fill="#e2cebb" d="M217 20h2v5h-2zM215 22h6v1h-6z"/>
+  <path fill="#ab95b0" d="M185 24h1v1h-1zM167 43h2v1h-2zM225 44h1v1h-1z"/>
+  <path fill="#1b213d" d="M156 57h8v-6h7v10h4v-5h4v-5h3v-5h8v13h5v-7h6v-4h6v11h5v-4h9v6h5v-10h3v-3h2v3h2v18h-77z"/>
+  <path fill="#8d6e8f" d="M166 54h2v2h-2zM184 49h2v2h-2zM187 54h1v2h-1zM203 51h2v2h-2zM216 57h2v2h-2zM228 54h2v1h-2zM180 60h2v2h-2z"/>
+  <path fill="#101529" d="M156 64h13v-3h11v3h10v-2h11v3h12v-3h9v4h11v3h-77z"/>
+  <path fill="#393f63" d="M193 14h3v56h-3zM153 42h83v2h-83zM149 73h91v4h-91z"/>
+  <path fill="#77739c" d="M149 73h91v1h-91z"/>
+  <path fill="#101529" d="M151 77h87v2h-87z"/>
+
+  <!-- Wall tools and component drawers -->
+  <path fill="#2b304e" d="M0 25h27v45H0z"/>
+  <path fill="#393e60" d="M0 25h27v2H0zM0 39h27v1H0zM0 54h27v1H0z"/>
+  <path fill="#101529" d="M0 68h29v5H0zM25 26h2v43h-2z"/>
+  <path fill="#5c587e" d="M6 32h8v2H6zM6 46h8v2H6zM6 61h8v2H6z"/>
+  <path fill="#d1a076" d="M8 33h4v1H8zM8 47h4v1H8zM8 62h4v1H8z"/>
+  <path fill="#2d3352" d="M9 78h14v2H9zM13 81h5v12h-5z"/>
+  <path fill="#625b7b" d="M14 80h3v8h-3zM14 93h3v1h-3z"/>
+  <path fill="#353654" d="M243 84h17v23h-17zM245 81h13v3h-13z"/>
+  <path fill="#5c577a" d="M243 84h17v2h-17zM247 91h5v1h-5zM247 95h8v1h-8z"/>
+  <path fill="#d3a278" d="M249 81h5v2h-5z"/>
+
+  <!-- Desk, amber light, and back-plane cables -->
+  <path fill="#22243c" d="M0 105h260v3H0z"/>
+  <path fill="#42334b" d="M0 108h260v29H0z"/>
+  <path fill="#4f3a4e" d="M0 112h260v2H0zM0 124h260v1H0zM0 131h260v1H0z"/>
+  <path fill="#5a404f" d="M162 109h61v3h14v4h9v6h-6v5h-16v4h-54v-3h-12v-6h-9v-6h13z"/>
+  <path fill="#704b54" d="M177 111h40v3h11v4h6v4h-8v4h-14v2h-33v-4h-10v-6h8z"/>
+  <path fill="#6b4956" d="M15 115h35v1H15zM44 131h39v1H44zM3 126h26v1H3zM242 129h15v1h-15zM222 134h38v1h-38z"/>
+  <path fill="#242037" d="M26 103h4v7h25v3H27v-3h-4v-7zM110 101h3v4h29v3h-32zM62 121h32v-3h20v2H96v3H62z"/>
+  <path fill="#282238" d="M0 137h260v16H0z"/>
+  <path fill="#8d646d" d="M0 136h260v2H0z"/>
+  <path fill="#593c50" d="M0 138h260v5H0z"/>
+  <path fill="#17182d" d="M0 145h260v8H0z"/>
+  <path fill="#3c3046" d="M0 145h260v1H0zM20 146h10v7H20zM228 146h10v7h-10z"/>
+  <path fill="#735565" d="M6 140h30v1H6zM115 140h28v1h-28zM234 140h20v1h-20z"/>
+
+  <!-- CRT silhouette, housing and molded bezel -->
+  <path fill="#292135" d="M31 107h119v4h8v5h-8v3H44v-3H28v-4h3z"/>
+  <path fill="#151a30" d="M42 27h97v3h6v5h4v7h3v52h-3v7h-5v3h-8v3H41v-4h-5v-5h-4V38h4v-7h6z"/>
+  <path fill="#353a5e" d="M41 30h95v3h8v5h3v56h-4v7H41v-3h-5v-5h-2V39h3v-5h4z"/>
+  <path fill="#4d5077" d="M42 30h93v3H42zM37 36h4v56h-4zM41 94h3v4h-3z"/>
+  <path fill="#77759c" d="M44 31h64v1H44zM38 40h1v27h-1z"/>
+  <path fill="#292d4a" d="M136 36h8v4h3v54h-4v7h-10v-6h5z"/>
+  <path fill="#222842" d="M49 37h76v3h6v5h4v42h-4v5h-6v3H49v-3h-5v-5h-3V45h3v-5h5z"/>
+  <path fill="#6b6990" d="M49 38h76v2H49zM44 41h4v4h-4zM42 46h2v40h-2z"/>
+  <path fill="#11192a" d="M50 42h74v3h5v5h3v32h-3v5h-5v3H50v-3h-5v-5h-2V50h2v-5h5z"/>
+  <path fill="#18363b" d="M51 45h72v3h5v4h2v28h-2v4h-5v3H51v-3h-4v-4h-2V52h2v-4h4z"/>
+  <path fill="url(#screen)" d="M51 45h72v3h5v4h2v28h-2v4h-5v3H51v-3h-4v-4h-2V52h2v-4h4z"/>
+  <path fill="#2c5551" d="M49 65h77v1H49zM88 48h1v36h-1z"/>
+  <path fill="#398976" d="M49 68h14v-2h7v-5h6v-6h5v5h4v7h3v8h4v4h4v-4h5v-8h5v-5h6v2h4v4h10v2h-12v-4h-4v-2h-2v5h-5v8h-5v4h-8v-4h-4v-8h-3v-7h-4v-5h-1v6h-6v5h-7v2H49z"/>
+  <path fill="#70edbe" d="M49 68h14v-2h7v-5h6v-6h5v5h4v7h3v8h4v4h4v-4h5v-8h5v-5h6v2h4v4h10v1h-11v-4h-4v-2h-4v5h-5v8h-5v4h-6v-4h-4v-8h-3v-7h-4v-5h-3v6h-6v5h-7v2H49z"/>
+  <path fill="#c5f5dc" d="M75 55h3v1h-3zM90 79h3v1h-3zM106 62h3v1h-3z"/>
+  <path fill="#7eaaa0" d="M54 50h7v1h-7zM54 53h3v1h-3zM117 79h7v1h-7zM120 82h4v1h-4z"/>
+  <path fill="url(#vents)" d="M72 96h35v4H72z"/>
+  <path fill="#9488b2" d="M48 96h9v2h-9zM122 96h6v3h-6z"/>
+  <path fill="#b6a0bf" d="M123 96h4v1h-4z"/>
+  <path fill="#70edbe" d="M132 95h2v2h-2z"/>
+  <path fill="#111629" d="M45 103h88v3H45z"/>
+  <path fill="#363957" d="M64 106h47v4h8v4H57v-4h7z"/>
+  <path fill="#545173" d="M61 110h53v1H61z"/>
+  <path fill="#19182e" d="M56 114h64v2H56z"/>
+
+  <!-- Keyboard with individual keys and a handheld meter -->
+  <path fill="#251e32" d="M31 122h72v4h5v8H27v-7h4z"/>
+  <path fill="#71617a" d="M33 121h66v3h4v4h3v3H28v-4h3v-4h2z"/>
+  <path fill="#a18da4" d="M34 121h64v1H34zM31 124h70v1H31z"/>
+  <path fill="#39314c" d="M35 123h4v1h-4zM42 123h4v1h-4zM49 123h4v1h-4zM56 123h4v1h-4zM63 123h4v1h-4zM70 123h4v1h-4zM77 123h4v1h-4zM84 123h4v1h-4zM91 123h5v1h-5zM34 126h5v1h-5zM42 126h4v1h-4zM49 126h4v1h-4zM56 126h4v1h-4zM63 126h4v1h-4zM70 126h4v1h-4zM77 126h4v1h-4zM84 126h4v1h-4zM91 126h7v1h-7zM33 128h8v2h-8zM44 128h10v2H44zM57 128h22v2H57zM82 128h7v2h-7zM92 128h9v2h-9z"/>
+  <path fill="#2b2035" d="M8 100h18v3h3v21H7v-4H5v-17h3z"/>
+  <path fill="#ad715f" d="M8 100h16v3h3v17h-3v3H7v-21h1z"/>
+  <path fill="#db9e77" d="M8 100h16v2H8zM7 103h2v17H7z"/>
+  <path fill="#443448" d="M10 104h13v7H10zM13 114h7v6h-7z"/>
+  <path fill="#aec3a1" d="M11 105h11v5H11z"/>
+  <path fill="#496357" d="M13 106h1v3h-1zM16 106h2v3h-2zM20 106h1v3h-1z"/>
+  <path fill="#f0c290" d="M16 114h2v3h-2z"/>
+
+  <!-- Copper anglepoise lamp -->
+  <path fill="#282135" d="M198 124h39v3h7v3h-48v-3h2z"/>
+  <path fill="#3c2c42" d="M219 109h7v13h7v3h6v3h-38v-3h4v-3h14z"/>
+  <path fill="#78505b" d="M206 122h27v3h5v2h-36v-2h4z"/>
+  <path fill="#b17663" d="M207 122h25v2h-25zM202 125h36v1h-36z"/>
+  <path fill="#52374a" d="M222 88h6v29h-3v5h-5v-8h2zM220 83h8v5h-8zM216 77h7v6h-7zM213 70h7v7h-7zM209 63h7v7h-7zM205 56h7v7h-7zM200 49h8v7h-8z"/>
+  <path fill="#c88865" d="M223 89h2v24h-2zM220 113h3v7h-3zM220 84h5v2h-5zM217 77h3v7h-3zM213 70h3v7h-3zM209 63h3v7h-3zM205 56h3v7h-3zM201 50h4v6h-4z"/>
+  <path fill="#ffc68a" d="M223 88h2v2h-2zM207 58h2v2h-2z"/>
+  <path fill="#382942" d="M193 47h10v4h-7v6h-6v-3h3z"/>
+  <path fill="#633e52" d="M184 48h13v4h4v5h3v6h-29v-5h3v-5h6z"/>
+  <path fill="#ab665c" d="M183 51h14v3h4v4h3v4h-30v-4h3v-4h6z"/>
+  <path fill="#d48d68" d="M183 52h13v2h-13zM178 55h20v2h-20zM175 58h27v2h-27z"/>
+  <path fill="#ffd094" d="M176 60h26v2h-26zM182 62h14v2h-14z"/>
+  <path fill="#ffebb1" d="M186 61h7v2h-7z"/>
+  <path fill="#9a6970" d="M185 68h2v2h-2zM174 74h1v2h-1zM197 76h1v2h-1zM186 83h1v1h-1zM169 90h1v2h-1zM205 95h2v1h-2z"/>
+
+  <!-- Wires, microcontroller development board, and soldering iron -->
+  <path fill="#271f33" d="M152 110h8v4h11v-3h10v-4h13v4h-12v4h-10v3h-12v-2h-8z"/>
+  <path fill="#d88566" d="M148 108h12v5h11v-3h10v-4h13v2h-12v4h-10v3h-14v-5h-10z"/>
+  <path fill="#95a186" d="M154 115h10v4h15v-2h16v1h-15v2h-18v-4h-8z"/>
+  <path fill="#292333" d="M124 111h34v4h5v15h-5v4h-36v-4h-6v-13h4v-6z"/>
+  <path fill="#31524e" d="M122 109h34v3h4v15h-4v4h-33v-3h-5v-14h4z"/>
+  <path fill="#517469" d="M122 109h34v2h-34zM118 115h2v13h-2zM123 129h32v2h-32z"/>
+  <path fill="#66a48b" d="M125 117h9v1h-9zM129 113h1v5h-1zM143 123h10v1h-10zM148 123h1v6h-1zM126 126h6v1h-6zM151 115h4v1h-4z"/>
+  <path fill="#e6b980" d="M124 112h2v2h-2zM128 112h2v2h-2zM132 112h2v2h-2zM136 112h2v2h-2zM140 112h2v2h-2zM144 112h2v2h-2zM148 112h2v2h-2zM152 112h2v2h-2zM124 127h2v2h-2zM128 127h2v2h-2zM132 127h2v2h-2zM136 127h2v2h-2zM140 127h2v2h-2zM144 127h2v2h-2zM148 127h2v2h-2zM152 127h2v2h-2z"/>
+  <path fill="#263448" d="M132 116h15v9h-15zM151 118h6v5h-6z"/>
+  <path fill="#a19bab" d="M134 116h11v1h-11zM152 118h4v1h-4zM133 124h2v2h-2zM137 124h2v2h-2zM141 124h2v2h-2zM145 124h2v2h-2zM133 115h2v2h-2zM137 115h2v2h-2zM141 115h2v2h-2zM145 115h2v2h-2z"/>
+  <path fill="#c6d7b8" d="M116 117h8v7h-8z"/>
+  <path fill="#66746f" d="M116 119h4v4h-4zM121 118h3v1h-3z"/>
+  <path fill="#70edbe" d="M150 121h2v2h-2z"/>
+  <path fill="#a8ffd4" d="M150 121h1v1h-1z"/>
+  <path fill="#ba905f" d="M165 127h3v1h-3zM171 125h2v1h-2zM167 132h2v1h-2zM245 116h3v1h-3zM252 119h2v1h-2z"/>
+
+  <path fill="#302339" d="M225 116h8v-4h12v-5h15v2h-13v5h-12v4h-10z"/>
+  <path fill="#352439" d="M180 125h5v-3h7v-3h6v-3h9v-3h14v2h6v4h-10v3h-18v3h-8v2h-11z"/>
+  <path fill="#d4b0a0" d="M177 125h6v-2h7v-3h9v3h-8v3h-7v1h-7z"/>
+  <path fill="#f0ceab" d="M184 123h6v1h-6zM191 120h8v1h-8z"/>
+  <path fill="#ac6466" d="M198 117h9v-3h15v2h3v3h-9v2h-18z"/>
+  <path fill="#e6a478" d="M207 114h14v1h-14zM200 117h10v1h-10z"/>
+  <path fill="#f4b878" d="M214 116h7v1h-7z"/>
+</svg>

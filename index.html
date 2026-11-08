@@ -1,10 +1,168 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!doctype html>
+<html lang="zh-CN">
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>Kejun's Projects Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111325">
+  <meta name="description" content="浩宇的像素工作台。记录嵌入式小屏、互动网页和设计笔记。">
+  <title>浩宇的像素工作台 · HAOYU LAB</title>
+  <link rel="icon" href="lab-assets/chip.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="lab-assets/style.css">
+  <script src="lab-assets/lab.js" defer></script>
 </head>
 <body>
-	<h1>Hello</h1>
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="topbar" id="top">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top" aria-label="浩宇的像素工作台首页">
+        <img src="lab-assets/chip.svg" width="32" height="32" alt="">
+        <span>HAOYU<span class="brand-slash">/</span>LAB</span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="#projects">项目</a>
+        <a href="#notes">笔记</a>
+        <a href="#about">关于</a>
+      </nav>
+      <span class="edition"><i aria-hidden="true"></i> BUILD 01</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="shell hero">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow"><span aria-hidden="true">▸</span> HAOYU’S WORKBENCH</p>
+        <h1>
+          <span class="sr-only">浩宇的像素工作台</span>
+          <svg class="wordmark" aria-hidden="true" viewBox="0 0 38 7" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M0 0h2v3h2V0h2v7H4V5H2v2H0zM8 1h1V0h4v1h1v6h-2V5h-2v2H8zm2 1v1h2V2zM17 0h4v1h1v5h-1v1h-4V6h-1V1h1zm1 2v3h2V2zM24 0h2v2h2V0h2v3h-1v1h-1v3h-2V4h-1V3h-1zM32 0h2v5h2V0h2v6h-1v1h-4V6h-1z" fill-rule="evenodd"/>
+          </svg>
+          <span class="hero-title" aria-hidden="true">浩宇的像素工作台<span class="cursor"></span></span>
+        </h1>
+        <p class="intro">嗨，我是浩宇。这里收着我做过的实验、拆开的代码，以及读书时记下的想法。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects"><span aria-hidden="true">▶</span> 浏览项目</a>
+          <a class="button button-secondary" href="#about">关于我 <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <figure class="monitor">
+        <div class="monitor-top"><span><i aria-hidden="true"></i> LAB CAM</span><span>FIG. 01</span></div>
+        <div class="monitor-screen">
+          <img src="lab-assets/workbench.svg" width="520" height="306" alt="像素画里的夜间电子工作台，有示波器、电路板和一盏暖色台灯">
+        </div>
+        <figcaption class="monitor-bottom"><span>深夜工作台</span><span class="monitor-vents" aria-hidden="true"></span><span>ILLUSTRATION</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="inventory" aria-label="工作台主题">
+      <div class="shell inventory-inner">
+        <span class="inventory-title">在工作台上</span>
+        <span><b aria-hidden="true">▦</b> 嵌入式系统</span>
+        <span><b aria-hidden="true">◇</b> 互动网页</span>
+        <span><b aria-hidden="true">≡</b> 设计笔记</span>
+      </div>
+    </div>
+
+    <section class="shell content-section" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true">▸</span> PROJECTS</p>
+          <h2 id="projects-title">项目架</h2>
+        </div>
+        <p class="section-side">从一块屏幕到一个网页</p>
+      </div>
+      <div class="project-grid">
+        <article class="project project-hardware">
+          <div class="project-top">
+            <div class="project-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" shape-rendering="crispEdges"><path fill="currentColor" d="M6 2h2v3h3V2h2v3h3V2h2v3h2v2h3v2h-3v2h3v2h-3v2h3v2h-3v2h-2v3h-2v-3h-3v3h-2v-3H8v3H6v-3H4v-2H1v-2h3v-2H1v-2h3V9H1V7h3V5h2zm1 6v8h10V8zm2 2h6v4H9z" fill-rule="evenodd"/></svg>
+            </div>
+            <span class="tag">HARDWARE</span>
+          </div>
+          <h3>小屏硬件实验</h3>
+          <p>用 ESP-IDF 驱动 AMOLED 小屏，把界面从电脑屏幕搬到手边的硬件上。</p>
+          <a href="#scope">试试像素示波器 <span aria-hidden="true">↘</span></a>
+        </article>
+        <article class="project project-code">
+          <div class="project-top">
+            <div class="project-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" shape-rendering="crispEdges"><path fill="currentColor" d="M1 11h3V8h4v3H5v3H1zm4 3h3v3H5zm11-6h3v3h4v3h-4v-3h-3zm0 6h3v3h-3zm-5-9h3v6h-2v6h-2v3H7v-3h2v-6h2z"/></svg>
+            </div>
+            <span class="tag">CODE</span>
+          </div>
+          <h3>HearWise 代码解剖</h3>
+          <p>把音频项目的代码结构做成一张可以点开的地图，沿着信号路径读代码。</p>
+          <a href="https://kejun.github.io/hearwise-anatomy/">打开互动页面 <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="project project-math">
+          <div class="project-top">
+            <div class="project-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" shape-rendering="crispEdges"><path fill="currentColor" d="M5 3h14v3h-9v2h2v2h2v4h-2v2h-2v2h9v3H5v-4h2v-2h2v-2h2v-2H9V9H7V7H5z"/></svg>
+            </div>
+            <span class="tag">WEB</span>
+          </div>
+          <h3>网页数学练习</h3>
+          <p>把题目、公式和几何图形装进浏览器，可以按题集切换练习。</p>
+          <a href="funnyexam/">打开数学练习 <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell bench" id="scope" aria-labelledby="scope-title">
+      <div class="bench-copy">
+        <p class="eyebrow"><span aria-hidden="true">▸</span> PLAYGROUND</p>
+        <h2 id="scope-title">像素示波器</h2>
+        <p>切换波形，再拖动频率滑杆，看看屏幕上的信号怎么变。</p>
+        <span class="bench-caption">浏览器模拟 · 无需连接设备</span>
+      </div>
+      <div class="scope">
+        <div class="scope-top"><span><i aria-hidden="true"></i> OSC / 01</span><span id="wave-label">SINE</span></div>
+        <svg class="scope-screen" viewBox="0 0 280 80" role="img" aria-label="信号波形图" shape-rendering="crispEdges">
+          <defs><pattern id="scope-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0v20" fill="none" stroke="#24433d"/></pattern></defs>
+          <rect width="280" height="80" fill="url(#scope-grid)"/>
+          <path d="M0 40h280" stroke="#3c6257" stroke-dasharray="3 4"/>
+          <path id="wave" d="M0 40Q35 -8 70 40T140 40T210 40T280 40" fill="none" stroke="#70edbe" stroke-width="2"/>
+        </svg>
+        <div class="scope-controls">
+          <fieldset aria-label="波形">
+            <button type="button" data-wave="sine" aria-pressed="true" title="正弦波">正弦</button>
+            <button type="button" data-wave="square" aria-pressed="false" title="方波">方波</button>
+            <button type="button" data-wave="triangle" aria-pressed="false" title="三角波">三角</button>
+          </fieldset>
+          <label class="frequency" for="frequency"><span>频率</span><input id="frequency" type="range" min="1" max="5" value="2"><output id="frequency-value" for="frequency">2 Hz</output></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell content-section" id="notes" aria-labelledby="notes-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span aria-hidden="true">▸</span> NOTES</p>
+          <h2 id="notes-title">工作台笔记</h2>
+        </div>
+      </div>
+      <details class="note">
+        <summary><span class="note-kind">设计</span><span>读《形式综合札记》</span><span class="note-toggle" aria-hidden="true"></span></summary>
+        <p>怎样知道一个设计和它要解决的问题合不合拍？可以先列出具体的不合适之处，再看哪些问题常常一起出现。分好组，才知道该从哪里动手。</p>
+      </details>
+      <details class="note">
+        <summary><span class="note-kind">硬件</span><span>小屏点亮之后</span><span class="note-toggle" aria-hidden="true"></span></summary>
+        <p>能显示画面之后，试着只刷新变化的区域。让文字和图形动起来，同时观察屏幕有没有撕裂或闪烁。</p>
+      </details>
+    </section>
+
+    <section class="shell about" id="about" aria-labelledby="about-title">
+      <div class="about-avatar"><img src="lab-assets/chip.svg" width="48" height="48" alt=""></div>
+      <div>
+        <p class="eyebrow"><span aria-hidden="true">▸</span> ABOUT</p>
+        <h2 id="about-title">你好，我是浩宇。</h2>
+        <p>我喜欢把想法做成能亲手试一试的东西。这里是放这些小实验的地方。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner"><span>© 2026 浩宇 <span class="footer-divider">/</span> HAOYU LAB</span><a href="#top">回到顶部 <span aria-hidden="true">↑</span></a></div>
+  </footer>
 </body>
 </html>
